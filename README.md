@@ -122,22 +122,22 @@ repo.
 If this is your first time deploying it you can just run the command below, if not make
 sure to run 'git fetch origin' to pull down the gh-pages branch
 
-The command itself it 'pretext deploy' which will output a bunch of stuff like this
+The command itself is 'pretext deploy' which will output a bunch of stuff like this
 
 To enable GitHub Pages, visit 
-    https://github.com/cmontalvo251/project-based-instrumentation/settings/pages
+    https://github.com/cmontalvo251/aerospace-mechanics-controls/settings/pages
 selecting the `gh-pages` branch with the `/ (root)` folder.
 
 First, no need to "enable". Once you run pretext deploy you'll be able see in the settings/pages tab that your book is already deployed.
 
 Visit
-    https://github.com/cmontalvo251/project-based-instrumentation/actions/
+    https://github.com/cmontalvo251/aerospace-mechanics-controls/actions/
 to check on the status of your GitHub Pages deployment.
 
 ^This is a neat site which will show whether or not your book is deployed yet. For small projects like what I'm doing it is really quick.
 
 Your built project will soon be available to the public at:
-    https://cmontalvo251.github.io/project-based-instrumentation/
+    https://cmontalvo251.github.io/aerospace-mechanics-controls/
 
 When looking at the settings/pages tab you'll see that the book is indeed live
 at the URL above.
