@@ -6,9 +6,35 @@
 <!-- solutions in the next. Then there is an appendix -->
 <!-- with all notation generated, and finally the index. -->
 <backmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="backmatter">
-  <title>Backmatter</title>
-
   <!-- <solutions divisional="hint"> <title>Selected Hints</title> </solutions> -->
+
+  <references>
+    <title>References</title>
+    <biblio xml:id="copilot"><p>GitHub. GitHub Copilot. https://copilot.github.com/, 2021. Accessed on December 5, 2025.</p></biblio>
+    <biblio xml:id="gemini"><p>Google DeepMind. Gemini: Googles multimodal ai model. https://gemini.google.com/, 2023. Accessed on December 5, 2025.</p></biblio>
+    <biblio xml:id="vandv"><p>Wikipedia. V-model. https://en.wikipedia.org/wiki/V-Model. Accessed December 21st, 2021.</p></biblio>
+    <biblio xml:id="drawio"><p>Draw.io. JGraph Ltd, 2026, www.drawio.com/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="blender"><p>Blender. Blender Foundation, 2026, www.blender.org/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="fritzing"><p>Fritzing. Fritzing, 2026, fritzing.org/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="solidworks"><p>SolidWorks. Dassault Systèmes, 2026, www.solidworks.com/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="autodesk"><p>Autodesk. Autodesk, 2026, www.autodesk.com/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="cirkit"><p>Cirkit Designer. Cirkit, 2026, https://app.cirkitdesigner.com/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="inkscape"><p>Inkscape. Inkscape, 2026, www.inkscape.org/. Accessed 29 Mar. 2026</p></biblio>
+    <biblio xml:id="CircuitPython"><p>CircuitPython. https://circuitpython.org/, 2021. Accessed: 12-09-2021.</p></biblio>
+    <biblio xml:id="Gitbook"><p>Carlos Montalvo, Lisa Schibelius, and Marine Leabeater. Project Based Engineering Instrumentation with CircuitPython. Github, 2023. https://cmontalvo251.github.io/project-based-instrumentation/.</p></biblio>
+    <biblio xml:id="Adafruit"><p>Adafruit. Adafruit learn, 2021. Adafruit https://learn.adafruit.com/.</p></biblio>
+    <biblio xml:id="Github"><p>Carlos Montalvo. Facility for aerial systems and technology github repository. cmontalvo251, 2022. https://github.com/cmontalvo251</p></biblio>
+    <biblio xml:id="AdafruitMAIN"><p>Adafruit. Adafruit, 2023. Adafruit https://adafruit.com/.</p></biblio>
+    <biblio xml:id="Arduino"><p>Arduino. Arduino, 2023. https://www.arduino.cc/.</p></biblio>
+    <biblio xml:id="youtube"><p>Montalvo, Carlos. YouTube, 2026, www.youtube.com/@CarlosMontalvo251.</p></biblio>
+    <biblio xml:id="python"><p>Python Software Foundation. Python, 2026. https://www.python.org/.</p></biblio>
+    <biblio xml:id="thonny"><p>Aasumets, Aivar. Thonny: Python IDE for Beginners. 2026, thonny.org/.</p></biblio>
+    <biblio xml:id="spyder"><p>Spyder: The Scientific Python Development Environment. Spyder Project Contributors, 2026, www.spyder-ide.org/.</p></biblio>
+    <biblio xml:id="colab"><p>Google Colaboratory. Google, 2026. https://colab.research.google.com/.</p></biblio>
+    <biblio xml:id="mu"><p>Mu Editor. Mu, 2026. https://codewith.mu/en/.</p></biblio>
+    <biblio xml:id="octave"><p>GNU Octave. GNU, 2026. https://www.gnu.org/software/octave/.</p></biblio>
+    <biblio xml:id="sheets"><p>Google Sheets. Google, 2026. https://www.google.com/sheets/about/.</p></biblio>
+  </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->
 
@@ -16,8 +42,9 @@
 
   <!-- <index> <title>Index</title> <index-list/> </index> -->
 
+  <!-- You can put an extra colophon if you want
   <colophon>
-    <p> This book was authored in <pretext />. </p>
-  </colophon>
+    <p> This book was authored in <pretext/>. </p>
+  </colophon> -->
 </backmatter>
 

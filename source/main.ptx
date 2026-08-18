@@ -4,18 +4,24 @@
   <!-- we first include a file which contains the docinfo element: -->
   <xi:include href="./docinfo.ptx" />
 
-  <book xml:id="my-great-book">
-    <title>My Great Book</title>
-    <subtitle>An example to get you started</subtitle>
+  <book xml:id="aerospace-mechanics-and-controls">
+
+    <!-- Title of the book -->
+    <title>Aerospace Mechanics and Controls</title>
+    <subtitle>Planes, Rockets, Quadcopters, Satellites and everything in between</subtitle>
 
     <!-- Include frontmatter -->
     <xi:include href="./frontmatter.ptx" />
 
     <!-- Include chapters -->
-    <xi:include href="./ch-chapter-title.ptx" />
 
+    <!--Include Results and Discussion chapters-->
+    <xi:include href="./conclusions.ptx"/>
 
-    <!-- Include backmatter -->
+    <!-- Include Acknowledgements -->
+    <xi:include href="./acknowledgements.ptx"/>
+
+    <!-- Include backmatter if you want -->
     <xi:include href="./backmatter.ptx" />
 
   </book>
