@@ -1,0 +1,106 @@
+%\document class[]{aiaa-tc} %load in aiaa class template file
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathabx}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{natbib} %REMOVE THIS IF YOU DON'T WANT BRACKETS ON YOUR PAPER
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{color,soul}
+\usepackage[font=normalsize,labelfont=bf]{caption}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\sref}[1]{$^{[\ref{#1}]}$}
+\newcommand{\dref}[2]{$^{[\ref{#1}-\ref{#2}]}$}
+
+ % Define commands to assure consistent treatment throughout document
+\newcommand{\eqnref}[1]{(\ref{#1})}
+\newcommand{\class}[1]{\texttt{#1}}
+\newcommand{\package}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\BibTeX}{\textsc{Bib}\TeX}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\beqn{\begin{matrix}}
+\def\eeqn{\end{matrix}}
+
+\hypersetup{%
+  colorlinks=true,% hyperlinks will be black
+  linkcolor=blue,
+  linkbordercolor=red,% hyperlink borders will be red
+   %pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
+}
+
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{title}
+\input{foreword}
+\input{introduction}
+\newpage
+\input{nomenclature}
+\newpage
+\input{particle_dynamics}
+\newpage
+\input{rigid_bodies}
+\newpage
+\input{eoms}
+\newpage
+\input{external_models}
+\newpage
+\input{forces_moments}
+\newpage
+\input{orbital_elements}
+\newpage
+\input{numerical_integration}
+\newpage
+\input{lti}
+\newpage
+\input{lti_response}
+\newpage
+\input{lti_stability}
+\newpage
+\input{state_estimation}
+\newpage
+\input{lti_controls}
+\newpage
+\input{controls}
+\newpage
+\input{nonlinear}
+\newpage
+\input{sys_eng}
+\newpage
+\input{cubesats}
+\newpage
+\input{aircraft_design}
+\newpage
+\input{aircraft_design_equations}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{unsrt}
+\bibliography{../papers.bib}
+
+\end{document}
