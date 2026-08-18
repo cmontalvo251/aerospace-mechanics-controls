@@ -108,7 +108,7 @@ Alternatively you can open the index.html file in the
 
 I personally just like to run google-chrome index.html from the command line.
 
-Much of this has been automated in the textit.sh script
+Much of this has been automated in the textit.sh script which is also in this folder
 
 # Deploy
 
