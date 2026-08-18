@@ -174,6 +174,15 @@ before running this script
 The script also defaults to opening the web version using google-chrome
 so make sure you have google-chrome installed
 
+# Full Page
+
+By default pretext compiles the PDF into a narrow format with wide margins. To change that open the publication/publication.ptx file and change the lines below
+
+<!-- Control text justification and bottom page behavior. Add content intended for \geometry{} inside the <geometry> element. -->
+<page right-alignment="flush" bottom-alignment="ragged" crop-marks="letter">
+    <geometry>top=2cm,left=2cm,right=2cm,bottom=2cm</geometry>
+</page>
+
 # Help
 
 If you need more help with PreTeXt be sure to check out the guide made by some other pretext users
