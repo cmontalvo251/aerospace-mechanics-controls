@@ -15,6 +15,7 @@
 
     <!-- Include chapters -->
     <xi:include href="./introduction.ptx" />
+    <xi:include href="./nomenclature.ptx" />
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>
