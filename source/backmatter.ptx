@@ -34,6 +34,10 @@
     <biblio xml:id="mu"><p>Mu Editor. Mu, 2026. https://codewith.mu/en/.</p></biblio>
     <biblio xml:id="octave"><p>GNU Octave. GNU, 2026. https://www.gnu.org/software/octave/.</p></biblio>
     <biblio xml:id="sheets"><p>Google Sheets. Google, 2026. https://www.google.com/sheets/about/.</p></biblio>
+    <biblio xml:id="etkins"><p>B. Etkins. Dynamics of Atmospheric Flight. Dover, Mineola, New York, 2000. pages 9-13, 134-151, 196-318.</p></biblio>
+    <biblio xml:id="phil"><p>Warren F. Phillips. Mechanics of Flight. John Wiley and Sons, Hoboken, New Jersey, 2010.</p></biblio>
+    <biblio xml:id="nelson"><p>R.C. Nelson. Flight Stability and Automatic Control. McGraw-Hill, 2nd edition, 1998.</p></biblio>
+    <biblio xml:id="astrodynamics"><p>Jerry E. White, Roger R. Bate, Donald D. Mueller. Fundamentals of Astrodynamics. Dover, 1971.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

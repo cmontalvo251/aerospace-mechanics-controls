@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="particle-dynamics" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Particle Dynamics</title>
+
+  <introduction>
+    <p>
+      This chapter explores the foundational mechanics governing the linear and rotational motion of systems of particles. Beginning with Newton's Second and Third Laws, we formulate the total momentum and internal force interactions within a rigidly connected particle system. This establishes the groundwork required to analyze center-of-mass motion and rotational dynamics using skew-symmetric matrix operators.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-systems-of-particles">
+    <title>Systems of Particles</title>
+
+    <p>
+      For this formulation we start with Newton's Second Law with no approximations. Similar dynamic forumlations can be found in <xref ref="etkins"/>, <xref ref="phil"/>, <xref ref="nelson"/>, and <xref ref="astrodynamics"/>.
+    </p>
+
+    <p>
+      <me>\sum_{i=0}^N \vec{F}_{ji} = \frac{d\vec{p}_j}{dt}</me>
+    </p>
+
+    <p>
+      where <m>\vec{p}_j</m> is the momentum of a particle. <m>\vec{F}_{ji}</m> is a force on the particle. The statement above states that sum of all forces on a particle is equal to the time rate of change of momentum. If two particles are then considered the equation can be written for both particles.
+    </p>
+
+    <p>
+      <me>\sum_{i=0}^N \vec{F}_{1i} + \vec{f}_{12} = \frac{d\vec{p}_1}{dt} \quad \sum_{i=0}^N \vec{F}_{2i} + \vec{f}_{21} = \frac{d\vec{p}_2}{dt}</me>
+    </p>
+
+    <p>
+      Note that the forces <m>\vec{f}_{12}</m> and <m>\vec{f}_{21}</m> are internal forces experienced by each particle exerted on each other since they are rigidly connected. Newton's Third Law states that for every action there is an equal and opposite reaction. That is, <m>\vec{f}_{12} = -\vec{f}_{21}</m>. Thus, if both equations are added the following equation is created
+    </p>
+
+    <p>
+      <me>\sum_{j=0}^P \sum_{i=0}^N \vec{F}_{ji} = \sum_{j=0}^P \frac{d\vec{p}_j}{dt}</me>
+    </p>
+
+    <p>
+      where <m>P</m> is the number of particles. Typically the double summation in <m>F</m> is written just as <m>\vec{F}</m>.
+    </p>
+  </section>
+
+  <section xml:id="sec-rotational-dynamics">
+    <title>Rotational Dynamics for Systems of Particles</title>
+
+    <p>
+      Note that by construction, a system of particles rigidly connected can now rotate about a center point. The center of mass of a system of particles can be defined using the relationship below
+    </p>
+
+    <p>
+      <me>\vec{r}_C = \frac{1}{m}\sum_{j=0}^P m_j\vec{r}_{j}</me>
+    </p>
+
+    <p>
+      where
+    </p>
+
+    <p>
+      <me>m = \sum_{j=0}^P m_j</me>
+    </p>
+
+    <p>
+      This vector can then be used to create rotational dynamics starting with the linear dynamics.
+    </p>
+
+    <p>
+      <me>\sum_{j=0}^P \sum_{i=0}^N \mathbf{S}(\vec{r}_{Cj}) \vec{F}_{ji} = \vec{M}_C = \sum_{j=0}^P \mathbf{S}(\vec{r}_{Cj}) \frac{d\vec{p}_j}{dt}</me>
+    </p>
+
+    <p>
+      where <m>\mathbf{S}(\vec{r}_{Cj})</m> is the skew symmetric matrix of the vector from the center of mass to the <m>j\text{th}</m> particle which results in a cross product. The skew symmetric operator is denoted by <m>\mathbf{S}()</m>.
+    </p>
+
+    <p>
+      <me>\mathbf{S}(\vec{r}_{Cj}) = \begin{bmatrix} 0 &amp; -z_{Cj} &amp; y_{Cj} \\ z_{Cj} &amp; 0 &amp; -x_{Cj} \\ -y_{Cj} &amp; x_{Cj} &amp; 0 \end{bmatrix}</me>
+    </p>
+  </section>
+</chapter>
