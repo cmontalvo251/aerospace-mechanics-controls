@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="rigid-bodies" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Rigid Bodies</title>
+
+  <introduction>
+    <p>
+      This chapter transitions from the mechanics of particle systems to the dynamics of rigid bodies. By applying fundamental assumptions regarding mass, non-rotating coordinate frames, and fixed body shapes, we can systematically derive the Newton-Euler equations of motion. These principles serve as the necessary groundwork for understanding full translational and rotational dynamics, inertia tensor calculations, and standard aerospace conventions.
+    </p>
+  </introduction>
+
+  <p>
+    At this point, many assumptions are made about the system of particles.
+  </p>
+
+  <ol>
+    <li>
+      <p>The mass of each particle or rigid body is constant.</p>
+    </li>
+    <li>
+      <p>An inertial frame is placed at the center of the Earth that does not rotate with the Earth. We assume that the Earth is "fixed" to this point but still rotates. The coordinates of our vehicle though are expressed in this non-rotating inertial frame. This is explained in more detail later.</p>
+    </li>
+    <li>
+      <p>The rigid body is not flexible and does not change shape. That is, the time rate of change of the magnitude of a vector <m>\vec{r}_{PQ}</m> is zero for any arbitrary points P and Q attached to the rigid body.</p>
+    </li>
+  </ol>
+
+  <section xml:id="sec-translational-dynamics">
+    <title>Translational Dynamics</title>
+
+    <p>
+      Using all of these simplifications, the momentum term on the right can be simplified to 
+    </p>
+
+    <p>
+      <me>\sum\limits_{j=0}^P \vec{p}_j = m \vec{v}_{C/I}</me>
+    </p>
+
+    <p>
+      The derivation of the term above starts by deriving the position of the center of mass as the following equation.
+    </p>
+
+    <p>
+      <me>\vec{r}_{j} = \vec{r}_C + \vec{r}_{Cj}</me>
+    </p>
+
+    <p>
+      Taking one derivative results in the following equation
+    </p>
+
+    <p>
+      <me>\vec{v}_{j/I} = \vec{v}_{C/I} + \frac{{}^Bd \vec{r}_{Cj}}{dt} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}</me>
+    </p>
+
+    <p>
+      where <m>{\bf S}(\vec{\omega}_{B/I})</m> is the skew symmetric matrix of the angular velocity vector which results in a cross product. This equation comes from the derivative transport theorem. Since the body is a rigid body the term <m>\frac{{}^Bd \vec{r}_{Cj}}{dt}=0</m> resulting in the equation below
+    </p>
+
+    <p>
+      <me>\vec{v}_{j/I} = \vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}</me>
+    </p>
+
+    <p>
+      which any dynamicist knows as the equation for two points fixed on a rigid body. This equation can then be substituted into the equation for momentum such that.
+    </p>
+
+    <p>
+      <me>\sum\limits_{j=0}^P \vec{p}_j =  \sum\limits_{j=0}^P m_j \left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)</me>
+    </p>
+
+    <p>
+      The first term reduces to 
+    </p>
+
+    <p>
+      <me>\sum\limits_{j=0}^P m_j \vec{v}_{C/I} =  \vec{v}_{C/I} \sum\limits_{j=0}^P m_j =  m \vec{v}_{C/I}</me>
+    </p>
+
+    <p>
+      the second term reduces to zero since the sum of all particles from the center of mass is by definition the center of mass and thus zero.
+    </p>
+
+    <p>
+      <me>\sum\limits_{j=0}^P {\bf S}(\vec{\omega}_{B/I}) m_j\vec{r}_{Cj} = {\bf S}(\vec{\omega}_{B/I})\sum\limits_{j=0}^P m_j\vec{r}_{Cj} = 0</me>
+    </p>
+
+    <p>
+      Plugging this result for momentum into Newton's equation of motion yields. This is typically called Newton-Euler equations of motion.
+    </p>
+
+    <p>
+      <me>\vec{F}_C = m \left(\frac{{}^Bd \vec{v}_{C/I}}{dt} + {\bf S}(\vec{\omega})_{B/I} \vec{v}_{C/I} \right)</me>
+    </p>
+  </section>
+
+  <section xml:id="s_rotational_motion">
+    <title>Rotational Dynamics</title>
+
+    <p>
+      Plugging in the expression for two points fixed on a rigid body results in a much different expression. First let's expand the rotational dynamic equations of particles using the assumptions made for a rigid body.
+    </p>
+
+    <p>
+      <me>\vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\vec{v}_{j/I}</me>
+    </p>
+
+    <p>
+      Then the equation of two points fixed on a rigid body can be introduced to obtain the following equation
+    </p>
+
+    <p>
+      <me>\vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)</me>
+    </p>
+
+    <p>
+      expanding this into two terms yields
+    </p>
+
+    <p>
+      <me>\vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}) {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj} + \sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj})m_j\vec{v}_{C/I}\right)</me>
+    </p>
+
+    <p>
+      To simplify this further a useful equality is used for cross products. That is <m>{\bf S}(\vec{a})\vec{b}=-{\bf S}(\vec{b})\vec{a}</m>. The equation above then changes to
+    </p>
+
+    <p>
+      <me>\vec{M}_C =  \frac{d}{dt}\left(\left(-\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})\right)\vec{\omega}_{B/I} - {\bf S}(\vec{v}_{C/I}) \sum\limits_{j=0}^P \vec{r}_{Cj}m_j\right)</me>
+    </p>
+
+    <p>
+      Notice, that parentheses were placed around the first term to isolate the angular velocity. This is because the angular velocity is constant across the system of particles. The term on the right has also been altered slightly to isolate the fact that the velocity of the center of mass is independent of the system of particles. With the equation in this form it is easy to see that the term on the right is zero because it is the definition of the center of mass. The equation then reduces to 
+    </p>
+
+    <p>
+      <me>\vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T\right)\vec{\omega}_{B/I}</me>
+    </p>
+
+    <p>
+      Notice again that minus sign has been removed. The skew symmetric matrix has an interesting property where the transpose is equal to the negative of the original matrix. The term in brackets is a well known value for rigid bodies and is known as the moment of inertia for rigid bodies. 
+    </p>
+
+    <p>
+      <me>{\bf I}_C =  \sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T</me>
+    </p>
+
+    <p>
+      This results in the kinematic equations of motion for rigid bodies to the simple equation below.
+    </p>
+
+    <p>
+      <me>\vec{M}_C =  \frac{d}{dt}\left({\bf I}_C\vec{\omega}_{B/I} \right)</me>
+    </p>
+
+    <p>
+      With the equation in this form it is finally possible to carry out the derivative
+    </p>
+
+    <p>
+      <me>\vec{M}_C = \frac{{}^Bd ({\bf I}_C\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}</me>
+    </p>
+
+    <p>
+      The first term requires the chain rule to perform the derivative and can thus result in a time varying moment of inertia matrix and the derivative of angular velocity. Therefore the equation can simply be written as
+    </p>
+
+    <p>
+      <me>\vec{M}_C = \dot{{\bf I}}\vec{\omega}_{B/I} + {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}</me>
+    </p>
+  </section>
+
+  <section xml:id="sec-inertia-estimation">
+    <title>Inertia Estimation</title>
+
+    <p>
+      There are several equations that can be used to compute the moment of inertia depending on the geometry of the vehicle. For this example we will look at a cuboid to demonstrate inertia calculations. Firstly, the total mass <m>m</m> and size (length <m>l</m>, width <m>w</m>, and height <m>h</m>) are required. 
+    </p>
+
+    <p>
+      <me>
+        \begin{matrix}
+          I_x = \frac{m}{12}(l^2 + w^2) \\
+          I_y = \frac{m}{12}(l^2 + d^2) \\
+          I_z = \frac{m}{12}(d^2 + w^2) \\
+        \end{matrix}
+      </me>
+    </p>
+
+    <p>
+      Where <m>I_x</m> is the cuboid’s moment of inertia around the x-axis, It can be seen that the moment of inertia about the y and z-axis are computed similarly, but by using different length parameters. Note that cross products of inertia are obtained by using the parallel axis theorem often caused by solar panels on satellites or payloads on aircraft and quadcopters.
+    </p>
+  </section>
+
+  <section xml:id="sec-aerospace-convention">
+    <title>Aerospace Convention</title>
+
+    <p>
+      Aerospace convention involves using the Newton-Euler equations of motion to describe the vehicle <xref ref="etkins"/> as explained in the previous section. Typically the position of the vehicle is written as 
+    </p>
+
+    <p>
+      <me>{\bf C}_I(\vec{r}_C) = \begin{Bmatrix} x \\ y \\ z \end{Bmatrix}</me>
+    </p>
+
+    <p>
+      The derivative of the position vector is the velocity vector is then written as
+    </p>
+
+    <p>
+      <me>{\bf C}_I(\vec{v}_{C/I}) = \begin{Bmatrix} \dot{x} \\ \dot{y} \\ \dot{z} \end{Bmatrix}</me>
+    </p>
+
+    <p>
+      However, body frame coordinates are typically used to describe the velocity vector such that
+    </p>
+
+    <p>
+      <me>{\bf C}_B(\vec{v}_{C/I}) = \begin{Bmatrix} u \\ v \\ w \end{Bmatrix}</me>
+    </p>
+
+    <p>
+      In order to relate the body frame components of the velocity vector the inertial frame coordinates a transformation matrix is used to give the following equation.
+    </p>
+
+    <p>
+      <men xml:id="e_xyzdot">
+        \begin{Bmatrix} \dot{x} \\ \dot{y} \\ \dot{z}   \end{Bmatrix} = [\textbf{T}_{IB}]
+        \begin{Bmatrix} u \\ v \\ w \end{Bmatrix}
+      </men>
+    </p>
+
+    <p>
+      Note that standard aircraft forces and moments are applied to the body. The forces are typically written as X,Y and Z while the moments are given as L,M and N. They can be written in component form using the equations below.
+    </p>
+
+    <p>
+      <me>{\bf C}_B(\vec{F}_{C}) = \begin{Bmatrix} X \\ Y \\ Z \end{Bmatrix} = X \hat{I}_B + Y \hat{J}_B + Z \hat{K}_B</me>
+    </p>
+
+    <p>
+      <me>{\bf C}_B(\vec{M}_{C}) = \begin{Bmatrix} L \\ M \\ N \end{Bmatrix} = L \hat{I}_B + M \hat{J}_B + N \hat{K}_B</me>
+    </p>
+  </section>
+</chapter>
