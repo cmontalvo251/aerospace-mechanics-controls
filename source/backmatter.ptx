@@ -38,6 +38,14 @@
     <biblio xml:id="phil"><p>Warren F. Phillips. Mechanics of Flight. John Wiley and Sons, Hoboken, New Jersey, 2010.</p></biblio>
     <biblio xml:id="nelson"><p>R.C. Nelson. Flight Stability and Automatic Control. McGraw-Hill, 2nd edition, 1998.</p></biblio>
     <biblio xml:id="astrodynamics"><p>Jerry E. White, Roger R. Bate, Donald D. Mueller. Fundamentals of Astrodynamics. Dover, 1971.</p></biblio>
+    <biblio xml:id="Lin"><p>Arthur KL Lin and Regina Lee. Attitude control for small spacecraft with sensor errors. In <pubtitle>AIAA SPACE Conferences and Exposition</pubtitle>, Pasadena, California, page 4423, August 2015.</p></biblio>
+    <biblio xml:id="Filipe"><p>Nuno Filipe and Panagiotis Tsiotras. Adaptive position and attitude-tracking controller for satellite proximity operations using dual quaternions. <pubtitle>Journal of Guidance, Control, and Dynamics</pubtitle>, 38(4):566–577, 2015. doi:10.2514/1.G000054.</p></biblio>
+    <biblio xml:id="multibody"><p>O. A. Bauchau. <pubtitle>Flexible Multibody Dynamics</pubtitle>. Springer, 2008.</p></biblio>
+    <biblio xml:id="quaternions"><p>Karsten Grosekathofer and Zizung Yoon. Introduction into quaternions for spacecraft attitude representation. Technical University of Berlin Department of Astronautics and Aeronautics, 2012.</p></biblio>
+    <biblio xml:id="cassidis"><p>John L. Crassidis and John L. Junkins. <pubtitle>Optimal Estimation of Dynamic Systems</pubtitle>. Chapman and Hall/CRC, 2004.</p></biblio>
+    <biblio xml:id="Munoz"><p>Sebastian Munoz and E. Glenn Lightsey. A sensor driven trade study for autonomous navigation capabilities. AIAA.</p></biblio>
+    <biblio xml:id="Markley"><p>John L. Crassidis, F. Landis Markley, and Yang Cheng. Survey of nonlinear attitude estimation methods. <pubtitle>Journal of Guidance, Control, and Dynamics</pubtitle>, 30(1), 2007.</p></biblio>
+    <biblio xml:id="Liu_Estimation"><p>Bing Liu, Zhen Chen, Xiangdong Liu, and Fan Yang. An efficient nonlinear filter for spacecraft attitude estimation. <pubtitle>International Journal of Aerospace Engineering</pubtitle>, 2014(540235), 2014.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

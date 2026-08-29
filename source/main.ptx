@@ -18,6 +18,7 @@
     <xi:include href="./nomenclature.ptx" />
     <xi:include href="./particle_dynamics.ptx" />
     <xi:include href="./rigid-bodies.ptx" />
+    <xi:include href="./attitude_parameterization.ptx" />
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>

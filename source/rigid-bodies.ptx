@@ -7,8 +7,6 @@
     <p>
       This chapter transitions from the mechanics of particle systems to the dynamics of rigid bodies. By applying fundamental assumptions regarding mass, non-rotating coordinate frames, and fixed body shapes, we can systematically derive the Newton-Euler equations of motion. These principles serve as the necessary groundwork for understanding full translational and rotational dynamics, inertia tensor calculations, and standard aerospace conventions.
     </p>
-  </introduction>
-
   <p>
     At this point, many assumptions are made about the system of particles.
   </p>
@@ -24,6 +22,7 @@
       <p>The rigid body is not flexible and does not change shape. That is, the time rate of change of the magnitude of a vector <m>\vec{r}_{PQ}</m> is zero for any arbitrary points P and Q attached to the rigid body.</p>
     </li>
   </ol>
+    </introduction>
 
   <section xml:id="sec-translational-dynamics">
     <title>Translational Dynamics</title>
