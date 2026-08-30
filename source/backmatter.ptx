@@ -46,6 +46,9 @@
     <biblio xml:id="Munoz"><p>Sebastian Munoz and E. Glenn Lightsey. A sensor driven trade study for autonomous navigation capabilities. AIAA.</p></biblio>
     <biblio xml:id="Markley"><p>John L. Crassidis, F. Landis Markley, and Yang Cheng. Survey of nonlinear attitude estimation methods. <pubtitle>Journal of Guidance, Control, and Dynamics</pubtitle>, 30(1), 2007.</p></biblio>
     <biblio xml:id="Liu_Estimation"><p>Bing Liu, Zhen Chen, Xiangdong Liu, and Fan Yang. An efficient nonlinear filter for spacecraft attitude estimation. <pubtitle>International Journal of Aerospace Engineering</pubtitle>, 2014(540235), 2014.</p></biblio>
+    <biblio xml:id="Radiation"><p>R. M. Georgevic. The solar radiation pressure forces and torques model. <pubtitle>The Journal of the Astronautical Sciences</pubtitle>, 27(1), 1973.</p></biblio>
+    <biblio xml:id="AndersonD"><p>Anderson D. <pubtitle>Fundamentals of Aerodynamics</pubtitle> 4th Edition. McGraw Hill Series, 2007.</p></biblio>
+    <biblio xml:id="Density_Model"><p>Graham Gyatt. The standard atmosphere. A mathematical model of the 1976 U.S. Standard Atmosphere, Jan 2006.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

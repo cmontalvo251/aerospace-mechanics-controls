@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="equations-of-motion" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Equations of Motion</title>
+  <introduction>
+    <p>
+        The translational equations of motion of the vehicle are written using inertial coordinates using the center of the Earth as a fixed point. For up to cis-lunar orbits this is typically a good approximation for first order analysis. The vehicle is assumed to be a rigid body using quaternions to parameterize orientation.
+    </p>
+</introduction>
+<section xml:id="translational-eoms">
+  <title>Translational Equations of Motion</title>
+<p>
+  The translational equations of motion of satellites are fairly simple given that everything is written in the inertial frame. The position vector of the vehicle is <m>\vec{r} = [x,y,z]^T</m> and the velocity is <m>\vec{V}_{B/I}=[\dot{x},\dot{y},\dot{z}]^T</m>. The acceleration of the vehicle is found by summing the total forces on the body and dividing by the mass of the vehicle. In the equation below <m>N_\text{Earth}</m> is the number of planetary bodies acting on the vehicle while <m>\vec{F}_P</m> is the force imparted by thrusters.
+</p>
+
+
+<p>
+  <me>\vec{a}_{B/I} = \frac{1}{m_s}\left(\sum\limits_{i=1}^{N_\oplus}F_i + \vec{F}_P \right)</me>
+</p>
+
+<p>
+  Note that for a spacecraft the magnitude of the gravitational acceleration vector is on the order of <m>\pm 10~\text{m/s}^2</m>. Sources point to solar radiation pressure being on the order of <m>4.5~\mu\text{Pa}</m> <xref ref="Radiation"/>. For a 1U CubeSat (10 cm x 10 cm) the force would be equal to <m>0.45~\text{mN}</m>. A 1U CubeSat has a nominal mass of 1 kg which would accelerate the CubeSat on the order of <m>0.45~\text{mm/s}^2</m>, which is considerably less than gravitational acceleration. Furthermore, using the standard aerodynamic drag equation (<m>0.5\rho V^2 S C_D</m>), where conservative estimates are used, the aerodynamic force at 600 km above the Earth's surface would be about <m>3.0~\text{nN}</m> <xref ref="AndersonD"/>. This assumes a density equal to <m>1.03 \times 10^{-14}~\text{kg/m}^3</m>, a velocity equal to <m>7.56~\text{km/s}</m>, and a drag coefficient equal to 1.0 <xref ref="Density_Model"/>. A force this small would impart an acceleration of about <m>3.0~\text{nm/s}^2</m> which is also considerably less than gravitational acceleration. These forces cannot be neglected for longer missions but can be ignored where appropriate. For an aircraft and quadcopter the equations of motion are typically written in the body frame. As such the derivative transport theorem is used and the translational equations of motion are written as the following.
+</p>
+
+<p>
+  <men xml:id="e_uvwdot">
+    \begin{Bmatrix} \dot{u} \\ \dot{v} \\ \dot{w} \end{Bmatrix} = 
+    \frac{1}{m} \begin{Bmatrix} X\\Y\\Z\end{Bmatrix}-\begin{bmatrix} 0 &amp; -r &amp; q \\ r &amp; 0 &amp; -p \\ -q &amp; p &amp; 0 \end{bmatrix} \begin{Bmatrix} u\\v\\w\end{Bmatrix}
+  </men>
+</p>
+</section>
+<section xml:id="reaction-wheels">
+  <title>Reaction Wheels</title>
+<p>
+  The reaction wheel model must be included before the attitude dynamics because they directly affect the inertia of the vehicle. There are three reaction wheels on this vehicle and each one has it's own angular velocity <m>\omega_{Ri}</m> and angular acceleration <m>\alpha_{Ri}</m>. The inertia of each reaction wheel is first written about the center of mass of the reaction wheel and is given by the equation below where the reaction wheel is modeled as a disk with finite radius <m>(r_{RW})</m> and height <m>(h_{RW})</m>. The subscript <m>R</m> is used to denote that this inertia matrix is about the center of mass of the reaction wheel while the super script <m>R</m> is used to denote the frame of reference.
+</p>
+
+<p>
+  <me>
+    I^{R}_{Ri} = \begin{bmatrix} m_{R}r^2/2 &amp; 0 &amp; 0 \\ 0 &amp; (m_R/12)(3r_{RW}^2+h_{RW}^2) &amp; 0 \\ 0 &amp; 0 &amp; (m_R/12)(3r_{RW}^2+h_{RW}^2) \end{bmatrix}
+  </me>
+</p>
+
+<p>
+  In order to rotate the inertia matrix into the vehicle body frame of reference an axis of reaction wheel rotation is used. The vector <m>\hat{n}_{Ri}</m> is used to denote the axis about which the reaction wheel rotates. Euler Angles <m>\theta_{Ri}</m> and <m>\psi_{Ri}</m> can be extracted from this unit vector as discussed previously in Section <xref ref="s_Euler_Angles"/>. The rotation matrix <m>\mathbf{T_{Ri}}(0,\theta_{Ri},\psi_{Ri})</m> can then be generated using equation <xref ref="e_TIB"/>. This matrix can then be used to compute the inertia of the reaction wheel in the vehicle body frame.
+</p>
+
+<p>
+  <me>I^{B}_{Ri} = \mathbf{T}^T_{Ri}I^{R}_R\mathbf{T}_{Ri}</me>
+</p>
+
+<p>
+  The parallel axis theorem can then be used to shift the inertias to the center of mass of the vehicle where the subscript <m>RB</m> denotes the reaction wheel inertia taken about the center of mass of the vehicle.
+</p>
+
+<p>
+  <me>I^{B}_{RBi} = I^{B}_{Ri} + m_{Ri}\mathbf{S}(\vec{r}_{Ri})\mathbf{S}(\vec{r}_{Ri})^T</me>
+</p>
+
+<p>
+  The vector <m>\vec{r}_{Ri}</m> is the distance from the center of mass of the vehicle to the center of mass of the reaction wheel in the vehicle body reference frame. The total inertia of the entire vehicle-reaction wheel system is then just a sum of all the reaction wheel inertias.
+</p>
+
+<p>
+  <me>I_S = I_B + \sum\limits_{i=1}^3 I^{B}_{RBi}</me>
+</p>
+
+<p>
+  The total angular momentum of the vehicle is then equal to the following equation where <m>\vec{\omega}_{B/I}</m> is the angular velocity of the vehicle.
+</p>
+
+<p>
+  <me>\vec{H}_S = I_B\vec{\omega}_{B/I} + \sum\limits_{i=1}^3 I^{B}_{Ri}\omega_{Ri}\hat{n}_{Ri}</me>
+</p>
+
+<p>
+  In a similar fashion, the total torque placed on the vehicle is equal to the following
+</p>
+
+<p>
+  <me>\vec{M}_{R} = \sum\limits_{i=1}^3 I^{B}_{Ri}\alpha_{Ri}\hat{n}_{Ri}</me>
+</p>
+
+<p>
+  It is typically assumed that the angular acceleration of each reaction wheel can be directly controlled. However, as the reaction wheel angular velocity increases, the maximum angular acceleration allowed begins to decrease. Once the reaction wheel reaches its angular velocity limits, the angular acceleration possible drops to zero. This is called reaction wheel saturation and must be dealt with using a method called momentum dumping.
+</p>
+</section>
+
+
+<section xml:id="attitude-eoms">
+  <title>Attitude Equations of Motion</title>
+<p>
+  The attitude equations of motion are formulated assuming the vehicle can rotate about three axes. The derivative of angular velocity is found by equating the derivative of angular momentum to the total moments placed on the vehicle while reaction wheel torques from the vehicle are added (<xref ref="etkins"/>).
+</p>
+
+<p>
+  <men xml:id="e_pqrdot_sat">
+    \dot{\vec{\omega}}_{B/I} = I_S^{-1}\left( \vec{M}_P + \vec{M}_{M} + \vec{M}_R - \mathbf{S}(\vec{\omega}_{B/I}) \vec{H}_{S} - \dot{I}_S\vec{\omega}_{B/I}\right)
+  </men>
+</p>
+
+<p>
+  The applied moments use subscripts <m>(P)</m> for propulsion, <m>(M)</m> for magnetorquers, and <m>(R)</m> for reaction wheels. The term <m>\dot{I}_S</m> is the change in inertia in the body frame caused by deployment of solar panels and/or antenna. Also, recall that <m>\vec{H}_S</m> is the total angular momentum of the entire vehicle including the reaction wheels if present. For aircraft the rotational dynamic equation can be found as
+</p>
+
+<p>
+  <men xml:id="e_pqrdot_ac">
+    \begin{Bmatrix} \dot{p} \\ \dot{q} \\ \dot{r} \end{Bmatrix} = \mathbf{I}_C^{-1}\left(
+    \begin{Bmatrix} L\\M\\N\end{Bmatrix}-\begin{bmatrix} 0 &amp; -r &amp; q \\ r &amp; 0 &amp; -p \\ -q &amp; p &amp; 0 \end{bmatrix} \mathbf{I}_C\begin{Bmatrix} p\\q\\r\end{Bmatrix}\right)
+  </men>
+</p>
+</section>
+</chapter>
