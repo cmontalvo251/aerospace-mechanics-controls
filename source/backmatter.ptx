@@ -49,6 +49,13 @@
     <biblio xml:id="Radiation"><p>R. M. Georgevic. The solar radiation pressure forces and torques model. <pubtitle>The Journal of the Astronautical Sciences</pubtitle>, 27(1), 1973.</p></biblio>
     <biblio xml:id="AndersonD"><p>Anderson D. <pubtitle>Fundamentals of Aerodynamics</pubtitle> 4th Edition. McGraw Hill Series, 2007.</p></biblio>
     <biblio xml:id="Density_Model"><p>Graham Gyatt. The standard atmosphere. A mathematical model of the 1976 U.S. Standard Atmosphere, Jan 2006.</p></biblio>
+    <biblio xml:id="GeographicLib"><p>Geographic library c++. https://geographiclib.sourceforge.io/. cited Jul 11, 2017.</p></biblio>
+    <biblio xml:id="Jacchia1"><p>L. G. Jacchia. Static diffusion models of the upper atmosphere with empirical temperature profiles. <pubtitle>Smithson. Astrophys. Obs. Spec. Rept.</pubtitle>, (170), 1964. Cambridge, Massachusetts.</p></biblio>
+    <biblio xml:id="Jacchia2"><p>L. G. Jacchia. Revised static models of the thermosphere and exosphere with empirical temperature profiles. <pubtitle>Smithson. Astrophys. Obs. Spec. Rept.</pubtitle>, (332), 1971. Cambridge, Massachusetts.</p></biblio>
+    <biblio xml:id="Jacchia3"><p>L. G. Jacchia. Thermospheric temperature, density, and composition: New models. <pubtitle>Smithson. Astrophys. Obs. Spec. Rept.</pubtitle>, (375), 1977. Cambridge, Massachusetts.</p></biblio>
+    <biblio xml:id="EMM2015"><p>Enhanced magnetic field model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 11, 2017.</p></biblio>
+    <biblio xml:id="ECI"><p>Neil Ashby. The sagnac effect in the global positioning system. <pubtitle>Relativity in rotating frames: relativistic physics in rotating reference frames</pubtitle>, page 11, 2004. doi:1-4020-1805-3.</p></biblio>
+    <biblio xml:id="EGM2008"><p>Earth gravity model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 31, 2017.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

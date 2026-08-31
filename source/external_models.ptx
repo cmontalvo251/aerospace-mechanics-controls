@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="external-models" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>External Models</title>
+
+  <introduction>
+    <p>
+      This chapter details the external environmental models used in the simulation. It covers the conversion of GPS coordinates to Cartesian coordinates, atmospheric density approximations, the Earth's magnetic field model, and various gravitational models required for accurate vehicle state representation.
+    </p>
+  <p>
+    Many external models are used in simulation to accurately depict the
+    environment. The paper here begins with the Earth Magnetic Field
+    and Gravitational Models. The magnetic field model comes from the Geographic
+    Library model which uses the EMM2015 magnetic field model. The
+    gravitational model comes from the EGM2008 model
+    <xref ref="GeographicLib"/>.
+  </p>
+ </introduction>
+
+  <section xml:id="s_llh_to_cartesian">
+    <title>GPS Coordinates to Cartesian Coordinates (Flat Earth Approximation)</title>
+
+    <p>
+      All external models below imply a spherical world with an Earth Centered Inertial (ECI) frame at the center of the planet. However, often times for small UAV applications it is useful to convert the GPS coordinates (latitude, longitude, altitude, <m>(\lambda_{LAT},\lambda_{LON},h)</m>) to a flat earth approximation where the x-axis is pointing North, the y-axis is pointing east and the z-axis is pointing towards the center of the planet. This is similar to spherical coordinates which is explained later on but in this case the axis system is cartesian rather than spherical. This is useful in obtaining the position of the vehicle which can be used to approximate heading and speed which again is explained in another section. The equations to convert LLH (latitude,longitude, altitude) to a cartesian coordinate system are given below. Note that these equations assume that the vehicle creates an origin point to define as the center of the inertial frame which is on the surface of the planet rather than the center of the planet <m>\lambda_{LAT,0},\lambda_{LON,0}</m>. Typically when the vehicle gets its first valid GPS coordinate, that point is set as the origin.
+    </p>
+
+    <p>
+      <me>
+        \begin{matrix}
+        x = \kappa (\lambda_{LAT} - \lambda_{LAT,0}) \\
+        y = \kappa (\lambda_{LON} - \lambda_{LON,0}) \cos(\frac{\pi}{180}\lambda_{LAT,0}) \\
+        z = -h
+        \end{matrix}
+      </me>
+    </p>
+
+    <p>
+      In the equation above <m>\kappa = 60.0*(Feet/NauticalMiles)*(Meters/Feet)</m> which essentially converts degrees from the LLH coordinates first to nautical miles and then to feet and then to meters. For example, if the vehicle moves North 1 degree that is equivalent to 60 nautical miles on the surface. Vice versa, 1 nautical mile on the surface is equal to one minute or a 60th of a degree in latitude. The conversion from nautical miles to feet is 6076.11548556 and feet to meters is 0.3048. Note that often time is is good to convert the cartesian coordinates back to LLH coordinates. That inversion is shown below.
+    </p>
+
+    <p>
+      <me>\lambda_{LAT} = \frac{x}{\kappa} + \lambda_{LAT,0}</me>
+    </p>
+    <p>
+      <me>\lambda_{LON} = \frac{y}{\kappa \cos(\lambda_{LAT,0} \frac{\pi}{180})} + \lambda_{LON,0}</me>
+    </p>
+    <p>
+      <me>h = -z</me>
+    </p>
+  </section>
+
+  <section xml:id="sec-density-model">
+    <title>Density Model</title>
+
+    <p>
+      The density model is simply given as an exponential model. 
+    </p>
+    <p>
+      <me>\rho = \rho_s e^{-\sigma h}</me>
+    </p>
+    <p>
+      where <m>\rho_s</m> is the density at sea-level, <m>h</m> is the altitude above
+      the Earth in kilometers and <m>\sigma = 0.1354 km^{-1}</m> is known as the
+      scale height <xref ref="Jacchia1"/>, <xref ref="Jacchia2"/>, <xref ref="Jacchia3"/>.
+    </p>
+  </section>
+
+  <section xml:id="s_magnetic_field">
+    <title>Magnetic Field Model</title>
+
+    <p>
+      The Magnetic Field model used in this simulation stems from the
+      Enhanced Magnetic Field Model (EMM2015) (<xref ref="EMM2015"/>). The Earth's magnetic is a
+      complex superposition of multiple sources including the inner core and
+      outer core of the planet. Models have been created that use spherical
+      harmonics to compute the magnetic field at any location around the
+      Earth. The EMM2015 model uses a 720 order model increasing the spatial
+      resolution down to 56 km. This model was compiled from multiple
+      sources including but not limited to satellite and marine data. It
+      also includes data from the European Space Agency's Swarm satellite
+      mission. In order to include this harmonic mesh data into this simulation,
+      the GeographicLib module written in C++ is included in the
+      simulation (<xref ref="GeographicLib"/>). Note that I take no credit for this
+      model. This section only serves to explain the model. The result of
+      utilizing this model is the ability to provide any position coordinate
+      of the satellite to the module and have
+      the model return the magnetic field strength in East, North, Vertical
+      Coordinates. Specifically, the inputs to the model are 
+      the position <m>x,y,z</m> of the satellite assuming an inertial frame with
+      the z-axis pointing through the north pole and the x axis pointing
+      through the equator at the prime meridian as seen in Figure
+      <xref ref="f_spherical"/>. This is known as the Earth-Centered Inertial
+      (ECI) coordinate system (<xref ref="ECI"/>).
+    </p>
+
+    <figure xml:id="f_spherical">
+      <image source="ECI.pdf" width="80%"/>
+      <caption>Earth-Centered Inertial Frame and Spherical Coordinate Frame</caption>
+    </figure>
+
+    <p>
+      In order to connect these inertial coordinates (<m>x,y,z</m>) to
+      be used in the EMM2015 model, the latitude, longitude and height above
+      the surface of the Earth are required. To do this, the coordinates are
+      converted into spherical coordinates using the equations below.
+    </p>
+
+    <p>
+      <men xml:id="e_spherical_coordinates">
+        \begin{matrix}
+          \rho = \sqrt{x^2+y^2+z^2} \\
+          \phi_E = 0 \\
+          \theta_E = \cos^{-1}\left( \frac{z}{\rho}\right) \\
+          \psi_E = \tan^{-1}\left( \frac{y}{x}\right)
+        \end{matrix}
+      </men>
+    </p>
+
+    <p>
+      Note that <m>\rho,\phi_E,\theta_E,\psi_E</m> are related to latitude and
+      longitude coordinates but not quite the same. In order to obtain the
+      latitude and longitude coordinates the following equations are
+      used. The height is simply the distance from the center of the ECI
+      frame minus the reference height from the approximation of Earth as an
+      ellipsoid (<m>R_{\text{Earth}}=6,371,393~\text{meters}</m>). Note that the angles from Equation
+      <xref ref="e_spherical_coordinates"/> are converted to degrees. 
+    </p>
+
+    <p>
+      <me>
+        \begin{matrix}
+          \lambda_{LAT} = 90 - \theta_E\frac{180}{\pi}\\
+          \lambda_{LON} = \psi_E\frac{180}{\pi} \\
+          h = \rho - R_{\text{Earth}}
+        \end{matrix}
+      </me>
+    </p>
+
+    <p>
+      The inputs to the EMM2015 model are the latitude, longitude and height. The inverse of the above two equations are given below. These would be used in the event a latitude and longitude coordinate is given and there is a need to obtain the x,y and z coordinates in the ECI frame. The first step is to convert latitude, longitude and altitude and convert that to standard spherical angles and distance from the center of the planet.
+    </p>
+
+    <p>
+      <me>
+      \begin{matrix}
+      \theta_E = (90 - \lambda_{LAT})\frac{\pi}{180}\\
+      \psi_E = \lambda_{LON}\frac{\pi}{180}\\
+      \rho = h + R_{\text{Earth}}
+      \end{matrix}
+      </me>
+    </p>
+
+    <p>
+      Once that is complete the extraction of x,y and z are computed by the equation below.
+    </p>
+
+    <p>
+      <me>
+      \begin{matrix}
+      x = \rho \sin(\theta_E) \cos(\psi_E)\\
+      y = \rho \sin(\theta_E) \sin(\psi_E)\\
+      z = \rho \cos(\theta_E)
+      \end{matrix}
+      </me>
+    </p>
+
+    <p>
+      The output from the EMM2015 model is in the East, North, Vertical (ENV) reference frame
+      where the x-axis is East pointing in the direction of the rotation on
+      the Earth, the y-axis is North pointing towards the North pole and
+      finally the z-axis is the Vertical component that is always pointing
+      radially away from the center of the Earth. In order to get the
+      coordinates into the ECI frame the coordinates must first me converted
+      to the North, East, Down reference frame (NED). In this case the
+      x-axis is pointing North, the y-axis pointing East and the z-axis is
+      always pointing towards the center of the Earth and called Down. The
+      equation to rotate from the ENV frame to NED frame is shown below.
+    </p>
+
+    <p>
+      <me>
+        \begin{Bmatrix} \beta_x \\ \beta_y \\ \beta_z \end{Bmatrix}_{NED}
+        = \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{bmatrix} \begin{Bmatrix} \beta_x \\ \beta_y \\ \beta_z \end{Bmatrix}_{ENV}
+      </me>
+    </p>
+
+    <p>
+      Once the magnetic field is in the NED reference frame it can then be
+      rotated to the inertial frame using the following equation where <m>\vec{\beta}_{NED}</m> is the
+      magnetic field in the NED coordinate system and <m>\vec{\beta}_I</m> is the
+      magnetic field in the inertial frame. 
+    </p>
+
+    <p>
+      <men xml:id="e_sph_inertial">
+        \vec{\beta}_I = \mathbf{T}_{IB}(0,\theta_E+\pi,\psi_E)\vec{\beta}_{NED}
+      </men>
+    </p>
+
+    <p>
+      The matrix <m>\mathbf{T}_{IB}(\phi,\theta,\psi)</m> represents the transformation
+      matrix from the spherical reference frame to the inertial reference
+      frame. Note that there is no rotation about the x-axis through
+      <m>\phi_E</m> and the pitch rotation is augmented by <m>\pi</m> because of the
+      switch between North, East, Down (NED) and the z-axis of the ECI
+      pointing through the North pole. The result of these equations, is the
+      ability to obtain the magnetic field  
+      across an entire orbit. Figure <xref ref="f_orbit"/> shows an example 56
+      degree inclination orbit, 600 km above the Earth's surface. The orbit
+      begins with the satellite above the equator and the prime meridian and
+      assumes the Earth does not rotate.
+    </p>
+
+    <figure xml:id="f_orbit">
+      <image source="Earth_Orbit.png" width="80%"/>
+      <caption>Example 56 Degree Inclination Orbit at 600 km above Earth's Surface</caption>
+    </figure>
+
+    <p>
+      Figure <xref ref="f_mag_orbit"/> shows the magnetic field during the orbit in the
+      inertial frame. PCI stands for Planet Centered Inertial which in this
+      case is the same as the ECI frame since the planet is Earth. 
+    </p>
+
+    <figure xml:id="f_mag_orbit">
+      <image source="Magnetic_Field_Orbit.png" width="80%"/>
+      <caption>Magnetic Field of Earth in Inertial Frame for 56 Degree Orbit at 600 km Above Surface</caption>
+    </figure>
+
+    <p>
+      For a satellite in LEO, the spacecraft will experience a magnetic
+      dipole moment. The magnetic dipole moment is caused by noting that the
+      structure of the satellite is metal with current that creates its own
+      magnetic field. The magnetic dipole moment torque is given by
+      computing the torque produced by the magnetic field of the Earth
+      interacting with the metallic structure of the satellite. First the
+      dipole constant <m>d_s=2.64E-03~N-m/T</m> is the assumed value for torque
+      as a function of Tesla in LEO. This constant is derived by assuming
+      the torque from this disturbance at 500 km above the surface is the
+      same as the solar radiation torque. Using this constant, the torque is
+      given by the equation below where <m>\vec{\beta}_I</m> is the magnetic
+      field strength of Earth in the inertial frame. The direction of the
+      torque is assumed to be in the same direction of the magnetic field
+      since the structure is not fully modeled. Although not accurate, the
+      goal is to approximate the magnitude as closely as possible.  
+    </p>
+
+    <p>
+      <me>
+          \vec{M}_{MD}=\vec{\beta}_I d_s
+      </me>
+    </p>
+  </section>
+
+  <section xml:id="sec-gravitational-models">
+    <title>Gravitational Models</title>
+
+    <p>
+      Three types of gravitational models can be used. The first is the
+      Newtonian gravitational model that assumes all planets are point
+      masses with no volume. The result of the gravitational field vector is
+      then
+    </p>
+
+    <p>
+      <me>
+        \vec{F}_{\text{Earth}} = -G\frac{m_{\text{Earth}} m_s}{r^2}\hat{r}
+      </me>
+    </p>
+
+    <p>
+      where <m>G</m> is the gravitational constant, <m>\text{Earth}</m> denotes the planet
+      applying the gravitational field, <m>m_\text{Earth}</m> is the mass of the
+      planet, <m>m_s</m> is the mass of the satellite and <m>\vec{r}</m> is a distance
+      vector from the center of the planet to the satellite. The vector
+      <m>\hat{r}</m> is just the unit vector of <m>\vec{r}</m> while <m>r</m> is the
+      magnitude of <m>\vec{r}</m>.
+    </p>
+
+    <p>
+      <me>
+        \hat{r} = \vec{r}/r
+      </me>
+    </p>
+
+    <p>
+      In component form, <m>\vec{r} = [x;y;z]^T</m>. Substituting that component
+      form into the two equations above results in the component form of the
+      gravity model which can be better suited for non-vectorized
+      programming syntax.
+    </p>
+
+    <p>
+      <me>
+      \begin{Bmatrix}F_{x\text{Earth}}\\F_{y\text{Earth}}\\F_{z\text{Earth}}\end{Bmatrix} = -G\frac{m_{\text{Earth}}
+        m_s}{r^3}\begin{Bmatrix}x\\y\\z\end{Bmatrix}
+      </me>
+    </p>
+
+    <p>
+      The second gravitational field model stems from the
+      Earth Gravity Model (EGM2008) <xref ref="EGM2008"/> which can also be found
+      in the GeographicLib module <xref ref="GeographicLib"/>. This model compute's
+      Earths gravitational field at any point in three dimensional
+      space. The model takes in coordinates in the ECI frame and returns the
+      gravitational acceleration in the ECI frame thus no rotation is
+      required. Just like the EMM2015 model this model uses spherical
+      harmonics and a reference ellipsoid. The reference ellipsoid is then
+      updated with gravity disturbances such as non-uniform geoid
+      heights. This model is an upgrade from EGM84 and EGM96 which only
+      used models of order 180 and 360 respectively. The EGM2008 model as a
+      comparison uses a model of order 2190. Figure <xref ref="f_grav_orbit"/> shows
+      the gravitational acceleration vector during a 56 degree orbit at 600 km above the
+      Earth's surface. The x-axis has been non-dimensionalized to 
+      represent the entire orbit. Thus when the x-axis is equal to 100 the
+      satellite has completed one orbit.
+    </p>
+
+    <figure xml:id="f_grav_orbit">
+      <image source="Gravity_Field_Orbit.png" width="80%"/>
+      <caption>Gravitational Field of Earth in Inertial Frame for 56 Degree Orbit at 600 km Above Surface</caption>
+    </figure>
+
+    <p>
+      For a satellite in LEO, the vehicle will experience a gravity gradient
+      torque. The gravity gradient torque is given by computing the
+      gravitational force at one end of the satellite and the other denoted
+      as <m>\vec{F}(\vec{r}_B)</m> and <m>\vec{F}(\vec{r}_T)</m> for bottom and top
+      respectively. The torques are then crossed with the distance from the
+      center of mass to the top of the satellite. It is assumed that the
+      satellite is symmetric and thus, the torque is just the difference
+      between the two forces crossed with the vector from the CG to one side
+      of the satellite. 
+    </p>
+
+    <p>
+      <me>
+          \vec{M}_G = \mathbf{S}(\vec{F}(\vec{r}_B)-\vec{F}(\vec{r}_T))\vec{r}_{CG-B}
+      </me>
+    </p>
+
+    <p>
+      The third gravitational field model assumes the vehicle is close to
+      the surface such as a quadcopter or aircraft. In this case the
+      gravitational field is held at a constant and equal to <m>9.81~m/s^2</m>.
+    </p>
+
+    <p>
+      <men xml:id="e_wforce">
+      \begin{Bmatrix} X_W \\ Y_W \\ Z_W \end{Bmatrix} = mg \begin{Bmatrix}
+      -s_{\theta} \\ s_{\phi}c_{\theta} \\ c_{\phi}c_{\theta} \end{Bmatrix}
+      </men>
+    </p>
+  </section>
+
+  <references xml:id="refs-external-models">
+    <title>References</title>
+
+    <biblio xml:id="GeographicLib">
+      <p>GeographicLib model documentation and source information.</p>
+    </biblio>
+
+    <biblio xml:id="Jacchia1">
+      <p>Jacchia reference 1 for atmospheric density scale height.</p>
+    </biblio>
+
+    <biblio xml:id="Jacchia2">
+      <p>Jacchia reference 2 for atmospheric density scale height.</p>
+    </biblio>
+
+    <biblio xml:id="Jacchia3">
+      <p>Jacchia reference 3 for atmospheric density scale height.</p>
+    </biblio>
+
+    <biblio xml:id="EMM2015">
+      <p>Enhanced Magnetic Field Model (EMM2015) documentation.</p>
+    </biblio>
+
+    <biblio xml:id="ECI">
+      <p>Earth-Centered Inertial (ECI) coordinate system reference.</p>
+    </biblio>
+
+    <biblio xml:id="EGM2008">
+      <p>Earth Gravity Model (EGM2008) documentation.</p>
+    </biblio>
+  </references>
+</chapter>

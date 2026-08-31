@@ -20,6 +20,7 @@
     <xi:include href="./rigid-bodies.ptx" />
     <xi:include href="./attitude_parameterization.ptx" />
     <xi:include href="./eoms.ptx"/>
+    <xi:include href="./external_models.ptx"/>
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>
