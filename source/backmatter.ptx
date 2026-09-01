@@ -56,6 +56,11 @@
     <biblio xml:id="EMM2015"><p>Enhanced magnetic field model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 11, 2017.</p></biblio>
     <biblio xml:id="ECI"><p>Neil Ashby. The sagnac effect in the global positioning system. <pubtitle>Relativity in rotating frames: relativistic physics in rotating reference frames</pubtitle>, page 11, 2004. doi:1-4020-1805-3.</p></biblio>
     <biblio xml:id="EGM2008"><p>Earth gravity model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 31, 2017.</p></biblio>
+    <biblio xml:id="qp8"><p>Chemical propulsion systems. glenn research center — nasa. https://www1.grc.nasa.gov/research-and-engineering/chemical-propulsion-systems/l-propulsion-systems/. Retrieved September 29, 2021.</p></biblio>
+    <biblio xml:id="qp9"><p>Solid rocket propulsion. https://engineering.purdue.edu/ propulsi/propulsion/rockets/solids.html. Retrieved September 29, 2021.</p></biblio>
+    <biblio xml:id="quadfdnc"><p>Waslander S.L. Hoffman G.M., Huang H. and Tomlin C.J. Quadrotor helicopter flight dynamics and control: Theory and experiment. AIAA Guidance, Navigation, and Control Conference and Exhibit, pages 6–15, 2007.</p></biblio>
+    <biblio xml:id="rotorflap"><p>H. Huang, G. Hoffman, C. Talor, S. Waslander, and C. Tomlin. Aerodynamics and control of autonomous quadrotor helicopters in aggressive maneuvering. Proc. IEEE Int. Conference of Robotics and Automation (ICRA), pages 3277–3282, May 2009. doi:10.1109/ROBOT.2009.5152561.</p></biblio>
+    <biblio xml:id="swingload"><p>Moosavian S.A.A. Sadr S. and Zarafshan P. Dynamics modeling and control of a quadrotor with swing load. Journal of Robotics, 2014.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

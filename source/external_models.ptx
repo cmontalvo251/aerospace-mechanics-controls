@@ -352,36 +352,4 @@
       </men>
     </p>
   </section>
-
-  <references xml:id="refs-external-models">
-    <title>References</title>
-
-    <biblio xml:id="GeographicLib">
-      <p>GeographicLib model documentation and source information.</p>
-    </biblio>
-
-    <biblio xml:id="Jacchia1">
-      <p>Jacchia reference 1 for atmospheric density scale height.</p>
-    </biblio>
-
-    <biblio xml:id="Jacchia2">
-      <p>Jacchia reference 2 for atmospheric density scale height.</p>
-    </biblio>
-
-    <biblio xml:id="Jacchia3">
-      <p>Jacchia reference 3 for atmospheric density scale height.</p>
-    </biblio>
-
-    <biblio xml:id="EMM2015">
-      <p>Enhanced Magnetic Field Model (EMM2015) documentation.</p>
-    </biblio>
-
-    <biblio xml:id="ECI">
-      <p>Earth-Centered Inertial (ECI) coordinate system reference.</p>
-    </biblio>
-
-    <biblio xml:id="EGM2008">
-      <p>Earth Gravity Model (EGM2008) documentation.</p>
-    </biblio>
-  </references>
 </chapter>

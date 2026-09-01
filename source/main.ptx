@@ -21,6 +21,7 @@
     <xi:include href="./attitude_parameterization.ptx" />
     <xi:include href="./eoms.ptx"/>
     <xi:include href="./external_models.ptx"/>
+    <xi:include href="./forces_moments.ptx"/>
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>

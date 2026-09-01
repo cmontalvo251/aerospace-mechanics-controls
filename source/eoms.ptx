@@ -104,10 +104,10 @@
 </p>
 
 <p>
-  <men xml:id="e_pqrdot_ac">
+  <md number="yes" xml:id="e_pqrdot_ac">
     \begin{Bmatrix} \dot{p} \\ \dot{q} \\ \dot{r} \end{Bmatrix} = \mathbf{I}_C^{-1}\left(
     \begin{Bmatrix} L\\M\\N\end{Bmatrix}-\begin{bmatrix} 0 &amp; -r &amp; q \\ r &amp; 0 &amp; -p \\ -q &amp; p &amp; 0 \end{bmatrix} \mathbf{I}_C\begin{Bmatrix} p\\q\\r\end{Bmatrix}\right)
-  </men>
+  </md>
 </p>
 </section>
 </chapter>
