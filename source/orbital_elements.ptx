@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="planetary-positions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Planetary Positions</title>
+
+  <introduction>
+    <p>
+      This chapter outlines the methodology for determining the spatial coordinates of Earth and other planets within the solar system relative to the Sun as a central inertial reference point, utilizing standardized orbital elements and time transformations.
+    </p>
+    <p>
+      Assuming that the Sun is the central inertial reference point, it is possible to obtain the position of Earth and all the other planets at any point in time using well documented orbital elements of our solar system. This formulation follows the derivation by JPL and can be found at <xref ref="JPL"/>.
+    </p>
+
+  </introduction>
+
+  <section xml:id="sec-julian-day">
+    <title>Julian Day</title>
+    <p>
+      In order to obtain the position of the planets, the Julian Day must be obtained. The Julian Day of January 1st, 2019 is 2,458,485. The Julian Day of January 1st, 2000 (which is the day of the last inertial frame update) is 2,451,545. In order to obtain the Julian Day of the current day, you simply need to count the number of calendar days from January 1st of 2000. Again I have listed the Julian day of January 1st, 2019 to help with this calculation. To compute the orbital elements of the Earth you must then compute the number of centuries from January 1st, 2000 which is given by the equation below where J is the Julian day and C is the number of centuries since 1/1/2000.
+    </p>
+
+    <men xml:id="eq-centuries">
+      C = (J - 2,451,545)/36,525.0
+    </men>
+  </section>
+
+  <section xml:id="sec-orbital-elements">
+    <title>Orbital Elements</title>
+
+    <p>
+      This number is then used in the equations below to obtain the current semi-major axis, eccentricity, inclination, mean longitude, longitude of perihelion and the longitude of the ascending node respectively. The subscript <m>0</m> denotes the orbital element in the year 2000.
+    </p>
+
+    <men xml:id="eq-orbital-elements">
+      \begin{matrix}
+        a = (a_0 + \dot{a}C)\text{ AU} \\
+        e = e_0 + \dot{e}C \\
+        i = i_0 + \dot{i}C \\
+        L = L_0 + \dot{L}C \\
+        \bar{w} = \bar{w}_0 + \dot{\bar{w}}C \\
+        \Omega = \Omega_0 + \dot{\Omega}C
+      \end{matrix}
+    </men>
+
+    <p>
+      The parameters in the equation above for every planet can be found at <xref ref="JPL"/>. Also, The term <m>\text{AU}</m> is an astronomical unit which is equal to 149,597,870,700 meters. For reference though the parameters for Earth are shown below. Just in case you are reading this in the not so distant future, these parameters are only valid until the year 2050 (I may be dead who knows!). Also, the parameters below are for the Earth-Moon barycenter which is the center of mass of the Earth and Moon.
+    </p>
+
+    <table xml:id="table-orbital-elements">
+      <title>Orbital Elements of Earth-Moon Barycenter</title>
+      <tabular halign="center">
+        <row>
+          <cell>a</cell><cell>e</cell><cell>i</cell><cell>L</cell><cell>long.peri. (<m>\bar{w}</m>)</cell><cell>long.node. (<m>\Omega</m>)</cell>
+        </row>
+        <row>
+          <cell>AU, AU/Cy</cell><cell>rad, rad/Cy</cell><cell>deg, deg/Cy</cell><cell>deg, deg/Cy</cell><cell>deg, deg/Cy</cell><cell>deg, deg/Cy</cell>
+        </row>
+        <row bottom="major"><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row>
+        <row>
+          <cell>1.00000261</cell><cell>0.01671123</cell><cell>-0.00001531</cell><cell>100.46457166</cell><cell>102.93768193</cell><cell>0.0</cell>
+        </row>
+        <row>
+          <cell>0.00000562</cell><cell>-0.00004392</cell><cell>-0.01294668</cell><cell>35999.37244981</cell><cell>0.32327364</cell><cell>0.0</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>
+      In the table, the first row is the value in the year 2000 and the second row is the rate per century (Cy). Using these parameters, compute the argument of the perihelion <m>w = \bar{w} - \Omega</m> and the mean anomaly <m>M = L - \bar{w}</m>. Note that for planets Jupiter, Saturn, Uranus and Neptune, the mean anomaly has a different form. Basically anything past the asteroid belt. With the mean anomaly compute you must modulus this value such that M is between plus or minus 180 degrees. Once that's done you must solve for the eccentric anomaly (E) using the Kepler equation below where <m>e^*</m> is the eccentricity in degrees <m>e^* = 180e/\pi</m>.
+    </p>
+
+    <men xml:id="eq-kepler">
+      M = E-e^*\sin(E)
+    </men>
+
+    <p>
+      Solving this numerically is pretty simple and only requires a few iterations of the loop below using the C++ programming language. This loop can easily be adapted to any language on modern computers. C++ is shown here in the event this is used for embedded processors in future satellite systems.
+    </p>
+
+    <pre>
+  E = M + e*180.0/PI*sin(M*PI/180.0);
+  dM = 1;
+  dE = 0;
+  while (abs(dM) > 1e-6) {
+    dM = M - (E - e*180.0/PI*sin(E*PI/180.0));
+    dE = dM/(1.0-e*cos(E*PI/180.0));
+    E += dE;
+  }
+    </pre>
+  </section>
+
+  <section xml:id="sec-sun-centered-inertial-coordinates">
+    <title>Sun Centered Inertial Coordinates</title>
+
+    <p>
+      At this point the spatial coordinates can be obtained in the planet's orbital plane where the semi-latus rectum or sometimes simply called the parameter is <m>p=a(1-e)</m>.
+    </p>
+
+    <men xml:id="eq-orbital-plane-coords">
+      \begin{Bmatrix} x' \\ y' \\ z' \end{Bmatrix} = \begin{Bmatrix} a(\cos(\pi E/180) - e) \\ a\sqrt{1-e^2}\sin(\pi E/180) \\ 0 \end{Bmatrix}
+    </men>
+
+    <p>
+      Notice that the value <m>z'</m> is zero. This is because orbits are all two dimensional. In order to obtain the coordinates of the planet in the J2000 ecliptic plane, the equation below is used which is similar to the standard Euler angle transformation matrix only the 3-1-3 rotation sequence is used rather than 3-2-1.
+    </p>
+
+    <men xml:id="eq-j2000-coords">
+      \begin{Bmatrix} x \\ y \\ z \end{Bmatrix}_{J2000} = \begin{bmatrix} c_wc_{\Omega}-s_ws_{\Omega}c_i &amp; -s_wc_{\Omega}-c_ws_{\Omega}c_i &amp; 0 \\ c_ws_{\Omega}+s_wc_{\Omega}c_i &amp; -s_ws_{\Omega}+c_wc_{\Omega}c_i &amp; 0 \\ s_ws_i &amp; c_ws_i &amp; 0 \end{bmatrix} \begin{Bmatrix} x' \\ y' \\ z' \end{Bmatrix}
+    </men>
+
+    <p>
+      Running through this formulation for all the planets in the Solar System including Pluto it is possible to plot the position of all planets. The figures below are for January 1st, 2019.
+    </p>
+
+    <figure xml:id="fig-planet-positions">
+      <title>Position of Planets using Orbital Elements</title>
+      <sidebyside>
+        <image source="all_planets_isometric.png"/>
+        <image source="inner_planets_isometric.png"/>
+      </sidebyside>
+      <sidebyside>
+        <image source="top_down_view_all_planets.png"/>
+        <image source="inner_planets_top_down.png"/>
+      </sidebyside>
+    </figure>
+  </section>
+</chapter>

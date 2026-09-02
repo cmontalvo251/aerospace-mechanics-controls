@@ -94,7 +94,7 @@
     </p>
 
     <figure xml:id="f_spherical">
-      <image source="ECI.pdf" width="80%"/>
+      <image source="ECI.png" width="80%"/>
       <caption>Earth-Centered Inertial Frame and Spherical Coordinate Frame</caption>
     </figure>
 
@@ -317,7 +317,7 @@
     </p>
 
     <figure xml:id="f_grav_orbit">
-      <image source="Gravity_Field_Orbit.png" width="80%"/>
+      <image source="Gravity_Field_Orbit-eps-converted-to.png" width="80%"/>
       <caption>Gravitational Field of Earth in Inertial Frame for 56 Degree Orbit at 600 km Above Surface</caption>
     </figure>
 
