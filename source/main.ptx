@@ -23,6 +23,7 @@
     <xi:include href="./external_models.ptx"/>
     <xi:include href="./forces_moments.ptx"/>
     <xi:include href="./orbital_elements.ptx"/>
+    <xi:include href="./numerical_integration.ptx"/>
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="numerical-integration" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Numerical Integration Techniques</title>
+
+  <introduction>
+    <p>
+      This chapter explores numerical integration techniques used to approximate time-series solutions for differential equations and equations of motion, covering both single-step methods like Euler's method and high-order algorithms like Runge-Kutta-4<xref ref="Chapra_MEANALYSIS"/>.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-eulers-method">
+    <title>Euler's Method</title>
+
+    <p>
+      The equations of motion presented in this text as well as any differential equation can be integrated using Euler's method which is a crude first order method to approximate the time series solution. Note that this method is prone to a significant amount of instability unless the timestep is very small <xref ref="Chapra_MEANALYSIS"/>.
+    </p>
+
+    <men xml:id="eq-euler">
+      \begin{matrix}
+        \vec{x}_{k+1} = \vec{x}_k + \dot{\vec{x}}(t_k,\vec{x}_k) \Delta t \\
+        \dot{\vec{x}}(t_k,\vec{x}_k) = \vec{f}(\vec{x}_k) + \vec{g}(\vec{x}_k)\vec{u}_k
+      \end{matrix}
+    </men>
+  </section>
+
+  <section xml:id="sec-runge-kutta-4">
+    <title>Runge-Kutta-4</title>
+
+    <p>
+      The RK4 algorithm is the standard in numerical integration and is given in the equation below. The derivative of the quaternions is the same in RK4 as it is in Euler's method. This method is superior in that it will converge faster as a function of timestep <xref ref="Chapra_MEANALYSIS"/>.
+    </p>
+
+    <men xml:id="eq-rk4">
+      \begin{matrix}
+        \vec{k}_1 = \dot{\vec{x}}(t_k,\vec{x}_k)\\
+        \vec{k}_2 = \dot{\vec{x}}(t_k+\Delta t/2,\vec{x}_k+\vec{k}_1\Delta t/2)\\
+        \vec{k}_3 = \dot{\vec{x}}(t_k+\Delta t/2,\vec{x}_k+\vec{k}_2\Delta t/2)\\
+        \vec{k}_4 = \dot{\vec{x}}(t_k+\Delta t,\vec{x}_k+\vec{k}_3\Delta t)\\
+        \vec{k} = \frac{1}{6}(\vec{k}_1 + 2\vec{k}_2 + 2\vec{k}_3 + \vec{k}_4)\\
+        \vec{x}_{k+1} = \vec{x}_k + \vec{k} \Delta t \\
+      \end{matrix}
+    </men>
+  </section>
+
+  <section xml:id="sec-discrete-dynamics">
+    <title>Discrete Dynamics</title>
+
+    <p>
+      It is often useful for modern computers to write the equations of motion in discrete form....
+    </p>
+  </section>
+</chapter>
