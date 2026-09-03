@@ -1,0 +1,330 @@
+  <?xml version="1.0" encoding="UTF-8"?>
+
+  <chapter xml:id="sec-laplace-solutions" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Laplace Solutions</title>
+    <introduction>
+    <p>
+      Another method to solve linear differential equations is the Laplace transform method. The Laplace transform converts a time-domain differential equation into an algebraic equation in the s-domain, which can be easier to manipulate and solve. The Laplace domain and algebraic equations are very useful for control system dynamics and every undergraduate controls engineer should learn its fundamentals. The Laplace transform of a function <m>f(t)</m> is defined as
+    </p>
+
+    <men xml:id="eq-laplace-def">
+      F(s) = \mathcal{L}\{f(t)\} = \int_0^{\infty} f(t) e^{-st} dt
+    </men>
+
+    <p>
+      where <m>s</m> is a complex variable similar to the <m>s</m> in the <m>Ae^{st}</m> equations discussed earlier. The inverse Laplace transform is given by
+    </p>
+
+    <men xml:id="eq-inv-laplace-def">
+      f(t) = \mathcal{L}^{-1}\{F(s)\} = \frac{1}{2\pi j} \lim_{T \to \infty} \int_{\gamma - jT}^{\gamma + jT} F(s) e^{st} ds
+    </men>
+
+    <p>
+      where <m>\gamma</m> is a real number such that all singularities of <m>F(s)</m> are to the left of the line <m>Re(s) = \gamma</m>. Note that these integrals are very complex and not typically solved by hand but rather looked up in a table of Laplace transforms. Some common Laplace transforms are shown below
+    </p>
+
+    <table xml:id="table-laplace">
+      <title>Common Laplace transforms</title>
+      <tabular halign="center">
+        <row bottom="medium">
+          <cell>Time Domain <m>f(t)</m></cell>
+          <cell>Laplace Transform <m>\mathcal{L}\{f(t)\}</m></cell>
+          <cell>Description</cell>
+        </row>
+        <row><cell><m>u(t)</m></cell><cell><m>\frac{1}{s}</m></cell><cell>Unit step</cell></row>
+        <row><cell><m>t</m></cell><cell><m>\frac{1}{s^2}</m></cell><cell>Ramp</cell></row>
+        <row><cell><m>e^{at}</m></cell><cell><m>\frac{1}{s-a}</m></cell><cell>Exponential</cell></row>
+        <row><cell><m>\sin(at)</m></cell><cell><m>\frac{a}{s^2 + a^2}</m></cell><cell>Sine</cell></row>
+        <row><cell><m>\cos(at)</m></cell><cell><m>\frac{s}{s^2 + a^2}</m></cell><cell>Cosine</cell></row>
+        <row><cell><m>t^2</m></cell><cell><m>\frac{2}{s^3}</m></cell><cell>Quadratic</cell></row>
+        <row><cell><m>te^{at}</m></cell><cell><m>\frac{1}{(s-a)^2}</m></cell><cell>Repeated Root</cell></row>
+        <row><cell><m>e^{at}\sin(bt)</m></cell><cell><m>\frac{b}{(s-a)^2 + b^2}</m></cell><cell>Underdamped Sine</cell></row>
+        <row><cell><m>e^{at}\cos(bt)</m></cell><cell><m>\frac{s-a}{(s-a)^2 + b^2}</m></cell><cell>Underdamped Cosine</cell></row>
+        <row><cell><m>\int f(t) dt</m></cell><cell><m>\frac{F(s)}{s}</m></cell><cell>Integral</cell></row>
+        <row><cell><m>\dot{f}(t)</m></cell><cell><m>sF(s) - f(0)</m></cell><cell>First derivative</cell></row>
+        <row><cell><m>\ddot{f}(t)</m></cell><cell><m>s^2F(s) - sf(0) - \dot{f}(0)</m></cell><cell>Second derivative</cell></row>
+      </tabular>
+    </table>
+
+    <p>
+      where <m>u(t)</m> is the unit step function where <m>u(t)=0</m> for <m>t&lt;0</m> and <m>u(t)=1</m> for <m>t\geq0</m>. The undergraduate student may look at these equations and wonder how exactly these functions are helpful. To illustrate their usefulness the first and second order systems defined above will be solved using the Laplace transform method.
+    </p>
+    </introduction>
+
+    <section xml:id="subsec-laplace-first-order">
+      <title>General First Order Systems</title>
+
+      <p>
+        Taking the Laplace transform of equation <xref ref="e-first_order"/> and assuming zero initial conditions gives
+      </p>
+
+      <men xml:id="eq-laplace-first-order">
+        sQ(s) + \sigma Q(s) = \sigma F(s)
+      </men>
+
+      <p>
+        where <m>Q(s)</m> is the Laplace transform of <m>q(t)</m> and <m>F(s)</m> is the Laplace transform of <m>f(t)</m>. Rearranging gives the equation below
+      </p>
+
+      <men xml:id="eq-tf-first-order">
+        \frac{Q(s)}{F(s)} = G(s) = \frac{\sigma}{(s+\sigma)}
+      </men>
+
+      <p>
+        The function <m>G(s)</m> is called the transfer function of the system and is a very important function in control systems. The transfer function relates the output of the system <m>Q(s)</m> to the input of the system <m>F(s)</m> in the Laplace domain. The transfer function can be used to analyze the stability and performance of the system. The transfer function can also be used to design controllers for the system which will be discussed later. Let's now assume that the forcing function is a step function such that <m>f(t)=f_0u(t)</m> where <m>u(t)</m> is the unit step function. The Laplace transform of a step function is <m>F(s)=f_0/s</m>. Plugging this into the equation above gives
+      </p>
+
+      <men xml:id="eq-Qs-first-order">
+        Q(s) = G(s)F(s) = \frac{\sigma}{s+\sigma}\frac{f_0}{s} = \frac{\sigma f_0}{s(s+\sigma)}
+      </men>
+
+      <p>
+        The solution to the equation above can be found by taking the inverse Laplace transform. However, the equation above is not in the standard table of Laplace transforms. Thus partial fraction decomposition is needed to get <m>Q(s)</m> into a form that can be used for inverse Laplace. The equation can be rewritten using partial fractions as
+      </p>
+
+      <men xml:id="eq-pfd-first-order">
+        Q(s) = \frac{\sigma f_0}{s(s+\sigma)} = \frac{A}{s} + \frac{B}{s+\sigma}
+      </men>
+
+      <p>
+        where <m>A</m> and <m>B</m> are constants to be determined. Multiplying both sides by the denominator on the left side gives
+      </p>
+
+      <men xml:id="eq-pfd-mult-first">
+        \sigma f_0 = A(s+\sigma) + Bs
+      </men>
+
+      <p>
+        Setting <m>s=0</m> gives <m>A=\sigma f_0/\sigma = f_0</m>. Setting <m>s=-\sigma</m> gives <m>B=-\sigma f_0/\sigma = -f_0</m>. Thus, the equation can be rewritten as
+      </p>
+
+      <men xml:id="eq-Qs-split-first">
+        Q(s) = \frac{f_0}{s} - \frac{f_0}{s+\sigma}
+      </men>
+
+      <p>
+        Taking the inverse Laplace transform gives
+      </p>
+
+      <men xml:id="eq-qt-inv-first">
+        q(t) = f_0 - f_0 e^{-\sigma t} = f_0(1 - e^{-\sigma t})
+      </men>
+
+      <p>
+        substituting back in the values for <m>\sigma</m> and <m>f_0</m> gives
+      </p>
+
+      <men xml:id="eq-vt-inv-first">
+        v(t) = \frac{F_0}{c}(1 - e^{-\frac{c}{m}t})
+      </men>
+
+      <p>
+        which is the same solution as derived using the characteristic and particular solution method assuming zero initial conditions as given by equation <xref ref="e-first_order_solution"/>.
+      </p>
+    </section>
+
+    <section xml:id="subsec-laplace-second-order">
+      <title>General Second Order Systems</title>
+
+      <p>
+        Taking the Laplace transform of equation <xref ref="e-second_order"/> and assuming zero initial conditions gives
+      </p>
+
+      <men xml:id="eq-laplace-second">
+        s^2 Q(s) + 2\zeta \omega_n s Q(s) + {\omega_n}^2 Q(s) = {\omega_n}^2 F(s)
+      </men>
+
+      <p>
+        Rearranging just as before gives the equation below
+      </p>
+
+      <men xml:id="eq-tf-second">
+        \frac{Q(s)}{F(s)} = G(s) = \frac{{\omega_n}^2}{s^2 + 2\zeta \omega_n s + {\omega_n}^2}
+      </men>
+
+      <p>
+        where again <m>G(s)</m> is the transfer function of the system. Let's again assume that the forcing function is a step function such that <m>f(t)=f_0u(t)</m>. Plugging the Laplace transform of <m>F(s)</m> just as before gives
+      </p>
+
+      <men xml:id="eq-Qs-second">
+        Q(s) = G(s)F(s) = \frac{{\omega_n}^2}{s^2 + 2\zeta \omega_n s + {\omega_n}^2}\frac{f_0}{s} = \frac{{\omega_n}^2 f_0}{s(s^2 + 2\zeta \omega_n s + {\omega_n}^2)}
+      </men>
+
+      <p>
+        The solution to the equation above again can be found by taking the inverse Laplace transform. However, again the equation above is not in the standard table of Laplace transforms. Thus partial fraction decomposition is needed to get <m>Q(s)</m> into a form that can be used for inverse Laplace. The equation can be rewritten using partial fractions as
+      </p>
+
+      <men xml:id="eq-pfd-second">
+        Q(s) = \frac{{\omega_n}^2 f_0}{s(s^2 + 2\zeta \omega_n s + {\omega_n}^2)} = \frac{A}{s} + \frac{Bs + C}{s^2 + 2\zeta \omega_n s + {\omega_n}^2}
+      </men>
+
+      <p>
+        where <m>A</m>, <m>B</m> and <m>C</m> are constants to be determined. Multiplying both sides by the denominator on the left side gives
+      </p>
+
+      <men xml:id="eq-pfd-mult-second">
+        {\omega_n}^2 f_0 = A(s^2 + 2\zeta \omega_n s + {\omega_n}^2) + (Bs + C)s
+      </men>
+
+      <p>
+        Setting <m>s=0</m> gives <m>A={\omega_n}^2 f_0/{\omega_n}^2 = f_0</m>. Setting <m>s=j\omega_n(-\zeta + \sqrt{\zeta^2 - 1})</m> and <m>s=j\omega_n(-\zeta - \sqrt{\zeta^2 - 1})</m> gives two equations that can be solved simultaneously to find <m>B</m> and <m>C</m>. The final results are <m>B=-f_0</m> and <m>C=-2\zeta \omega_n f_0</m>. Thus, the equation can be rewritten as
+      </p>
+
+      <men xml:id="eq-Qs-split-second">
+        Q(s) = \frac{f_0}{s} - \frac{f_0 s + 2\zeta \omega_n f_0}{s^2 + 2\zeta \omega_n s + {\omega_n}^2}
+      </men>
+
+      <p>
+        The first term of the equation is simply the Laplace transform of a step function. The second term can be solved using the table of Laplace transforms. The final solution depends on the value of the damping ratio <m>\zeta</m> just as before. The final solutions for each case assuming zero initial conditions are shown below. It is left to the reader to verify that these solutions match those derived using the characteristic and particular solution method. For the case when <m>\zeta=0</m> the inverse laplace is simply a sine or cosine while the the general underdamped solution is solved by completing the square in the denominator and using the Laplace transform of the underdamped sine and cosine functions. The critically damped and overdamped solutions are solved using the Laplace transforms of repeated roots and real distinct roots respectively.
+      </p>
+
+      <ol>
+        <li>
+          <p>
+            <strong>Underdamped (<m>0 \leq \zeta&lt;1</m>)</strong>:
+          </p>
+          <men xml:id="eq-q-laplace-underdamped">
+            q(t) = f_0 \left( 1 - e^{-\zeta \omega_n t} \left( \cos(\omega_d t) + \frac{\zeta}{\sqrt{1-\zeta^2}} \sin(\omega_d t) \right) \right)
+          </men>
+        </li>
+        <li>
+          <p>
+            <strong>Critically Damped (<m>\zeta=1</m>)</strong>:
+          </p>
+          <men xml:id="eq-q-laplace-critical">
+            q(t) = f_0 \left( 1 - (1 + \omega_n t) e^{-\omega_n t} \right)
+          </men>
+        </li>
+        <li>
+          <p>
+            <strong>Overdamped (<m>\zeta>1</m> or <m>{\omega_n}^2&lt;0</m>)</strong>:
+          </p>
+          <men xml:id="eq-q-laplace-overdamped">
+            q(t) = f_0 \left( 1 - \frac{s_2 e^{s_1 t} - s_1 e^{s_2 t}}{s_2 - s_1} \right)
+          </men>
+        </li>
+      </ol>
+
+      <p>
+        Notice again that the solutions are the same as those derived using the characteristic and particular solution method assuming zero initial conditions. It is possible that the undergraduate engineer still does not see the usefulness of the Laplace transform method. The true power of the Laplace transform method is in the transfer function. The transfer function can be used to analyze the stability and performance of the system as well as design controllers for the system which will be discussed in the sections below.
+      </p>
+    </section>
+
+    <section xml:id="subsec-laplace-wn-zero">
+      <title>Special Case of Natural Frequency Equal to Zero</title>
+
+      <p>
+        As was shown in the special case of the car where no restoring force existed, the natural frequency was equal to zero. In this case the general equation of motion was <m>\ddot{q} + \sigma \dot{q} = \sigma f</m>. Taking the laplace transform of this equation and assuming zero initial conditions gives
+      </p>
+
+      <men xml:id="eq-laplace-car">
+        s^2 Q(s) + \sigma s Q(s) = \sigma F(s)
+      </men>
+
+      <p>
+        Rearranging gives the equation below
+      </p>
+
+      <men xml:id="eq-tf-car">
+        \frac{Q(s)}{F(s)} = G(s) = \frac{\sigma}{s(s+\sigma)}
+      </men>
+
+      <p>
+        where again <m>G(s)</m> is the transfer function of the system. Notice that this is identical to the first order transfer function multiplied by an additional <m>1/s</m> term. This is because the second order system with zero natural frequency is simply the integral of the first order system. That is <m>x(t) = \int v(t) dt</m>. In the Laplace domain this means that <m>X(s) = \frac{1}{s}V(s)</m> or if we let <m>\dot{x} = v(t)</m> the lapace transform would result in <m>sX(s) = V(s)</m>. This is where the Laplace transform method really shines. The transfer function can be manipulated easily in the Laplace domain to find relationships between different variables. Differential equations in the time domain can be difficult to manipulate but in the Laplace domain they are simply algebraic equations. Let's again assume that the forcing function is a step function such that <m>f(t)=f_0u(t)</m>. Plugging the Laplace transform of <m>F(s)</m> just as before gives
+      </p>
+
+      <men xml:id="eq-Qs-car">
+        Q(s) = G(s)F(s) = \frac{\sigma}{s(s+\sigma)}\frac{f_0}{s} = \frac{\sigma f_0}{s^2(s+\sigma)}
+      </men>
+
+      <p>
+        The solution to the equation above can be found by taking the inverse Laplace transform. However, again the equation above is not in the standard table of Laplace transforms. Thus partial fraction decomposition is needed to get <m>Q(s)</m> into a form that can be used for inverse Laplace. The equation can be rewritten using partial fractions as
+      </p>
+
+      <men xml:id="eq-pfd-car">
+        Q(s) = \frac{\sigma f_0}{s^2(s+\sigma)} = \frac{A}{s} + \frac{B}{s^2} + \frac{C}{s+\sigma}
+      </men>
+
+      <p>
+        where <m>A</m>, <m>B</m> and <m>C</m> are constants to be determined. Multiplying both sides by the denominator on the left side gives
+      </p>
+
+      <men xml:id="eq-pfd-mult-car">
+        \sigma f_0 = A s (s+\sigma) + B (s+\sigma) + C s^2
+      </men>
+
+      <p>
+        Setting <m>s=0</m> gives <m>\sigma f_0 = \sigma B</m> and <m>B = f_0</m>. Setting <m>s=-\sigma</m> gives <m>C \sigma^2=\sigma f_0</m> and thus <m>C=f_0/\sigma</m>. Setting <m>s=1</m> gives
+      </p>
+
+      <men xml:id="eq-car-solve-A">
+        \begin{matrix}
+            \sigma f_0 = A(\sigma+1)+f_0(\sigma+1)+f_0/\sigma \\
+            \sigma^2 f_0 = A\sigma(\sigma+1)+f_0\sigma(\sigma+1)+f_0 \\
+            (\sigma^2 - 1) f_0 = (\sigma+1)(\sigma-1)f_0 = A\sigma(\sigma+1) +f_0\sigma(\sigma+1)\\
+            \sigma f_0 - f_0 = A \sigma + f_0 \sigma \\
+            A = -f_0/\sigma
+        \end{matrix}
+      </men>
+
+      <p>
+        Plugging in these values for A, B, and C gives
+      </p>
+
+      <men xml:id="eq-Qs-car-split">
+        Q(s) = -\frac{f_0}{\sigma s} + \frac{f_0}{s^2} + \frac{f_0}{\sigma}\frac{1}{s+\sigma}
+      </men>
+
+      <p>
+        Taking the inverse Laplace transform gives
+      </p>
+
+      <men xml:id="eq-qt-car-laplace">
+        q(t) = -\frac{f_0}{\sigma} + f_0 t + \frac{f_0}{\sigma} e^{-\sigma t} = f_0 t - \frac{f_0}{\sigma}(1 - e^{-\sigma t})
+      </men>
+
+      <p>
+        which is the same result shown previously. Taking the derivative of the equation above gives the same result as the velocity equation shown previously. The budding controls engineer may think that the method of partial fractions and inverse Laplace transform is tedious and not worth the effort. However, the true power of the Laplace transform method is in the transfer function. The transfer function can be used to analyze the stability and performance of the system as well as design controllers for the system which will be discussed in detail in <xref ref="control_systems"/>.
+      </p>
+    </section>
+
+    <section xml:id="subsec-laplace-wn-zeta-zero">
+      <title>Special Case of Natural Frequency and Damping Ratio Equal to Zero</title>
+
+      <p>
+        As was shown in the special case of the satellite/quadcopter where no restoring moment or damping moment existed, the natural frequency and damping ratio were both equal to zero. In this case the general equation of motion was <m>\ddot{q} = f</m>. Taking the Laplace transform of this equation and assuming zero initial conditions gives
+      </p>
+
+      <men xml:id="eq-laplace-sat">
+        s^2 Q(s) = F(s)
+      </men>
+
+      <p>
+        Rearranging gives the equation below
+      </p>
+
+      <men xml:id="eq-tf-sat">
+        \frac{Q(s)}{F(s)} = G(s) = \frac{1}{s^2}
+      </men>
+
+      <p>
+        where again <m>G(s)</m> is the transfer function of the system. Let's again assume that the forcing function is a step function such that <m>f(t)=f_0u(t)</m>. Plugging the Laplace transform of <m>F(s)</m> just as before gives
+      </p>
+
+      <men xml:id="eq-Qs-sat">
+        Q(s) = G(s)F(s) = \frac{1}{s^2}\frac{f_0}{s} = \frac{f_0}{s^3}
+      </men>
+
+      <p>
+        The solution to the equation above can be found by taking the inverse Laplace transform. The equation above is in the standard table of Laplace transforms and the inverse Laplace transform is given as
+      </p>
+
+      <men xml:id="eq-qt-sat-laplace">
+        q(t) = \frac{f_0}{2}t^2
+      </men>
+
+      <p>
+        which is the same solution as derived using the characteristic and particular solution method assuming zero initial conditions. In the case of the satellite example, recall that <m>f_0 = \frac{2F_0 d}{J}</m>.
+      </p>
+    </section>
+  </chapter>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<chapter xml:id="s_nonlinear_controls">
+<chapter xml:id="s_nonlinear_controls" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Nonlinear Control Techniques</title>
 
   <introduction>
