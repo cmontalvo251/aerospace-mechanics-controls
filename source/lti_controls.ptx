@@ -4,15 +4,13 @@
   <title>Linear Feedback Control Systems</title>
 
   <introduction>
-    <p>
-      This chapter introduces the basic concepts and methods used in feedback control systems, covering fundamental components and controllability analyses.
-    </p>
-  </introduction>
-
   <p>
     Feedback control is a large and complex topic. This section will
     introduce some of the basic concepts and methods used in feedback
-    control. The sections that follow will provide many examples for linear time invariant systems as defined in section <xref ref="s_lti"/>. However, more complex examples will be discussed in section <xref ref="s_nonlinear_controls"/>.
+    control. The sections that follow will provide many control system
+    examples for linear time invariant systems as defined in <xref
+    ref="lti"/>. However, more complex control examples will be discussed in
+    <xref ref="s_nonlinear_controls"/>.
   </p>
 
   <figure xml:id="fig-feedback">
@@ -32,6 +30,7 @@
     compute the control input to the plant. The goal of the controller is
     to drive the error signal to zero.
   </p>
+  </introduction>
 
   <section xml:id="sec-controllability">
     <title>Controllability</title>

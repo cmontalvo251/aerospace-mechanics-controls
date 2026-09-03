@@ -284,7 +284,7 @@
       </men>
 
       <p>
-        which is the same result shown previously. Taking the derivative of the equation above gives the same result as the velocity equation shown previously. The budding controls engineer may think that the method of partial fractions and inverse Laplace transform is tedious and not worth the effort. However, the true power of the Laplace transform method is in the transfer function. The transfer function can be used to analyze the stability and performance of the system as well as design controllers for the system which will be discussed in detail in <xref ref="control_systems"/>.
+        which is the same result shown previously. Taking the derivative of the equation above gives the same result as the velocity equation shown previously. The budding controls engineer may think that the method of partial fractions and inverse Laplace transform is tedious and not worth the effort. However, the true power of the Laplace transform method is in the transfer function. The transfer function can be used to analyze the stability and performance of the system as well as design controllers for the system which will be discussed in detail in <xref ref="s_control_systems"/>.
       </p>
     </section>
 

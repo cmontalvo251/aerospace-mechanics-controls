@@ -63,6 +63,10 @@
     <biblio xml:id="swingload"><p>Moosavian S.A.A. Sadr S. and Zarafshan P. Dynamics modeling and control of a quadrotor with swing load. Journal of Robotics, 2014.</p></biblio>
     <biblio xml:id="JPL"><p>Jet Propulsion Laboratory. Solar system dynamics. https://ssd.jpl.nasa.gov/ Accessed October 4th, 2019.</p></biblio>
     <biblio xml:id="Chapra_MEANALYSIS"><p>Steven C. Chapra and Raymond P. Canale. Numerical Methods for Engineers. McGraw-Hill Education, 7th edition, 2012.</p></biblio>
+    <biblio xml:id="apprentice"><p>LLC. Horizon Hobby. Eflite Apprentice S 15e Airplane Instruction Manual. Horizon Hobby, LLC., Champaign, IL USA, 1 edition, 4 2016. Retrieved October 5, 2020 https://www.horizonhobby.com/on/demandware.static/Sites-horizon-us-Site/Sites-horizon-master/default/Manuals/EFL2725-Apprentice-Manual.pdf.</p></biblio>
+    <biblio xml:id="Cobar_FASTSim_AVIATION_2022"><p>Maxwell Cobar and Carlos Montalvo. The facility for aerospace systems and technology simulation: Fastsim- an open-source configurable software in the loop simulation environment. In AIAA AVIATION Forum -Chicago, IL, June 2022.</p></biblio>
+    <biblio xml:id="CobarMeta2019"><p>Maxwell Cobar and Carlos Montalvo. Takeoff and landing of a wingtip connected meta aircraft with feedback control. Journal of Aircraft - Q1, 58(4):733–742, 2021.</p></biblio>
+    <biblio xml:id="CobarMASTERS"><p>Maxwell Cobar and Carlos Montalvo (Chair). Waypoint control for a wingtip connected meta aircraft, December 2022.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

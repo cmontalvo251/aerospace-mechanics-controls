@@ -20,12 +20,12 @@
   </p>
 
   <p>
-    Note that for the sections that follow code has been added to all the python scripts in section <xref ref="s_time_response"/> such as <url href="https://github.com/cmontalvo251/Python/blob/master/controls/satellite.py">satellite.py</url> or <url href="https://github.com/cmontalvo251/Python/blob/master/controls/mass_spring_damper.py">mass_spring_damper.py</url>. The code added plots the poles of each system on a real-imaginary plot to visually show the stability of each system. For clarity on the code, the Figure below shows the relevant function used to plot the poles of each system which again has been added to Github.
+    Note that for the sections that follow code has been added to all the python scripts in section <xref ref="open-loop-response"/> such as <url href="https://github.com/cmontalvo251/Python/blob/master/controls/satellite.py">satellite.py</url> or <url href="https://github.com/cmontalvo251/Python/blob/master/controls/mass_spring_damper.py">mass_spring_damper.py</url>. The code added plots the poles of each system on a real-imaginary plot to visually show the stability of each system. For clarity on the code, the Figure below shows the relevant function used to plot the poles of each system which again has been added to Github.
   </p>
 
   <figure xml:id="f_pole_zero_code">
     <caption>Pole-Zero Plotting Code</caption>
-    <image source="Figures/pole_zero_code.png" width="80%"/>
+    <image source="pole_zero_code.png" width="80%"/>
   </figure>
 </introduction>
 
@@ -47,8 +47,8 @@
     <figure xml:id="f_car_poles">
       <caption>Poles of Car System (Position (left) and Velocity (right))</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/car_position_poles.png"/>
-        <image source="Figures/car_velocity_poles.png"/>
+        <image source="car_position_poles.png"/>
+        <image source="car_velocity_poles.png"/>
       </sidebyside>
     </figure>
 
@@ -72,7 +72,7 @@
 
     <figure xml:id="f_mass_spring_damper_poles">
       <caption>Poles of Mass Spring Damper System</caption>
-      <image source="Figures/mass_spring_damper_poles.png" width="60%"/>
+      <image source="mass_spring_damper_poles.png" width="60%"/>
     </figure>
 
     <p>
@@ -89,7 +89,7 @@
 
     <figure xml:id="f_satellite_poles">
       <caption>Poles of Satellite/Quadcopter System</caption>
-      <image source="Figures/satellite_poles.png" width="48%"/>
+      <image source="satellite_poles.png" width="48%"/>
     </figure>
 
     <p>
@@ -101,14 +101,14 @@
     <title>Pitch Dynamics of an Aircraft</title>
 
     <p>
-      The poles of the aircraft are similar to the spring mass damper given the second order nature of the system. Using the characteristic equation of <m>s^2 + \lambda_1s + \lambda_2=0</m> the poles of the system are located at <m>s_{12} = -\lambda_1 \pm \sqrt{\lambda_1^2 - 4\lambda_2}</m>. The stability of the system depends on the values of <m>\lambda_1</m> and <m>\lambda_2</m> which depend on the aerodynamic stability derivatives <m>C_{mq}</m> and <m>C_{m\alpha}</m>. In this case if <m>C_{m\alpha}</m> is negative, <m>\lambda_2</m> will be positive and the descriminant under the square root will be negative and thus imaginary. If instead <m>C_{m\alpha}</m> is positive, <m>\lambda_2</m> will be negative and then the descriminant will be a positive number. This will cause the poles to become real and distinct. If any pole is positive in the right half plane (RHP) the system is unstable. Using the same code from section <xref ref="s_aircraft_pitch_response"/> the poles of the transfer function can be plotted on a pole zero map.
+      The poles of the aircraft are similar to the spring mass damper given the second order nature of the system. Using the characteristic equation of <m>s^2 + \lambda_1s + \lambda_2=0</m> the poles of the system are located at <m>s_{12} = -\lambda_1 \pm \sqrt{\lambda_1^2 - 4\lambda_2}</m>. The stability of the system depends on the values of <m>\lambda_1</m> and <m>\lambda_2</m> which depend on the aerodynamic stability derivatives <m>C_{mq}</m> and <m>C_{m\alpha}</m>. In this case if <m>C_{m\alpha}</m> is negative, <m>\lambda_2</m> will be positive and the descriminant under the square root will be negative and thus imaginary. If instead <m>C_{m\alpha}</m> is positive, <m>\lambda_2</m> will be negative and then the descriminant will be a positive number. This will cause the poles to become real and distinct. If any pole is positive in the right half plane (RHP) the system is unstable. Using the same code from <xref ref="sec-pitch-response-aircraft"/> the poles of the transfer function can be plotted on a pole zero map.
     </p>
 
     <figure xml:id="f_aircraft_poles">
       <caption>Attitude Response of an Aircraft (<m>C_{m\alpha}=-2.19</m> left) ; (<m>C_{m\alpha}=2.19</m> right)</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/aircraft_dynamics_poles_stable.png"/>
-        <image source="Figures/aircraft_dynamics_poles_unstable.png"/>
+        <image source="aircraft_dynamics_poles_stable.png"/>
+        <image source="aircraft_dynamics_poles_unstable.png"/>
       </sidebyside>
     </figure>
 
@@ -121,12 +121,12 @@
     <title>Pitch Dynamics of a Rocket</title>
 
     <p>
-      As derived earlier, the transfer function of this system is given as <m>\frac{\Theta(s)}{F(s)}= G(s) = \frac{\kappa}{s^2+\lambda}</m> where <m>\kappa</m> and <m>\lambda</m> are defined in section <xref ref="s_rocket_response"/>. The poles of the system are located at <m>s=\pm j\sqrt{\lambda}</m>. Using the same time response code and the pole zero map generation, the poles can be plotted on the real/imaginary axes as shown in Figure <xref ref="f_rocket_poles"/>.
+      As derived earlier, the transfer function of this system is given as <m>\frac{\Theta(s)}{F(s)}= G(s) = \frac{\kappa}{s^2+\lambda}</m> where <m>\kappa</m> and <m>\lambda</m> are defined in <xref ref="sec-pitch-response-rocket"/>. The poles of the system are located at <m>s=\pm j\sqrt{\lambda}</m>. Using the same time response code and the pole zero map generation, the poles can be plotted on the real/imaginary axes as shown in Figure <xref ref="f_rocket_poles"/>.
     </p>
 
     <figure xml:id="f_rocket_poles">
       <caption>Poles of Rocket System</caption>
-      <image source="Figures/rocket_poles.png" width="48%"/>
+      <image source="rocket_poles.png" width="48%"/>
     </figure>
 
     <p>
@@ -146,8 +146,8 @@
     <figure xml:id="f_pendulum_poles">
       <caption>Pendulum Poles (<m>\theta_e=0</m> left) ; (<m>\theta_e=\pi</m> right)</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/pendulum_poles_stable.png"/>
-        <image source="Figures/pendulum_poles_unstable.png"/>
+        <image source="pendulum_poles_stable.png"/>
+        <image source="pendulum_poles_unstable.png"/>
       </sidebyside>
     </figure>
 

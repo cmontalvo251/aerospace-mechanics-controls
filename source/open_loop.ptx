@@ -17,8 +17,8 @@
     <figure xml:id="fig-car-code">
       <caption>Python code to generate the time response of a car</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/car_code_1.png"/>
-        <image source="Figures/car_code_2.png"/>
+        <image source="car_code_1.png"/>
+        <image source="car_code_2.png"/>
       </sidebyside>
     </figure>
 
@@ -29,8 +29,8 @@
     <figure xml:id="fig-car-response">
       <caption>Time response of the position (right) and velocity (left) of a car</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/car_velocity_response.png"/>
-        <image source="Figures/car_position_response.png"/>
+        <image source="car_velocity_response.png"/>
+        <image source="car_position_response.png"/>
       </sidebyside>
     </figure>
 
@@ -49,8 +49,8 @@
     <figure xml:id="fig-mass-spring-damper-code">
       <caption>Python code to generate the time response of a mass spring damper</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/mass_spring_damper_code_1.png"/>
-        <image source="Figures/mass_spring_damper_code_2.png"/>
+        <image source="mass_spring_damper_code_1.png"/>
+        <image source="mass_spring_damper_code_2.png"/>
       </sidebyside>
     </figure>
 
@@ -60,7 +60,7 @@
 
     <figure xml:id="fig-mass-spring-damper-response">
       <caption>Time response of the position of a mass spring damper</caption>
-      <image width="80%" source="Figures/mass_spring_damper_response.png"/>
+      <image width="80%" source="mass_spring_damper_response.png"/>
     </figure>
 
     <p>
@@ -85,7 +85,7 @@
 
     <figure xml:id="fig-satellite-response">
       <caption>Time response of the attitude of a satellite/quadcopter</caption>
-      <image width="80%" source="Figures/satellite_response.png"/>
+      <image width="80%" source="satellite_response.png"/>
     </figure>
 
     <p>
@@ -102,7 +102,7 @@
 
     <figure xml:id="fig-apprentice">
       <caption>Apprentice S 15e Aircraft</caption>
-      <image width="60%" source="Figures/apprentice.PNG"/>
+      <image width="60%" source="apprentice.PNG"/>
     </figure>
 
     <p>
@@ -170,8 +170,8 @@
     <figure xml:id="fig-aircraft-response">
       <caption>Attitude Response of an Aircraft (<m>C_{m\alpha}=-2.19</m> left) ; (<m>C_{m\alpha}=2.19</m> right)</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/aircraft_response_stable.png"/>
-        <image source="Figures/aircraft_response_unstable.png"/>
+        <image source="aircraft_response_stable.png"/>
+        <image source="aircraft_response_unstable.png"/>
       </sidebyside>
     </figure>
 
@@ -205,11 +205,11 @@
 
     <figure xml:id="fig-rocket-response">
       <caption>Time response of the attitude of a rocket with TVC</caption>
-      <image width="80%" source="Figures/rocket_response.png"/>
+      <image width="80%" source="rocket_response.png"/>
     </figure>
 
     <p>
-      In this simulation above <m>\rho=0.00238\text{ slugs/ft}^3</m>, <m>V=150\text{ ft/s}</m>, <m>d=1.0\text{ ft}</m>, <m>a=3.0\text{ ft}</m>, <m>T=10\text{ lbf}</m>, <m>b=6\text{ ft}</m> and <m>J=0.57\text{ slugs/ft}^3</m>. The python code used to generate this is on <url href="https://github.com/cmontalvo251/Python/blob/master/controls/rocket.py">GitHub</url>. The time response shows an interesting result in that the rocket will continue to oscillate forever. Naturally this would be impossible in real life again given the drag created by aerodynamics but for academics sake it is interesting to look at a system that has no damping and oscillates forever. A system like this would be considered marginally stable but of course that will be explained in more detail in section \ref{s:stability}.
+      In this simulation above <m>\rho=0.00238\text{ slugs/ft}^3</m>, <m>V=150\text{ ft/s}</m>, <m>d=1.0\text{ ft}</m>, <m>a=3.0\text{ ft}</m>, <m>T=10\text{ lbf}</m>, <m>b=6\text{ ft}</m> and <m>J=0.57\text{ slugs/ft}^3</m>. The python code used to generate this is on <url href="https://github.com/cmontalvo251/Python/blob/master/controls/rocket.py">GitHub</url>. The time response shows an interesting result in that the rocket will continue to oscillate forever. Naturally this would be impossible in real life again given the drag created by aerodynamics but for academics sake it is interesting to look at a system that has no damping and oscillates forever. A system like this would be considered marginally stable but of course that will be explained in more detail in section <xref ref="s_stability"/>.
     </p>
   </section>
 
@@ -239,13 +239,13 @@
     <figure xml:id="fig-pendulum-response">
       <caption>Pendulum Response (<m>\theta_e=0</m> left) ; (<m>\theta_e=\pi</m> right)</caption>
       <sidebyside widths="48% 48%">
-        <image source="Figures/pendulum_response_stable.png"/>
-        <image source="Figures/pendulum_response_unstable.png"/>
+        <image source="pendulum_response_stable.png"/>
+        <image source="pendulum_response_unstable.png"/>
       </sidebyside>
     </figure>
 
     <p>
-      Here it is easy to see that in the case of the pendulum pointing down, the pendulum just oscillates forever. However, in the case where the pendulum is straight up, the pendulum diverges off to infinity. In reality, for the nonlinear system the pendulum would just move to a stable equilibrium point but that type of nonlinear analysis will be discussed in section \ref{s:nonlinear_controls}.
+      Here it is easy to see that in the case of the pendulum pointing down, the pendulum just oscillates forever. However, in the case where the pendulum is straight up, the pendulum diverges off to infinity. In reality, for the nonlinear system the pendulum would just move to a stable equilibrium point but that type of nonlinear analysis will be discussed in <xref ref="s_nonlinear_controls"/>.
     </p>
   </section>
 </chapter>
