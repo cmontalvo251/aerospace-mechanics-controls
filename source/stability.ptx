@@ -2,6 +2,7 @@
 
 <chapter xml:id="s_stability" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Stability</title>
+  <introduction>
       <p>
     Stability of open or even closed loop systems is an important concept in control systems. An open loop system is stable if the output of the system remains bounded for a bounded input. In other words, if the input to the system is a step function, the output of the system will reach a steady state value and not diverge to infinity. The stability of a system can be analyzed using the characteristic equation of the system which was shown in the solution to multiple differential equations. The astute reader will have also noticed that the denominator of the transfer function is identical to the characteristic equation. The roots of the characteristic equation are often called the poles of the system and can be used interchangeably. Thus, the benefit of a transfer function is that stability can be ascertained immediately by looking at the denominator of the transfer function. In the Chapter on feedback control it will be shown that control systems in the laplace domain can be applied by simply multiplying different control systems and examining the resulting closed loop transfer function for stability. When designing controllers in the time domain it is almost impossible to gaurantee closed loop stability. However, with transfer functions, after a bit of algebraic manipulation stability can be ascertained.
   </p>
@@ -26,8 +27,9 @@
     <caption>Pole-Zero Plotting Code</caption>
     <image source="Figures/pole_zero_code.png" width="80%"/>
   </figure>
+</introduction>
 
-  <subsection xml:id="sec-position-and-velocity-of-a-car">
+  <section xml:id="sec-position-and-velocity-of-a-car">
     <title>Position and Velocity of a Car</title>
 
     <p>
@@ -53,9 +55,9 @@
     <p>
       Notice that the poles of the position system are located at <m>s=0</m> and <m>s=-\sigma</m> while the pole of the velocity system is located at <m>s=-\sigma</m>. The position system has one marginally stable pole and one stable pole while the velocity system has one stable pole. Thus, the position system is marginally stable while the velocity system is stable. Remember if at least one pole is marginally stable and none are unstable the system is considered marginally stable. If all poles are stable the system is considered stable.
     </p>
-  </subsection>
+  </section>
 
-  <subsection xml:id="sec-position-of-a-mass-spring-damper">
+  <section xml:id="sec-position-of-a-mass-spring-damper">
     <title>Position of a Mass Spring Damper</title>
 
     <p>
@@ -76,9 +78,9 @@
     <p>
       Notice that the poles of the mass spring damper system are located in the left half of the complex plane. The real part of the poles is negative and thus the system is stable. The imaginary part of the poles determines the frequency of oscillation while the real part of the poles determines the rate of decay. The further left the poles are located in the complex plane, the faster the system will decay to its steady state value. Thus again the transfer function shows it's usefuleness in determining the stability of a system as well as whether it oscillates or not. In this case the system is stable (left half plane) and oscillatory (imaginary part non-zero).
     </p>
-  </subsection>
+  </section>
 
-  <subsection xml:id="sec-attitude-dynamics-of-a-satellite-or-quadcopter">
+  <section xml:id="sec-attitude-dynamics-of-a-satellite-or-quadcopter">
     <title>Attitude Dynamics of a Satellite or Quadcopter</title>
 
     <p>
@@ -93,9 +95,9 @@
     <p>
       Notice that the poles of the satellite/quadcopter system are located at <m>s=0</m> and <m>s=0</m>. Both poles have real parts equal to zero and thus the system is marginally stable and increases quadratically over time. A single pole at zero would increase linearly but two poles at the origin increases quadratically.
     </p>
-  </subsection>
+  </section>
 
-  <subsection xml:id="sec-pitch-dynamics-of-an-aircraft">
+  <section xml:id="sec-pitch-dynamics-of-an-aircraft">
     <title>Pitch Dynamics of an Aircraft</title>
 
     <p>
@@ -113,9 +115,9 @@
     <p>
       Again as can be seen in the left figure the poles are in the left hand plane (LHP) and thus the time response is stable. However, for the situation where <m>C_{m\alpha}</m> is positive, the poles are real and distinct with one positive and one negative. Since one pole is positive the entire system is unstable.
     </p>
-  </subsection>
+  </section>
 
-  <subsection xml:id="sec-pitch-dynamics-of-a-rocket">
+  <section xml:id="sec-pitch-dynamics-of-a-rocket">
     <title>Pitch Dynamics of a Rocket</title>
 
     <p>
@@ -130,9 +132,9 @@
     <p>
       Notice that the poles are purely imaginary which means they lie on the boundary of the left and right half plane. Because they lie on the axis the system is marginally stable. It doesn't settle out but also don't increase off to infinity. Furthermore, both poles are are imaginary which means they system oscillates. Once again the transfer function shows the open loop system dynamics by just examining the roots of the denominator.
     </p>
-  </subsection>
+  </section>
 
-  <subsection xml:id="sec-angle-of-an-inverted-pendulum">
+  <section xml:id="sec-angle-of-an-inverted-pendulum">
     <title>Angle of an Inverted Pendulum</title>
 
     <p>
@@ -152,5 +154,5 @@
     <p>
       These two pole maps show the importance of analyzing the open stability of a system especially non-linear systems. In the case where the pendulum is facing down a control system is not necessary provided small oscillations are tolerable. However, for the case where the pendulum is straight up, a control system is required to prevent the system falling over. For systems like a Segway, a control system would be necessary to keep the system upright and the poles from transfer are direct indicators of the stability of these open loop systems.
     </p>
-  </subsection>
-</section>
+  </section>
+</chapter>

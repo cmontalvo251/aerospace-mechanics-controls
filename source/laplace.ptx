@@ -1,7 +1,7 @@
-  <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-  <chapter xml:id="sec-laplace-solutions" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Laplace Solutions</title>
+<chapter xml:id="laplace-solutions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Laplace Solutions</title>
     <introduction>
     <p>
       Another method to solve linear differential equations is the Laplace transform method. The Laplace transform converts a time-domain differential equation into an algebraic equation in the s-domain, which can be easier to manipulate and solve. The Laplace domain and algebraic equations are very useful for control system dynamics and every undergraduate controls engineer should learn its fundamentals. The Laplace transform of a function <m>f(t)</m> is defined as
