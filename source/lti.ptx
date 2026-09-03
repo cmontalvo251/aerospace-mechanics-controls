@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="lti" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Linear Time Invariant Systems</title>
+
+  <introduction>
+    <p>
+      This chapter explores Linear Time Invariant (LTI) systems, providing foundational principles for analyzing both first-order and second-order differential equations in control engineering. It covers the linearization of affine non-linear systems around equilibrium points, explicit time-domain solutions using characteristic and particular equations, and system transfer function formulations using Laplace transforms. Although almost every system encountered in standard applications whether aerospace or not are non-linear, it is still beneficial and more simple to learn about control system dynamics when the system parameters are constant and linear. Practical examples including vehicle motion, mass-spring-damper dynamics, satellite attitude control, aircraft pitch, and pendulums are detailed. 
+    </p>
+  </introduction>
+
+  <section xml:id="sec-linearization">
+    <title>Linearization of Non-Linear Systems</title>
+
+    <p>
+      Standard nonlinear dynamics can be placed into standard nonlinear affine form as shown below after much simplification of terms
+    </p>
+
+    <men xml:id="eq-affine">
+      \dot{\vec{x}} = \vec{f}(\vec{x}) + \vec{g}(\vec{x})\vec{u}
+    </men>
+
+    <p>
+      where <m>\vec{u}</m> is the control input which could be the forces and moments from reaction wheels or thrusters for a spacecraft or lift and drag for an airplane. The vectors <m>f</m> and <m>g</m> represent the systems dynamics which is dependent on the system itself. Note that if the dynamics cannot be put into affine form, the system is highly nonlinear and the control system designed for that would require more sophisticated analysis like Lyapunov design or sliding mode control. That will be discussed in <xref ref="s_nonlinear_controls"/>. For the affine form however, the equation can be linearized to give the equation below.
+    </p>
+
+    <men xml:id="e-linearize">
+      \Delta \dot{\vec{x}} = {\bf A}\Delta {\vec{x}} + {\bf B}\Delta \vec{u}
+    </men>
+
+    <p>
+      where <m>\Delta \vec{x} = \vec{x} - \vec{x}_e</m> and <m>\vec{x}_e</m> is an equilibrium point. In this formulation <m>{\bf A} = \partial \vec{f}/\partial \vec{x}</m> and <m>{\bf B} = \partial \vec{g}/\partial \vec{x}</m> which are partial derivatives of the state matrices. Note that an equilibrium point is a point where the system is at rest and not changing. Mathematically this means that <m>\dot{x}_e = 0</m>. When linearizing a system it is important to choose an equilibrium point that is relevant to the system. For example, for an aircraft the equilibrium point could be straight and level flight at a constant velocity. For a spacecraft it could be a circular orbit at a constant altitude. The linearized equations of motion are only valid for small perturbations around the equilibrium point. If the system deviates too far from the equilibrium point, the linearized equations may no longer accurately represent the system's dynamics.
+    </p>
+  </section>
+
+  <section xml:id="sec-general-formulation">
+    <title>General Formulation of Differential Equations</title>
+    <introduction>
+    <p>
+      The linear systems of equations derived above are in state space form. That is the vector <m>\vec{x}</m> contains all the states of the system. However, it is often easier to understand the dynamics of a system when it is in the form of a single differential equation with all states and derivatives shown in the same equation. Practical examples also help the undergraduate controls engineer as math with practical context is the best way to learn in my humble opinion. The sections below will discuss first and second order systems which are the most common types of systems encountered in engineering applications. Note that higher order systems can be reduced to first and second order systems by using techniques such as root locus or pole placement since higher order systems typically have high frequency dynamics that can be ignored for control purposes. For the most part, first and second order systems are all that is needed to understand the basics of control systems and represent the majority of systems encountered in practice.
+    </p>
+    </introduction>
+    <subsection xml:id="subsec-first-order-systems">
+      <title>First Order Systems</title>
+
+      <p>
+        A first order system undergoing free motion will have dynamics that look like this
+      </p>
+
+      <men xml:id="e-first_order">
+        \dot{q} + \sigma q = \sigma f
+      </men>
+
+      <p>
+        where <m>q</m> is a generalized coordinate, <m>\sigma</m> is the inverse of the time constant <m>\tau</m>, and <m>f</m> is the forcing function. Examples of these types of systems in include thermistors, servos, and velocity equations for system dynamics.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-second-order-systems">
+      <title>Second Order Systems</title>
+
+      <p>
+        A second order system undergoing free motion will have dynamics that look like this
+      </p>
+
+      <men xml:id="e-second_order">
+        \ddot{q} + 2\zeta \omega_n \dot{q} + {\omega_n}^2 q = {\omega_n}^2 f
+      </men>
+
+      <p>
+        where <m>q</m> is a generalized coordinate, <m>\sigma</m> is the inverse of the time constant <m>\tau</m>, <m>f</m> is the forcing function, <m>\omega_n</m> is the natural frequency of the system and <m>\zeta</m> is the damping ratio. Examples of these types of systems include mass, spring dampers in linear translation as well as torsional systems and penduluums. Anything that oscillates will exhibit this behavior.
+      </p>
+    </subsection>
+  </section>
+
+  <section xml:id="sec-practical-systems">
+    <title>Equation of Motion Formulation for Practical Systems</title>
+    <introduction>
+    <p>
+      The sections below will discuss practical examples of first and second order systems. Many of these examples are classic examples found in many dynamics and controls textbooks and ones that I typically teach budding control systems aerospace/mechanical engineers. Each one offers a slightly different set of dynamics and challenges that will help the undergraduate controls engineer understand the concepts of linear systems as well as how to control them and also determine stability.
+    </p>
+    </introduction>
+    <subsection xml:id="subsec-car-position-velocity">
+      <title>Position and Velocity of a Car</title>
+
+      <p>
+        Consider a car moving in one dimension. The primary forces acting on the car are the driving force from the tires, <m>F</m>, and a linear viscous drag force, <m>D = -cv</m>, where <m>c</m> is the viscous drag coefficient, <m>x</m> is the position of the car and <m>v</m> is the velocity of the car.
+      </p>
+
+      <figure xml:id="f-car_fbd">
+        <caption>Free body diagram of a car</caption>
+        <image source="car_fbd.png"/>
+      </figure>
+
+      <p>
+        Applying Newton's second law, the sum of forces is equal to mass times acceleration:
+      </p>
+
+      <men xml:id="eq-car-newton">
+        m\dot{v} = F - cv
+      </men>
+
+      <p>
+        where <m>m</m> is the mass of the car, <m>F</m> is the force generated by the tires, and <m>-cv</m> is the linear drag. In this case to make the system first order we simply leave acceleration as <m>\dot{v}</m> instead of <m>\ddot{x}</m> where <m>x</m> would be the position of the vehicle. Rearranging, we obtain the standard first-order linear differential equation:
+      </p>
+
+      <men xml:id="eq-car-first-order">
+        \dot{v} + \frac{c}{m}v = \frac{F}{m}
+      </men>
+
+      <p>
+        This equation describes the velocity dynamics of the car under a linear drag assumption. In this case <m>\sigma = c/m</m> and <m>F = cf</m>. With these substitutions you arrive at the same equation as <xref ref="e-first_order"/>. Note that if <m>v</m> is replaced with <m>\dot{x}</m> and <m>\dot{v}</m> is replaced with <m>\ddot{x}</m> the equation describes the position of car and is second order as shown below.
+      </p>
+
+      <men xml:id="eq-car-position">
+        \ddot{x} + \frac{c}{m}\dot{x} = \frac{F}{m}
+      </men>
+
+      <p>
+        This is another general second order system where the natural frequency <m>{\omega_n}^2=0</m>. Using the same substitions as above the general formulation is
+      </p>
+
+      <men xml:id="eq-car-general-pos">
+        \ddot{q} + \sigma \dot{q} = \sigma f
+      </men>
+
+      <p>
+        where <m>x</m> is replaced by <m>q</m>. The result is similar to the first order system but still slightly different given the absence of the constant term. It will be shown later that this system is marginally stable and that the difference between the first and second order transfer function is simply a factor of <m>s</m> given the difference from velocity to position.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-mass-spring-damper">
+      <title>Position of a Mass Spring Damper</title>
+
+      <p>
+        A mass-spring-damper system is a classic example of a second-order system. The system consists of a mass <m>m</m> attached to a spring with spring constant <m>k</m> and a damper with damping coefficient <m>c</m>. The mass is free to move along a single axis <m>x</m>, and the system is subject to an external force <m>f</m> as shown in Figure <xref ref="f-msd"/>.
+      </p>
+
+      <figure xml:id="f-msd">
+        <caption>Mass-spring-damper system</caption>
+        <image source="msd.png"/>
+      </figure>
+
+      <p>
+        Consider the mass-spring-damper system depicted above. The spring exerts a restoring force <m>-kx</m> that is always directed opposite to the displacement <m>x</m> of the mass from equilibrium, while the damper exerts a resistive force <m>-c\dot{x}</m> proportional and opposite to the velocity <m>\dot{x}</m>. The external force <m>F(t)</m> acts in the direction of motion. According to Newton's second law, the sum of these forces acting on the mass equals the mass times its acceleration, leading to the equation
+      </p>
+
+      <men xml:id="eq-msd-forces">
+        m\ddot{x} = F - c\dot{x} - kx 
+      </men>
+
+      <p>
+        Rearranging terms, we obtain the standard form of the equation of motion for the mass-spring-damper system.
+      </p>
+
+      <men xml:id="eq-msd-standard">
+        \ddot{x} + \frac{c}{m}\dot{x} + \frac{k}{m}x = \frac{F}{m}
+      </men>
+
+      <p>
+        This second-order linear differential equation fully describes the dynamic response of the system to any external force <m>F</m>. Looking at equation <xref ref="e-second_order"/> we can see that <m>\omega_n = \sqrt{k/m}</m> and <m>\zeta = c/(2\sqrt{mk})</m>. Furthermore, if we let <m>F = kf</m> we arrive at the same equation as <xref ref="e-second_order"/>.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-satellite-quadcopter">
+      <title>Attitude Dynamics of a Satellite or Quadcopter</title>
+
+      <p>
+        For a satellite undergoing free 1-D rotational motion the dynamics are quite interesting from a controls perspective given the somewhat marginal stability of the satellite. The same can be said for a quadcopter undergoing slow rotational motion. In this case, it is assumed that the spacecraft or quadcopter rotates through the angle <m>\theta</m> about its center of mass. The spacecraft/quadcopter has a moment of inertia <m>J</m> and is subject to an external torque <m>\tau</m> as shown in Figure <xref ref="f-satellite"/>. In this case ,the torque is created by reaction control thrusters or propellors with a force <m>F</m> at a distance <m>d</m> from the center of mass. Note that in the case of the satellite there are 4 thrusters but only 2 operate at a time. If the top right and bottom left thrusters fire the torque is negative and if the top left and bottom right thrusters fire the torque is positive. In this case we let <m>F_1=F_2=F_3=F_4=F</m>. If <m>F>0</m> it means it is a positive torque and <m>F_1=F_4</m> are non-zero while <m>F_2=F_3=0</m>. If <m>F&lt;0</m> the torque is negative and <m>F_1=F_4=0</m> while <m>F_2=F_3</m> are non-zero. For a quadcopter the 4 propellors are offset by a nominal thrust to keep the quadcopter aloft. Furthermore, since the quadcopter is symmetric about the rotational axis it can be assumed that the quadcopter only has 2 propellors <m>F_3</m> and <m>F_4</m>. The torque is created by increasing the thrust on one side and decreasing it on the other side. In this case <m>F_3=F_H+\Delta F</m>, <m>F_4=F_H-\Delta F</m> where <m>F_H</m> is the thrust required for hovering. Adding the effect of <m>F_3</m> and <m>F_4</m> yields <m>2\Delta F</m> which can just be replaced with <m>2F</m> and the formulation can continue.
+      </p>
+
+      <figure xml:id="f-satellite">
+        <caption>Satellite with reaction control thrusters</caption>
+        <image source="satellite.png"/>
+      </figure>
+
+      <p>
+        The equation of motion for the satellite can be derived from Newton's second law for rotational motion, which states that the sum of torques acting on a body equals the moment of inertia times its angular acceleration as derived in <xref ref="s_rotational_motion"/>. The full equation is repeated here for clarity.
+      </p>
+
+      <men xml:id="eq-sat-torque-full">
+        \vec{M}_C = \dot{{\bf I}}\vec{\omega}_{B/I} + {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}
+      </men>
+
+      <p>
+        In this section however the inertia is constant, thus the entire first term goes to zero, and since the motion of the satellite is planar the third term is also zero. Thus, the equation reduces to
+      </p>
+
+      <men xml:id="eq-sat-torque-reduced">
+        \vec{M}_C = {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} = J \vec{\alpha}_{B/I} = J\ddot{\theta}
+      </men>
+
+      <p>
+        where <m>\vec{\alpha}_{B/I}</m> is the angular acceleration of the satellite. The torque generated by the thrusters is given as <m>\vec{M}_C = \tau = 2Fd</m>. The multiplication by 2 is due to 2 thrusters firing at a time or in the case of the quadcopter it is due to the symmetry of the rotation axis as explained above. The final equations of motion for the satellite/quadcopter are then given as
+      </p>
+
+      <men xml:id="eq-sat-eom">
+        \ddot{\theta} = \frac{2Fd}{J}
+      </men>
+
+      <p>
+        This is a classic second order system where <m>\omega_n = 0</m> and <m>\zeta = 0</m>. This means that the system is marginally stable and will not return to equilibrium after a disturbance. Stability will be discussed in <xref ref="s_stability"/>. Letting <m>F=f\frac{J}{2d}</m> results in <m>\ddot{\theta}=f</m> which is almost the same equation as equation <xref ref="e-second_order"/> but where the natural frequency and damping ratio are both zero.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-aircraft-pitch">
+      <title>Pitch Dynamics of an Aircraft</title>
+
+      <p>
+        For an aircraft we assume that the aircraft is symmetric about the longitudinal axis and that the aircraft is only pitching about its center of mass. The pitch dynamics of an aircraft are similar to a spring mass damper since there is a constant restoring moment given by <m>C_{m\alpha}</m> due to the aerodynamic forces acting on the aircraft as well as a damping term <m>C_{mq}</m> also created by aerodynamic forces. Using the aerodynamic equations given in Equation <xref ref="e-LMN"/>, the pitch dynamics of an aircraft are given as
+      </p>
+
+      <men xml:id="eq-aircraft-pitch-full">
+        I_{yy}\ddot{\theta} = \vec{M_C} = \frac{1}{2}\rho V^2 S \bar{c} (C_{m\alpha}\theta + C_{mq}\frac{\bar{c}}{2V}\dot{\theta} + C_{m\delta_e}\delta_e)
+      </men>
+
+      <p>
+        Note that in this case we assume that <m>\theta=\alpha</m> the angle of attack which is not necessarily true but for quick motion about the pitch axis this can be assumed to be true. Again the moment of inertia is <m>I_{yy}</m> and the pitch angle is <m>\theta</m>. The aerodynamic force is given by the dynamic pressure <m>q = (1/2)\rho V^2</m> where <m>\rho</m> is the density of air, <m>V</m> is the velocity of the aircraft (assumed to be constant for pure pitching), <m>S</m> is the reference area and <m>\bar{c}</m> is the mean aerodynamic chord. The moment coefficients are <m>C_{m\alpha}</m> which is the restoring moment coefficient, <m>C_{mq}</m> which is the damping moment coefficient and <m>C_{m\delta_e}</m> which is the control moment coefficient due to elevator deflection <m>\delta_e</m>. Rearranging the equation into standard form yields
+      </p>
+
+      <men xml:id="eq-aircraft-standard">
+        \ddot{\theta} + \left(-\frac{\rho V^2 S \bar{c}^2 C_{mq}}{4I_{yy} V}\right)\dot{\theta} + \left(-\frac{\rho V^2 S \bar{c} C_{m\alpha}}{2I_{yy}}\right)\theta = \frac{\rho V^2 S \bar{c} C_{m\delta_e}}{2I_{yy}}\delta_e
+      </men>
+
+      <p>
+        which is in the standard form of second order systems with a natural frequency and damping ratio given as
+      </p>
+
+      <men xml:id="eq-aircraft-wn-zeta">
+        {\omega_n}^2 = -\frac{\rho V^2 S \bar{c} C_{m\alpha}}{2I_{yy}}, \quad \zeta = -\frac{\rho V^2 S \bar{c}^2 C_{mq}}{8I_{yy} V {\omega_n}}
+      </men>
+
+      <p>
+        Note that <m>C_{m\alpha}</m> and <m>C_{mq}</m> are typically negative which makes both <m>\omega_n</m> and <m>\zeta</m> positive. However, in the case of the F-16 <m>C_{m\alpha}</m> is actually negative. In this case the natural frequency squared becomes negative and the solution quite different. In The control term is the elevator deflection <m>\delta_e</m> which means performing the final substitution below
+      </p>
+
+      <men xml:id="eq-delta-e-sub">
+        \delta_e = f \frac{C_{m\alpha}}{C_{m\delta_e}}
+      </men>
+
+      <p>
+        results in the same equation as equation <xref ref="e-second_order"/> provided you subsitute <m>\theta</m> with the generalized q coordinate.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-rocket-pitch">
+      <title>Pitch Dynamics of a Rocket</title>
+
+      <p>
+        The pitch dynamic of a rocket are interesting in that the system is also marginally stable much like the satellite/quadcopter systems explained above. The difference of course is that the system is in the presence of the atmosphere and thus the aerodynamic forces create a damping effect which is proportional to the square of the velocity. This damping term is also nonlinear. However, in order to make the system linear it is assumed that the velocity is constant. For the sake of clarity the full equations of motion will be shown and then simplified to attain a simple linear form. First, the free body diagram of the rocket is shown in the Figure below.
+      </p>
+
+      <figure xml:id="f-rocket">
+        <caption>Rocket Pitch Dynamics Free Body Diagram</caption>
+        <image source="Rocket.png"/>
+      </figure>
+
+      <p>
+        Here thrust acts at an angle <m>\beta</m> with respect to the centerline of the rocket with a thrust equal to <m>T</m>. The length of the rocket is <m>b</m> and thus the moment arm of the thrust vector is <m>b/2</m>. The aerodynamic force <m>D</m> acts at the center of pressure which is a distance <m>c</m> from the center of mass. It is assumed that the rocket is constantly traveling upwards and thus the Drag force <m>D</m> is always pointed down at a distance of <m>a</m> from the center of mass. The moment of inertia of the rocket is <m>J</m> and the pitch angle is <m>\theta</m>. The equations of motion are similar to the quadcopter/satellite system undergoing 1-D rotational motion with a few subtle differences.
+      </p>
+
+      <men xml:id="eq-rocket">
+        J\ddot{\theta} = \vec{M_C} = -D a \sin{\theta} + \frac{Tb}{2} \sin(\beta)
+      </men>
+
+      <p>
+        First you'll see that the aerodynamic force which is restoring is nonlinear due to the <m>\sin{\theta}</m> term. Furthermore, the thrust force <m>T</m> acts through the angle <m>\beta</m> leading to a problem where the thrust force <m>T</m> could change in addition to the angle <m>\beta</m>. Two control terms would represent a multi-input system which requires the use of optimization to determine the best course of action. Since the focus of this chapter is on Single-Input-Single-Ouput (SISO) systems, the force <m>T</m> will be represented as a constant. Thus, the control term for this system will actually be the angle <m>\beta</m>. However, note that the control term is also nonlinear. Both <m>\sin()</m> terms can be linearized for small angles such that <m>\sin{\theta} \approx \theta</m> and <m>\sin{\beta} \approx \beta</m>. Note that <m>\theta=0</m> is the equilibrium position in this case. The equation of motion then becomes
+      </p>
+
+      <men xml:id="eq-rocket-linear1">
+        J\ddot{\theta} + D a \theta = T \frac{b}{2} \beta
+      </men>
+
+      <p>
+        Which is linear...almost. The second issue in this equation is that the aerodynamic force is a function of velocity squared. The drag force is given in Equations <xref ref="e-rocket-q"/> and <xref ref="e-aeroF"/>. As stated above it is assumed that the velocity is constant and thus <m>D</m> is constant as well. The final equation of motion for the rocket pitch dynamics is then given as
+      </p>
+
+      <men xml:id="eq-rocket-linear2">
+        \ddot{\theta} + \frac{\pi}{J8}\rho V^2 d^2 a \theta = \frac{Tb}{2J} \beta
+      </men>
+
+      <p>
+        If <m>(\pi/(J8))\rho V^2 d^2 a = {\omega_n}^2</m>, <m>Tb/(2J) \beta = \kappa {\omega_n}^2 f</m> and <m>\theta = q</m>, the equations of motion are identical to the general form of second order systems except that <m>\kappa</m> is a gain applied to the forcing function.
+      </p>
+
+      <men xml:id="eq-rocket-final">
+        \ddot{q} + {\omega_n}^2 q = \kappa {\omega_n}^2 f
+      </men>
+
+      <p>
+        In addition, it is clear that the damping ratio <m>\zeta</m> is zero.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-pendulum-pitch">
+      <title>Pitch Dynamics of a Pendulum</title>
+
+      <p>
+        The dynamics of a pendulum are interesting for two reasons. First, the system is non-linear in the angle <m>\theta</m> and the system has an infinite number of equilibrium points. Half of the equilibrium points are also unstable. For the sake of this problem though we will restrict the system to be between <m>-\pi</m> and <m>\pi</m> which means the system will only have 3 equilibrium points. The first is <m>\theta=0</m> and the other two are <m>\theta=-\pi</m> and <m>\theta=\pi</m>. Obviously the second two equilibrium points are the same. To formulate the dynamics we start with the figure below
+      </p>
+
+      <figure xml:id="f-pendulum">
+        <caption>Pendulum Free Body Diagram</caption>
+        <image source="pendulum.png"/>
+      </figure>
+
+      <p>
+        The pendulum consists of a mass <m>m</m> attached to a rigid, massless rod of length <m>L</m>. The pendulum swings about a pivot point under the influence of gravity, which exerts a downward force <m>mg</m> on the mass. An external torque <m>\tau</m> acts at the pivot point itself. The angle <m>\theta</m> represents the angular displacement of the pendulum from the vertical equilibrium position. The equation of motion for the pendulum can be derived just as before with the sum of torques acting on a body equaling the moment of inertia times its angular acceleration. The moment of inertia <m>J</m> for a point mass at a distance <m>L</m> from the pivot is given by <m>J = mL^2</m>. The torque generated by the gravitational force is <m>\tau_g = -mgL \sin{\theta}</m>, where the negative sign indicates that gravity acts to restore the pendulum to its equilibrium position. Thus, the equation of motion is given as
+      </p>
+
+      <men xml:id="eq-pendulum">
+        J\ddot{\theta} = \vec{M_C} = -mgL \sin{\theta} + \tau
+      </men>
+
+      <p>
+        Rearranging and substituting the moment of inertia yields
+      </p>
+
+      <men xml:id="eq-pendulum-rearranged">
+        \ddot{\theta} = \frac{\tau}{mL} - \frac{g}{L} \sin{\theta}
+      </men>
+
+      <p>
+        This equation is close to the second order equations where the damping ratio is zero but it is nonlinear due to the <m>\sin{\theta}</m> and <m>\cos{\theta}</m> terms. In this case the system can be linearized about the equilibrium point <m>\theta=0</m> but can also be linearized about the equilibrium point <m>\theta=\pi</m> if the pendulum is inverted. In order to linearize the equations of motion you need to use equation <xref ref="e-linearize"/>. Note that in this case the matrices <m>A</m> and <m>B</m> are expanded out instead of using matrix notation.
+      </p>
+
+      <men xml:id="eq-pendulum-expanded">
+        \Delta \ddot{\theta} = \frac{\partial f}{\partial \dot{\theta}} \Delta \dot{\theta} + \frac{\partial f}{\partial \theta}\Delta \theta + \frac{\partial g}{\partial \tau} \Delta \tau 
+      </men>
+
+      <p>
+        where <m>f = -(g/L) \sin{\theta}</m> and <m>g = \tau/(mL)</m>. Calculating the partial derivative and plugging into the equation above yields
+      </p>
+
+      <men xml:id="eq-pendulum-partials">
+        \Delta \ddot{\theta} = 0 -\frac{g}{L}\cos(\theta_e)\Delta \theta + \frac{1}{mL} \Delta \tau
+      </men>
+
+      <p>
+        Rearranging and dropping the <m>\Delta</m> terms yields
+      </p>
+
+      <men xml:id="eq-pendulum-linearized">
+        \ddot{\theta} + \frac{g}{L}\cos(\theta_e)\theta = \frac{1}{mL} \tau
+      </men>
+
+      <p>
+        This will now yield two separate and quite different equations depending on the equilibrium point chosen. First, if the equilibrium point is <m>\theta_e=0</m> the equation becomes
+      </p>
+
+      <men xml:id="eq-pendulum-stable">
+        \ddot{\theta} + \frac{g}{L}\theta = \frac{1}{mL} \tau
+      </men>
+
+      <p>
+        which is in the standard form of second order systems where <m>{\omega_n}^2 = g/L</m> and <m>\zeta = 0</m>. The control term is <m>\tau = fmg</m> which results in the same equation as <xref ref="e-second_order"/>. If <m>\theta_e=\pi</m> the equation becomes
+      </p>
+
+      <men xml:id="eq-pendulum-unstable">
+        \ddot{\theta} - \frac{g}{L}\theta = \frac{1}{mL} \tau
+      </men>
+
+      <p>
+        which is again in the standard form of second order systems except that the constant term is negative which means the system is actually unstable. More on this system will be discussed in <xref ref="s_stability"/>. Furthermore, the solution is also quite different and will be explored in the sections that follow.
+      </p>
+    </subsection>
+  </section>
+
+  <section xml:id="sec-solutions">
+    <title>Characteristic and Particular Solutions to Differential Equations</title>
+    <introduction>
+    <p>
+      The differential equations presented in the previous section can be solved using a variety of methods. The most common methods are the characteristic and particular solution method and the Laplace transform method. The sections below will discuss both methods starting with the characteristic and particular solution method.
+    </p>
+    </introduction>
+    <subsection xml:id="subsec-sol-first-order">
+      <title>General First Order System</title>
+
+      <p>
+        First the first order system defined above will be solved first. For a first order linear differential equation of the form presented in equation <xref ref="e-first_order"/>, the general solution is the sum of the homogeneous (characteristic) solution and a particular solution. The particular solution corresponds to the steady-state response when the forcing function <m>f</m> is constant. In this case assume <m>f</m> is a step function which is just a constant <m>f_0</m>. The particular solution <m>q_p(t)=C</m> where <m>C</m> is a constant and thus <m>\dot{q_p}=\dot{C}=0.</m> Plugging this into equation <xref ref="e-first_order"/> gives
+      </p>
+
+      <men xml:id="eq-qp-first-order">
+        0 + \sigma q_p = \sigma f_0 
+      </men>
+
+      <p>
+        Thus, the particular solution for a constant input is simply <m>q_p = f_0</m>. If the forcing function is not constant then the particular solution will be a function of time and solving for the particular solution will be more difficult. Examples of this include sinusoidal forcing functions or exponentially decaying forcing functions. The solutions to these types of forcing functions can be found in many differential equations textbooks and will not be discussed here for the time being. The homogeneous solution is found by setting the forcing function to zero and solving the resulting equation assuming that <m>q_h(t)=Ae^{st}</m>. Thus, the homogeneous equation is
+      </p>
+
+      <men xml:id="eq-qh-first-order">
+        \dot{q_h} + \sigma q_h = Ase^{st} + \sigma Ae^{st} = Ae^{st}(s+\sigma) = 0
+      </men>
+
+      <p>
+        In the equation above the result yields 3 equations that could be equal to zero. The first is <m>A=0</m> which is a trivial solution and thus not considered. The second is <m>e^{st}=0</m> which is never true for any real or complex value of s. The third is <m>s+\sigma=0</m> which is the charactertic equation for the first order system. The solution to this equation yields the characteristic root <m>s=-\sigma</m>. Thus, the homogeneous solution is
+      </p>
+
+      <men xml:id="eq-qh-solution">
+        q_h(t) = Ae^{-\sigma t}
+      </men>
+
+      <p>
+        where A is a constant determined by the initial conditions. The general solution is the sum of the homogeneous and particular solutions
+      </p>
+
+      <men xml:id="eq-q-general">
+        q(t) = q_h(t) + q_p(t) = Ae^{-\sigma t} + f_0
+      </men>
+
+      <p>
+        The constant A can be determined by the initial condition <m>q(0)=q_0</m> which yields
+      </p>
+
+      <men xml:id="eq-ic-A">
+        q(0) = A + f_0 = q_0 \implies A = q_0 - f_0
+      </men>
+
+      <p>
+        Thus, the final solution to the first order system is
+      </p>
+
+      <men xml:id="eq-q-final1">
+        q(t) = q_0 - f_0 + Ae^{-\sigma t}
+      </men>
+
+      <p>
+        or more simply
+      </p>
+
+      <men xml:id="eq-q-final2">
+        q(t) = f_0 + (q_0 - f_0)e^{-\sigma t}
+      </men>
+
+      <p>
+        In the case of the car example the solution would be
+      </p>
+
+      <men xml:id="eq-car-v-sol">
+        v(t) = \frac{F_0}{c} + \left(v_0 - \frac{F_0}{c}\right)e^{-\frac{c}{m}t}
+      </men>
+
+      <p>
+        noting that <m>\sigma = c/m</m>, <m>F_0 = cf_0</m> and <m>v_0</m> is the initial velocity of the car. Typically for these types of systems the initial velocity is zero so the equation simplifies to
+      </p>
+
+      <men xml:id="e-first_order_solution">
+        v(t) = \frac{F_0}{c}\left(1 - e^{-\frac{c}{m}t}\right)
+      </men>
+
+      <p>
+        which shows that the car will asymptotically approach a steady state velocity of <m>F_0/c</m>. This will be plotted later in <xref ref="open-loop-response"/> for open loop analysis.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-sol-second-order">
+      <title>General Second Order Systems</title>
+
+      <p>
+        The solution to second order systems is quite complex given the nature of solving a second order differential equation. The general solution is again the sum of the homogeneous and particular solutions and assume the initial conditions are zero. The major difficulty with second order systems is that the solution to the homogenous characteristic eqaution can be real, repeated or imaginary roots. The roots effect the overall solution and will be discussed later. To start the particular solution is very simple and is again found by assuming a constant forcing function <m>f_0</m> such that <m>q_p(t)=C</m> where <m>C</m> is a constant and thus <m>\dot{q_p}=\dot{C}=0</m> and <m>\ddot{q_p}=\ddot{C}=0</m>. Plugging this into equation <xref ref="e-second_order"/> gives the eqaution below:
+      </p>
+
+      <men xml:id="eq-qp-second-order">
+        0 + 0 + {\omega_n}^2 q_p = {\omega_n}^2 f_0
+      </men>
+
+      <p>
+        Thus, the particular solution for a constant input is simply <m>q_p = f_0</m>. If the forcing function is not constant then the particular solution will be a function of time and solving for the particular solution will be more difficult. Examples of this include sinusoidal forcing functions or exponentially decaying forcing functions. The solutions to these types of forcing functions can be found in many differential equations textbooks and will not be discussed here for the time being. The homogeneous solution is found by setting the forcing function to zero and solving the resulting equation assuming that <m>q_h(t)=Ae^{st}</m>. Thus the homogeneous equation is
+      </p>
+
+      <men xml:id="eq-qh-second-order">
+        \begin{matrix}
+        \ddot{q_h} + 2\zeta \omega_n \dot{q_h} + {\omega_n}^2 q_h = 0 \\
+        A s^2 e^{st} + 2\zeta \omega_n A s e^{st} + {\omega_n}^2 A e^{st} = 0 \\
+        Ae^{st}(s^2 + 2\zeta \omega_n s + {\omega_n}^2) = 0
+        \end{matrix}
+      </men>
+
+      <p>
+        In the equation above the result yields 3 equations that could be equal to zero. The first is <m>A=0</m> which is a trivial solution and thus not considered. The second is <m>e^{st}=0</m> which is never true for any real or complex value of s. The third is <m>s^2 + 2\zeta \omega_n s + {\omega_n}^2 = 0</m> which is the charactertic equation for the second order system. The solution to this equation yields the characteristic roots which as stated above can have real, repeated or imaginary roots. The characteristic roots are found using the quadratic formula and are given as
+      </p>
+
+      <men xml:id="eq-char-roots">
+        s = -\zeta \omega_n \pm \omega_n \sqrt{\zeta^2 - 1}
+      </men>
+
+      <p>
+        Note that if <m>{\omega_n}^2</m> is negative, as is the case with the unstable <m>C_{m\alpha}</m> of the F-16 or the inverted pendulum, the characteristic equation becomes <m>s^2 + 2\zeta \omega_n s - \omega_n^2 = 0</m> which results in roots of
+      </p>
+
+      <men xml:id="eq-char-roots-unstable">
+        s = -\zeta \omega_n \pm \omega_n \sqrt{\zeta^2 + 1}
+      </men>
+
+      <p>
+        which is almost the same but notice the plus sign in front of the <m>\zeta^2</m> term. In this case the roots are always real and distinct. It is possible to have complex roots if the damping ratio <m>\zeta</m> is negative but this is not a common case and will not be discussed here. The nature of the roots depends on the value of the damping ratio <m>\zeta</m> as well as the sign of <m>\omega_n^2</m>. The three cases for <m>{\omega_n}^2>0</m> are underdamped (<m>0 \leq \zeta&lt;1</m>), critically damped (<m>\zeta=1</m>), and overdamped (<m>\zeta>1</m>). Each case will be discussed below. Note that for the case where <m>{\omega_n}^2&lt;0</m> the roots are always real and distinct which has a similar solution to the overdamped case.
+      </p>
+
+      <ol>
+        <li>
+          <p>
+            <strong>Underdamped (<m>0 \leq \zeta&lt;1</m>)</strong>: In this case, the roots are complex conjugates (<m>s_{12}=-\zeta w_n \pm \omega_d j</m>) where <m>\omega_d = \omega_n\sqrt{1 - \zeta^2}</m>, leading to oscillatory behavior. Note that this case also applies to the edge case where the damping ratio <m>\zeta</m> is zero. The homogeneous solution is given by:
+          </p>
+          <men xml:id="eq-qh-underdamped">
+            q_h(t) = e^{-\zeta \omega_n t} \left( A_1 \cos(\omega_d t) + A_2 \sin(\omega_d t) \right)
+          </men>
+          <p>
+            where <m>\omega_d = \omega_n \sqrt{1 - \zeta^2}</m> is the damped natural frequency, and <m>A_1</m> and <m>A_2</m> are constants determined by initial conditions.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Critically Damped (<m>\zeta=1</m>)</strong>: In this case, the roots are real and repeated (<m>s_{12}=-\omega_n</m>). The homogeneous solution is given by:
+          </p>
+          <men xml:id="eq-qh-critical">
+            q_h(t) = (A_1 + A_2 t) e^{-\omega_n t}
+          </men>
+        </li>
+        <li>
+          <p>
+            <strong>Overdamped (<m>\zeta>1</m> or <m>{\omega_n}^2&lt;0</m>)</strong>: In this case, the roots are real and distinct (<m>s_{12}=-\zeta \omega_n \pm \omega_n \sqrt{\zeta^2-1}</m>) or (<m>s_{12}=-\zeta \omega_n \pm \omega_n \sqrt{\zeta^2+1}</m>). The homogeneous solution is given by:
+          </p>
+          <men xml:id="eq-qh-overdamped">
+            q_h(t) = A_1 e^{s_1 t} + A_2 e^{s_2 t}
+          </men>
+        </li>
+      </ol>
+
+      <p>
+        The general solution is the sum of the homogeneous and particular solutions
+      </p>
+
+      <men xml:id="eq-q-general-second">
+        q(t) = q_h(t) + q_p(t) = q_h(t) + f_0
+      </men>
+
+      <p>
+        The constants <m>A_1</m> and <m>A_2</m> can be determined by the initial conditions <m>q(0)=q_0</m> and <m>\dot{q}(0)=\dot{q_0}</m>. The final solution will depend on the damping ratio <m>\zeta</m> and the initial conditions. For the case where the initial conditions are zero the final solutions for each case are shown below.
+      </p>
+
+      <ol>
+        <li>
+          <p>
+            <strong>Underdamped (<m>0 \leq \zeta&lt;1</m>)</strong> Note the solution is still valid if <m>\zeta=0</m>:
+          </p>
+          <men xml:id="eq-q-sol-underdamped">
+            q(t) = f_0 \left( 1 - e^{-\zeta \omega_n t} \left( \cos(\omega_d t) + \frac{\zeta}{\sqrt{1-\zeta^2}} \sin(\omega_d t) \right) \right)
+          </men>
+        </li>
+        <li>
+          <p>
+            <strong>Critically Damped (<m>\zeta=1</m>)</strong>:
+          </p>
+          <men xml:id="eq-q-sol-critical">
+            q(t) = f_0 \left( 1 - (1 + \omega_n t) e^{-\omega_n t} \right)
+          </men>
+        </li>
+        <li>
+          <p>
+            <strong>Overdamped (<m>\zeta>1</m> or <m>{\omega_n}^2&lt;0</m>)</strong>:
+          </p>
+          <men xml:id="eq-q-sol-overdamped">
+            q(t) = f_0 \left( 1 - \frac{s_2 e^{s_1 t} - s_1 e^{s_2 t}}{s_2 - s_1} \right)
+          </men>
+        </li>
+      </ol>
+
+      <p>
+        In the case of the mass-spring-damper example, recall that <m>f_0=F_0/k</m>, <m>\omega_n = \sqrt{k/m}</m>, and <m>\zeta = c/(2\sqrt{mk})</m>.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-special-wn-zero">
+      <title>Special Case of Natural Frequency Equal to Zero</title>
+
+      <p>
+        As was shown in the special case of the car where no restoring force existed, the natural frequency was equal to zero. In this case the general equation of motion was <m>\ddot{q} + \sigma \dot{q} = \sigma f</m>. The solution to this equation is different given the characteristic equation is <m>s^2+\sigma s=0</m> which has two roots of <m>s=0</m> and <m>s=-\sigma</m>. The homogeneous solution in this case is given as
+      </p>
+
+      <men xml:id="eq-qh-wn-zero">
+        q_h(t) = A_1 + A_2 e^{-\sigma t}
+      </men>
+
+      <p>
+        For the particular solution again assume a constant forcing function <m>f_0</m> such that <m>q_p(t)=C t</m> where <m>C</m> is a constant and thus <m>\dot{q_p}=C</m> and <m>\ddot{q_p}=0</m>. Plugging this into the equation of motion gives
+      </p>
+
+      <men xml:id="eq-qp-wn-zero">
+        0 + \sigma C = \sigma f_0
+      </men>
+
+      <p>
+        and then <m>C = f_0</m>. Thus, the particular solution is <m>q_p(t)=f_0 t</m> and the general solution is
+      </p>
+
+      <men xml:id="eq-q-gen-wn-zero">
+        q(t) = A_1 + A_2 e^{-\sigma t} + f_0 t
+      </men>
+
+      <p>
+        The constants <m>A_1</m> and <m>A_2</m> can be determined by the initial conditions <m>q(0)=q_0</m> and <m>\dot{q}(0)=\dot{q_0}</m>. For the case where the initial conditions are zero the final solution is given as
+      </p>
+
+      <men xml:id="eq-q-fin-wn-zero">
+        q(t) = f_0 t - \frac{f_0}{\sigma} (1 - e^{-\sigma t})
+      </men>
+
+      <p>
+        In the case of the car example, recall that <m>f_0 = F_0/c</m> and <m>\sigma = c/m</m>. Plugging those values into the equation yields
+      </p>
+
+      <men xml:id="eq-car-x-sol">
+        x(t) = \frac{F_0}{c} t - \frac{F_0 m}{c^2} (1 - e^{-c/m t})
+      </men>
+
+      <p>
+        This result is intuitive because it states that if a constant force to the car is applied, the car will initially accelerate but then reach a constant velocity due to the drag force. This is different than the case of the quadcopter/satellite example where the angle will continue to accelerate. Note that <m>\dot{x} = v</m>. Applying a derivative to the equation above yields the same result as equation the equation for velocity
+      </p>
+
+      <men xml:id="e-position_car_solution">
+        \dot{x}(t) = v(t) = \frac{F_0}{c} - 0 - \frac{c}{m}\frac{F_0 m}{c^2} e^{-c/m t} = \frac{F_0}{c}\left(1 - e^{-\frac{c}{m}t}\right)
+      </men>
+
+      <p>
+        This is a good check for the budding controls engineer to ensure that the math is correct.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-special-wn-zeta-zero">
+      <title>Special Case of Natural Frequency and Damping Ratio Equal to Zero</title>
+
+      <p>
+        As was shown in the special case of the satellite/quadcopter where no restoring moment or damping moment existed, the natural frequency and damping ratio were both equal to zero. In this case the general equation of motion was <m>\ddot{q} = f</m>. The solution to this equation is different given the characteristic equation is simply <m>s^2=0</m> which has a repeated root of <m>s=0</m>. The homogeneous solution is then given as
+      </p>
+
+      <men xml:id="eq-qh-both-zero">
+        q_h(t) = A_1 + A_2 t
+      </men>
+
+      <p>
+        since <m>e^{0t}=1</m>. The particular solution is again <m>q_p(t)=(A_0/2)t^2</m> where <m>A_0</m> is a constant. Plugging this into the equation of motion gives
+      </p>
+
+      <men xml:id="eq-qp-both-zero">
+        \ddot{q_p} = A_0 = f_0
+      </men>
+
+      <p>
+        Thus, the particular solution is <m>q_p(t)=f_0 t^2/2</m> and the general solution is
+      </p>
+
+      <men xml:id="eq-q-gen-both-zero">
+        q(t) = A_1 + A_2 t + \frac{f_0}{2} t^2
+      </men>
+
+      <p>
+        The constants <m>A_1</m> and <m>A_2</m> can be determined by the initial conditions <m>q(0)=q_0</m> and <m>\dot{q}(0)=\dot{q_0}</m>. For the case where the initial conditions are zero the final solution is given as
+      </p>
+
+      <men xml:id="eq-q-fin-both-zero">
+        q(t) = \frac{f_0}{2} t^2
+      </men>
+
+      <p>
+        In the case of the satellite/quadcopter example, recall that <m>f_0 = \frac{2F_0 d}{J}</m>. This result is intuitive because it states that if a constant force to the thrusters/propellors is applied, the angle of the satellite/quadcopter will increase quadratically over time. That is, the system will continue to accelerate until it runs out of fuel or the thrusters are turned off. In the case of the quadcopter, if the propellors return to symmetric thrust the quadcopter will stop accelerating and maintain a constant angular velocity. In practice of course the quadcopter will have some damping due to air resistance and the satellite will have some damping due to magnetic torques and other effects. However, these effects are typically small and can be ignored for control purposes.
+      </p>
+    </subsection>
+  </section>
+</chapter>

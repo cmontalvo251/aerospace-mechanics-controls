@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="s_control_systems" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Linear Feedback Control Systems</title>
+
+  <introduction>
+  <p>
+    Feedback control is a large and complex topic. This section will
+    introduce some of the basic concepts and methods used in feedback
+    control. The sections that follow will provide many control system
+    examples for linear time invariant systems as defined in <xref
+    ref="lti"/>. However, more complex control examples will be discussed in
+    <xref ref="s_nonlinear_controls"/>.
+  </p>
+
+  <figure xml:id="fig-feedback">
+    <caption>Feedback System</caption>
+    <image source="Feedback.png"/>
+  </figure>
+
+  <p>
+    In the graphic above a basic feedback control system is shown. The system
+    consists of a plant, controller, reference input, and feedback path. The
+    plant is the system to be controlled. The controller is the algorithm
+    that computes the control input to the plant based on the error between
+    the reference input and the feedback signal. The reference input is the
+    desired state of the system. The feedback path is the measurement of
+    the system state. The controller uses the error signal, which is the
+    difference between the reference input and the feedback signal, to
+    compute the control input to the plant. The goal of the controller is
+    to drive the error signal to zero.
+  </p>
+  </introduction>
+
+  <section xml:id="sec-controllability">
+    <title>Controllability</title>
+
+    <p>
+      Before beginning to talk about control there is a necessary discussion about controllability. Controllability is formally stated as a system where any initial state <m>x(0)=x_0</m> and final state <m>x_1,t_1&gt;0</m>, there exists a piecewise continuous input <m>u(t)</m> such that <m>x(t_1)=x_1</m>. What this means is that a system is controllable if it can be driven from any initial state to any final state in a finite time. This is an important concept because if a system is not controllable then no matter how good the control system is it will never be able to drive the system to the desired state.
+    </p>
+
+    <p>
+      For a fixed wing aircraft the system has 12 states with 8 dynamic
+      modes and 4 zero or rigid body modes. For a fixed wing aircraft the system has 12 states with 8 dynamic
+      modes and 4 zero or rigid body modes. A conventional aircraft has 4
+      controls to control these 12 modes. The easiest way to test the 
+      controllability of a system is to compute the
+      controllability matrix. However, the controllability matrix must be
+      computed using a linearized model such that
+      <m>\dot{\vec{x}}=A\vec{x}+B\vec{u}</m>. In order to do this the aircraft
+      must be in equilibrium. For this example the aircraft is
+      set with an initial velocity of <m>20\text{ m/s}</m> at an altitude of
+      <m>200\text{ m}</m>. The altitude command is set to <m>200\text{ m}</m> and the heading
+      command is set to zero. Given the zero heading angle command and the
+      symmetry of the configurations investigated the rudder and aileron
+      commands are set to zero. Thus, only the thrust and elevator controls
+      are activated for the trimming procedure. Each configuration is
+      simulated for 200 seconds or until the derivatives of all states
+      except <m>\dot{x}</m> are within a required tolerance. Using this
+      equilibrium point a linear model can be computed by using forward
+      finite differencing assuming that the
+      aircraft model is put in the form <m>\dot{\vec{x}} = F(\vec{x},\vec{u})</m>.
+    </p>
+
+    <me>
+      \dot{\vec{\delta x}} = \frac{F(\vec{x_0}+\Delta \vec{x_0},\vec{u_0})-F(\vec{x_0},\vec{u_0})}{\Delta
+        \vec{x}}\vec{\delta x} + \frac{F(\vec{x_0},\vec{u_0}+\Delta
+        \vec{u})-F(\vec{x_0},\vec{u_0})}{\Delta \vec{u}}\vec{\delta u}
+    </me>
+
+    <p>
+      This linear model is the classic linear model where
+      <m>\dot{\vec{\delta x}}=A\vec{\delta{x}}+B\vec{\delta{u}}</m>. Using this linear model, the
+      controllability matrix can be computed as
+    </p>
+
+    <me>
+      W_C = [B~AB~A^2B~A^3B~...~A^{N-1}B]
+    </me>
+
+    <p>
+      where N is the number of states in the system. With the controllability
+      matrix formulated, the rank of the matrix is computed. If the
+      <m>\text{rank}(W_C)=N</m> the system is said to be controllable.
+    </p>
+  </section>
+
+  <section xml:id="sec-bang-bang-control-satellite">
+    <title>Bang Bang Control of a Satellite</title>
+  </section>
+
+  <section xml:id="sec-proportional-control-satellite-quadcopter">
+    <title>Proportional Control of a Satellite or Quadcopter</title>
+  </section>
+
+  <section xml:id="sec-proportional-derivative-control-satellite-quadcopter">
+    <title>Proportional Derivative Control of a Satellite or Quadcopter</title>
+  </section>
+
+  <section xml:id="sec-proportional-control-car">
+    <title>Proportional Control of a Car</title>
+  </section>
+
+  <section xml:id="sec-proportional-integral-control-car">
+    <title>Proportional Integral Control of a Car</title>
+  </section>
+
+  <section xml:id="sec-proportional-derivative-integral-control-spring-mass-damper">
+    <title>Proportional Derivative Integral Control of a Spring Mass Damper System</title>
+  </section>
+
+  <section xml:id="sec-proportional-derivative-control-inverted-pendulum">
+    <title>Proportional Derivative Control of an Inverted Pendulum</title>
+  </section>
+</chapter>

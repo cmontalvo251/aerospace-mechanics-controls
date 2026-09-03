@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="s_stability" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Stability</title>
+  <introduction>
+      <p>
+    Stability of open or even closed loop systems is an important concept in control systems. An open loop system is stable if the output of the system remains bounded for a bounded input. In other words, if the input to the system is a step function, the output of the system will reach a steady state value and not diverge to infinity. The stability of a system can be analyzed using the characteristic equation of the system which was shown in the solution to multiple differential equations. The astute reader will have also noticed that the denominator of the transfer function is identical to the characteristic equation. The roots of the characteristic equation are often called the poles of the system and can be used interchangeably. Thus, the benefit of a transfer function is that stability can be ascertained immediately by looking at the denominator of the transfer function. In the Chapter on feedback control it will be shown that control systems in the laplace domain can be applied by simply multiplying different control systems and examining the resulting closed loop transfer function for stability. When designing controllers in the time domain it is almost impossible to gaurantee closed loop stability. However, with transfer functions, after a bit of algebraic manipulation stability can be ascertained.
+  </p>
+
+  <p>
+    So what do the poles or roots of the characteristic equation tell you? Remember that the general soltion to a differential equation is <m>q(t) = Ae^{st}</m>. The value of <m>s</m>, the roots, the poles, tell whether the system will oscillate, decay or extend off to infinity. The location of the poles in the complex plane determines the stability of the system. If all poles have negative real parts, the system is stable. This would results in an equation like <m>e^{-st}</m> where that term tends to 0 as <m>t \rightarrow \infty</m>. If any pole has a positive real part, the system is unstable. If any pole has a real part equal to zero, the system is marginally stable. Marginal stability is defined as a system that neither grows nor decays but rather oscillates indefinitely or increases but not faster than a linear term. This would result in an equation like <m>e^{j\omega t}</m> or <m>f_0 t</m> which is a sine/cosine function or linear term. The imaginary part of the pole determines the frequency of oscillation. The real part of the pole determines the rate of decay or growth. A pole with a large negative real part will result in a fast decay while a pole with a small negative real part will result in a slow decay. A pole with a large positive real part will result in a fast growth while a pole with a small positive real part will result in a slow growth. The sections that follow examine the transfer functions of the systems examined earlier and determine their stability. The equations below summarize the stability criteria.
+  </p>
+
+  <p>
+    <ol>
+      <li><p><b>Stable</b>: All poles have negative real parts. <m>Re(s) &lt; 0</m></p></li>
+      <li><p><b>Unstable</b>: Any pole has a positive real part. <m>Re(s) &gt; 0</m></p></li>
+      <li><p><b>Marginally Stable</b>: Any pole has a real part equal to zero. <m>Re(s) = 0</m></p></li>
+    </ol>
+  </p>
+
+  <p>
+    Note that for the sections that follow code has been added to all the python scripts in section <xref ref="open-loop-response"/> such as <url href="https://github.com/cmontalvo251/Python/blob/master/controls/satellite.py">satellite.py</url> or <url href="https://github.com/cmontalvo251/Python/blob/master/controls/mass_spring_damper.py">mass_spring_damper.py</url>. The code added plots the poles of each system on a real-imaginary plot to visually show the stability of each system. For clarity on the code, the Figure below shows the relevant function used to plot the poles of each system which again has been added to Github.
+  </p>
+
+  <figure xml:id="f_pole_zero_code">
+    <caption>Pole-Zero Plotting Code</caption>
+    <image source="pole_zero_code.png" width="80%"/>
+  </figure>
+</introduction>
+
+  <section xml:id="sec-position-and-velocity-of-a-car">
+    <title>Position and Velocity of a Car</title>
+
+    <p>
+      As derived earlier the transfer function for the position of the car is given as
+      <me>\frac{X(s)}{F(s)}= G(s) = \frac{\sigma}{s(s+\sigma)}</me>
+      recall also that the time domain solution to this system due to a step function was given as
+      <me>x(t) = f_0 t - \frac{f_0}{\sigma} (1 - e^{-\sigma t})</me>
+      Plotted in the time domain the system accelerated and then attained a constant velocity. The poles of the system are located at <m>s=0</m> and <m>s=-\sigma</m>. The pole at <m>s=-\sigma</m> has a negative real part and thus is stable. This is due to the <m>1/(s+\sigma)</m> term which translates to the <m>e^{-\sigma t}</m> term in the time domain. The pole at <m>s=0</m> has a real part equal to zero and thus is marginally stable as given by the <m>1/s</m> term in the laplace domain and the <m>f_0 t</m> term in the time domain. The marginal stability is apparent because the position of the car will continue to increase linearly over time due to the constant velocity. However, the velocity of the car will reach a steady state value and not diverge to infinity. Thus, the system is considered stable for velocity. Remember the transfer function for velocity is found by simply multiplying the position transfer function by <m>s</m> or taking the derivative in the time domain. The transfer function for velocity is given as
+      <me>\frac{V(s)}{F(s)}= G(s) = \frac{\sigma}{s+\sigma}</me>
+      while the time domain solution to this system due to a step function was given as
+      <me>v(t) = f_0 (1 - e^{-\sigma t})</me>
+      The pole of the velocity system is located at <m>s=-\sigma</m> again from the <m>1/(s+\sigma)</m> term in the laplace domain and the <m>e^{-\sigma t}</m> term in the time domain. The pole has a negative real part and thus is stable. This is because the velocity of the car will reach a steady state value and not diverge to infinity. Examining both systems in the laplace domain is much easier than examining the time domain solutions because you can simply look at the poles of the transfer function. It is also beneficial to plot the poles of the system on a real-imaginary plot as shown in Figure <xref ref="f_car_poles"/>.
+    </p>
+
+    <figure xml:id="f_car_poles">
+      <caption>Poles of Car System (Position (left) and Velocity (right))</caption>
+      <sidebyside widths="48% 48%">
+        <image source="car_position_poles.png"/>
+        <image source="car_velocity_poles.png"/>
+      </sidebyside>
+    </figure>
+
+    <p>
+      Notice that the poles of the position system are located at <m>s=0</m> and <m>s=-\sigma</m> while the pole of the velocity system is located at <m>s=-\sigma</m>. The position system has one marginally stable pole and one stable pole while the velocity system has one stable pole. Thus, the position system is marginally stable while the velocity system is stable. Remember if at least one pole is marginally stable and none are unstable the system is considered marginally stable. If all poles are stable the system is considered stable.
+    </p>
+  </section>
+
+  <section xml:id="sec-position-of-a-mass-spring-damper">
+    <title>Position of a Mass Spring Damper</title>
+
+    <p>
+      As derived earlier the transfer function for the position of the mass spring damper is given as
+      <me>\frac{X(s)}{F(s)}= G(s) = \frac{{\omega_n}^2}{s^2 + 2\zeta \omega_n s + {\omega_n}^2}</me>
+      recall also that the time domain solution to this system due to a step function was given as
+      <me>x(t) = f_0 \left( 1 - e^{-\zeta \omega_n t} \left( \cos(\omega_d t) + \frac{\zeta}{\sqrt{1-\zeta^2}} \sin(\omega_d t) \right) \right)</me>
+      for the underdamped case. Plotted in the time domain the system oscillated and then attained a steady state value. The poles of the system are located at
+      <me>s = -\zeta \omega_n \pm j \omega_n \sqrt{1-\zeta^2}</me>
+      The real part of the poles is <m>-\zeta \omega_n</m> which is negative for all positive values of <m>\zeta</m> and <m>\omega_n</m>. Thus, the system is stable for all positive values of <m>\zeta</m> and <m>\omega_n</m>. Examining the system in the laplace domain is much easier than examining the time domain solutions because you can simply look at the poles of the transfer function. It is also beneficial to plot the poles of the system on a real-imaginary plot as shown in Figure <xref ref="f_mass_spring_damper_poles"/>.
+    </p>
+
+    <figure xml:id="f_mass_spring_damper_poles">
+      <caption>Poles of Mass Spring Damper System</caption>
+      <image source="mass_spring_damper_poles.png" width="60%"/>
+    </figure>
+
+    <p>
+      Notice that the poles of the mass spring damper system are located in the left half of the complex plane. The real part of the poles is negative and thus the system is stable. The imaginary part of the poles determines the frequency of oscillation while the real part of the poles determines the rate of decay. The further left the poles are located in the complex plane, the faster the system will decay to its steady state value. Thus again the transfer function shows it's usefuleness in determining the stability of a system as well as whether it oscillates or not. In this case the system is stable (left half plane) and oscillatory (imaginary part non-zero).
+    </p>
+  </section>
+
+  <section xml:id="sec-attitude-dynamics-of-a-satellite-or-quadcopter">
+    <title>Attitude Dynamics of a Satellite or Quadcopter</title>
+
+    <p>
+      As derived earlier, the transfer function of this system is given as <m>\frac{\Theta(s)}{F(s)}= G(s) = \frac{2d}{Js^2}</m>. The poles of the system are located at <m>s=0</m> and <m>s=0</m>. Both poles have real parts equal to zero and thus the system is marginally stable because they are on the y-axis of the real-imaginary plane. Physically, this marginal stability is because the angle of the satellite/quadcopter will continue to increase quadratically over time due to the constant angular acceleration from a constant force from the propellor/thrusters. The marginal stability can be seen in the time domain with the system increasing as <m>t^2</m>. However, examining the system in the laplace domain is much easier than examining the time domain solutions because you can simply look at the poles of the transfer function. Again, it is beneficial to plot the poles of the system on a real-imaginary plot as shown in Figure <xref ref="f_satellite_poles"/>.
+    </p>
+
+    <figure xml:id="f_satellite_poles">
+      <caption>Poles of Satellite/Quadcopter System</caption>
+      <image source="satellite_poles.png" width="48%"/>
+    </figure>
+
+    <p>
+      Notice that the poles of the satellite/quadcopter system are located at <m>s=0</m> and <m>s=0</m>. Both poles have real parts equal to zero and thus the system is marginally stable and increases quadratically over time. A single pole at zero would increase linearly but two poles at the origin increases quadratically.
+    </p>
+  </section>
+
+  <section xml:id="sec-pitch-dynamics-of-an-aircraft">
+    <title>Pitch Dynamics of an Aircraft</title>
+
+    <p>
+      The poles of the aircraft are similar to the spring mass damper given the second order nature of the system. Using the characteristic equation of <m>s^2 + \lambda_1s + \lambda_2=0</m> the poles of the system are located at <m>s_{12} = -\lambda_1 \pm \sqrt{\lambda_1^2 - 4\lambda_2}</m>. The stability of the system depends on the values of <m>\lambda_1</m> and <m>\lambda_2</m> which depend on the aerodynamic stability derivatives <m>C_{mq}</m> and <m>C_{m\alpha}</m>. In this case if <m>C_{m\alpha}</m> is negative, <m>\lambda_2</m> will be positive and the descriminant under the square root will be negative and thus imaginary. If instead <m>C_{m\alpha}</m> is positive, <m>\lambda_2</m> will be negative and then the descriminant will be a positive number. This will cause the poles to become real and distinct. If any pole is positive in the right half plane (RHP) the system is unstable. Using the same code from <xref ref="sec-pitch-response-aircraft"/> the poles of the transfer function can be plotted on a pole zero map.
+    </p>
+
+    <figure xml:id="f_aircraft_poles">
+      <caption>Attitude Response of an Aircraft (<m>C_{m\alpha}=-2.19</m> left) ; (<m>C_{m\alpha}=2.19</m> right)</caption>
+      <sidebyside widths="48% 48%">
+        <image source="aircraft_dynamics_poles_stable.png"/>
+        <image source="aircraft_dynamics_poles_unstable.png"/>
+      </sidebyside>
+    </figure>
+
+    <p>
+      Again as can be seen in the left figure the poles are in the left hand plane (LHP) and thus the time response is stable. However, for the situation where <m>C_{m\alpha}</m> is positive, the poles are real and distinct with one positive and one negative. Since one pole is positive the entire system is unstable.
+    </p>
+  </section>
+
+  <section xml:id="sec-pitch-dynamics-of-a-rocket">
+    <title>Pitch Dynamics of a Rocket</title>
+
+    <p>
+      As derived earlier, the transfer function of this system is given as <m>\frac{\Theta(s)}{F(s)}= G(s) = \frac{\kappa}{s^2+\lambda}</m> where <m>\kappa</m> and <m>\lambda</m> are defined in <xref ref="sec-pitch-response-rocket"/>. The poles of the system are located at <m>s=\pm j\sqrt{\lambda}</m>. Using the same time response code and the pole zero map generation, the poles can be plotted on the real/imaginary axes as shown in Figure <xref ref="f_rocket_poles"/>.
+    </p>
+
+    <figure xml:id="f_rocket_poles">
+      <caption>Poles of Rocket System</caption>
+      <image source="rocket_poles.png" width="48%"/>
+    </figure>
+
+    <p>
+      Notice that the poles are purely imaginary which means they lie on the boundary of the left and right half plane. Because they lie on the axis the system is marginally stable. It doesn't settle out but also don't increase off to infinity. Furthermore, both poles are are imaginary which means they system oscillates. Once again the transfer function shows the open loop system dynamics by just examining the roots of the denominator.
+    </p>
+  </section>
+
+  <section xml:id="sec-angle-of-an-inverted-pendulum">
+    <title>Angle of an Inverted Pendulum</title>
+
+    <p>
+      Recall that the transfer function of the inverted penduluum is given by
+      <me>\frac{\Theta(s)}{T(s)} = G(s) = \frac{1/m}{Ls^2 \pm g}</me>
+      Looking at the transfer function like has been done in the past, specifically the poles, the characteristic equation is <m>Ls^2 \pm g</m> which leads to stable poles <m>s_{12} = \pm j \sqrt{g/L}</m> and unstable poles <m>s_{12} = \pm \sqrt{g/L}</m>. A simple glance would indicate that the poles are identical but notice that when <m>\pm</m> is positive the poles are purely imaginary indicating a marginally stable system and then when <m>\pm</m> is negative the poles are real, distinct and one is positive. This implies that that the system is unstable since even one positive pole makes the system untable. This is why the time response of the system with the equilibrium point <m>\theta=\pi</m> diverges to infinity. The poles plotted on a real and imaginary axis can be see in the Figures below:
+    </p>
+
+    <figure xml:id="f_pendulum_poles">
+      <caption>Pendulum Poles (<m>\theta_e=0</m> left) ; (<m>\theta_e=\pi</m> right)</caption>
+      <sidebyside widths="48% 48%">
+        <image source="pendulum_poles_stable.png"/>
+        <image source="pendulum_poles_unstable.png"/>
+      </sidebyside>
+    </figure>
+
+    <p>
+      These two pole maps show the importance of analyzing the open stability of a system especially non-linear systems. In the case where the pendulum is facing down a control system is not necessary provided small oscillations are tolerable. However, for the case where the pendulum is straight up, a control system is required to prevent the system falling over. For systems like a Segway, a control system would be necessary to keep the system upright and the poles from transfer are direct indicators of the stability of these open loop systems.
+    </p>
+  </section>
+</chapter>

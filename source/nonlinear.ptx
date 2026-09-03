@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xml:id="s_nonlinear_controls" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Nonlinear Control Techniques</title>
+
+  <introduction>
+    <p>
+      This chapter provides an overview of essential nonlinear control techniques, covering key theoretical concepts and practical design approaches.
+    </p>
+  </introduction>
+
+  <section xml:id="s_phase_portraits">
+    <title>Phase Portraits</title>
+  </section>
+
+  <section xml:id="s_lyapunov_control">
+    <title>Lyapunov Control</title>
+  </section>
+
+  <section xml:id="s_sliding_mode_control">
+    <title>Sliding Mode Control</title>
+  </section>
+
+  <section xml:id="s_adaptive_control">
+    <title>Adaptive Control</title>
+  </section>
+</chapter>
