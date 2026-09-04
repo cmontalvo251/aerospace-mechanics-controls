@@ -32,7 +32,9 @@
     </p>
 
     <p>
-      <me>\sum\limits_{j=0}^P \vec{p}_j = m \vec{v}_{C/I}</me>
+      <md number="yes">
+        \sum\limits_{j=0}^P \vec{p}_j = m \vec{v}_{C/I}
+      </md>
     </p>
 
     <p>
@@ -40,7 +42,7 @@
     </p>
 
     <p>
-      <me>\vec{r}_{j} = \vec{r}_C + \vec{r}_{Cj}</me>
+      <md number="yes">\vec{r}_{j} = \vec{r}_C + \vec{r}_{Cj}</md>
     </p>
 
     <p>
@@ -48,7 +50,9 @@
     </p>
 
     <p>
-      <me>\vec{v}_{j/I} = \vec{v}_{C/I} + \frac{{}^Bd \vec{r}_{Cj}}{dt} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}</me>
+      <md number="yes">
+        \vec{v}_{j/I} = \vec{v}_{C/I} + \frac{{}^Bd \vec{r}_{Cj}}{dt} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}
+      </md>
     </p>
 
     <p>
@@ -56,7 +60,9 @@
     </p>
 
     <p>
-      <me>\vec{v}_{j/I} = \vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}</me>
+      <md number="yes">
+        \vec{v}_{j/I} = \vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}
+      </md>
     </p>
 
     <p>
@@ -64,7 +70,9 @@
     </p>
 
     <p>
-      <me>\sum\limits_{j=0}^P \vec{p}_j =  \sum\limits_{j=0}^P m_j \left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)</me>
+      <md number="yes">
+        \sum\limits_{j=0}^P \vec{p}_j =  \sum\limits_{j=0}^P m_j \left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)
+      </md>
     </p>
 
     <p>
@@ -72,7 +80,9 @@
     </p>
 
     <p>
-      <me>\sum\limits_{j=0}^P m_j \vec{v}_{C/I} =  \vec{v}_{C/I} \sum\limits_{j=0}^P m_j =  m \vec{v}_{C/I}</me>
+      <md number="yes">
+        \sum\limits_{j=0}^P m_j \vec{v}_{C/I} =  \vec{v}_{C/I} \sum\limits_{j=0}^P m_j =  m \vec{v}_{C/I}
+      </md>
     </p>
 
     <p>
@@ -80,7 +90,9 @@
     </p>
 
     <p>
-      <me>\sum\limits_{j=0}^P {\bf S}(\vec{\omega}_{B/I}) m_j\vec{r}_{Cj} = {\bf S}(\vec{\omega}_{B/I})\sum\limits_{j=0}^P m_j\vec{r}_{Cj} = 0</me>
+      <md number="yes">
+        \sum\limits_{j=0}^P {\bf S}(\vec{\omega}_{B/I}) m_j\vec{r}_{Cj} = {\bf S}(\vec{\omega}_{B/I})\sum\limits_{j=0}^P m_j\vec{r}_{Cj} = 0
+      </md>
     </p>
 
     <p>
@@ -88,7 +100,9 @@
     </p>
 
     <p>
-      <me>\vec{F}_C = m \left(\frac{{}^Bd \vec{v}_{C/I}}{dt} + {\bf S}(\vec{\omega})_{B/I} \vec{v}_{C/I} \right)</me>
+      <md number="yes">
+        \vec{F}_C = m \left(\frac{{}^Bd \vec{v}_{C/I}}{dt} + {\bf S}(\vec{\omega})_{B/I} \vec{v}_{C/I} \right)
+      </md>
     </p>
   </section>
 
@@ -100,7 +114,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\vec{v}_{j/I}</me>
+      <md number="yes">
+        \vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\vec{v}_{j/I}
+      </md>
     </p>
 
     <p>
@@ -108,7 +124,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)</me>
+      <md number="yes">
+        \vec{M}_C = \frac{d}{dt}\sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj}) m_j\left(\vec{v}_{C/I} + {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj}\right)
+      </md>
     </p>
 
     <p>
@@ -116,7 +134,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}) {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj} + \sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj})m_j\vec{v}_{C/I}\right)</me>
+      <md number="yes">
+        \vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}) {\bf S}(\vec{\omega}_{B/I}) \vec{r}_{Cj} + \sum\limits_{j=0}^P {\bf S}(\vec{r}_{Cj})m_j\vec{v}_{C/I}\right)
+      </md>
     </p>
 
     <p>
@@ -124,7 +144,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C =  \frac{d}{dt}\left(\left(-\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})\right)\vec{\omega}_{B/I} - {\bf S}(\vec{v}_{C/I}) \sum\limits_{j=0}^P \vec{r}_{Cj}m_j\right)</me>
+      <md number="yes">
+        \vec{M}_C =  \frac{d}{dt}\left(\left(-\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})\right)\vec{\omega}_{B/I} - {\bf S}(\vec{v}_{C/I}) \sum\limits_{j=0}^P \vec{r}_{Cj}m_j\right)
+      </md>
     </p>
 
     <p>
@@ -132,7 +154,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T\right)\vec{\omega}_{B/I}</me>
+      <md number="yes">
+        \vec{M}_C =  \frac{d}{dt}\left(\sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T\right)\vec{\omega}_{B/I}
+      </md>
     </p>
 
     <p>
@@ -140,7 +164,9 @@
     </p>
 
     <p>
-      <me>{\bf I}_C =  \sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T</me>
+      <md number="yes">
+        {\bf I}_C =  \sum\limits_{j=0}^P m_j{\bf S}(\vec{r}_{Cj}){\bf S}(\vec{r}_{Cj})^T
+      </md>
     </p>
 
     <p>
@@ -148,7 +174,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C =  \frac{d}{dt}\left({\bf I}_C\vec{\omega}_{B/I} \right)</me>
+      <md number="yes">
+        \vec{M}_C =  \frac{d}{dt}\left({\bf I}_C\vec{\omega}_{B/I} \right)
+      </md>
     </p>
 
     <p>
@@ -156,7 +184,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C = \frac{{}^Bd ({\bf I}_C\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}</me>
+      <md number="yes">
+        \vec{M}_C = \frac{{}^Bd ({\bf I}_C\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}
+      </md>
     </p>
 
     <p>
@@ -164,7 +194,9 @@
     </p>
 
     <p>
-      <me>\vec{M}_C = \dot{{\bf I}}\vec{\omega}_{B/I} + {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}</me>
+      <md number="yes">
+        \vec{M}_C = \dot{{\bf I}}\vec{\omega}_{B/I} + {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}
+      </md>
     </p>
   </section>
 
@@ -176,13 +208,13 @@
     </p>
 
     <p>
-      <me>
+      <md number="yes">
         \begin{matrix}
           I_x = \frac{m}{12}(l^2 + w^2) \\
           I_y = \frac{m}{12}(l^2 + d^2) \\
           I_z = \frac{m}{12}(d^2 + w^2) \\
         \end{matrix}
-      </me>
+      </md>
     </p>
 
     <p>
@@ -198,7 +230,9 @@
     </p>
 
     <p>
-      <me>{\bf C}_I(\vec{r}_C) = \begin{Bmatrix} x \\ y \\ z \end{Bmatrix}</me>
+      <md number="yes">
+        {\bf C}_I(\vec{r}_C) = \begin{Bmatrix} x \\ y \\ z \end{Bmatrix}
+      </md>
     </p>
 
     <p>
@@ -206,7 +240,9 @@
     </p>
 
     <p>
-      <me>{\bf C}_I(\vec{v}_{C/I}) = \begin{Bmatrix} \dot{x} \\ \dot{y} \\ \dot{z} \end{Bmatrix}</me>
+      <md number="yes">
+        {\bf C}_I(\vec{v}_{C/I}) = \begin{Bmatrix} \dot{x} \\ \dot{y} \\ \dot{z} \end{Bmatrix}
+      </md>
     </p>
 
     <p>
@@ -214,7 +250,9 @@
     </p>
 
     <p>
-      <me>{\bf C}_B(\vec{v}_{C/I}) = \begin{Bmatrix} u \\ v \\ w \end{Bmatrix}</me>
+      <md number="yes">
+        {\bf C}_B(\vec{v}_{C/I}) = \begin{Bmatrix} u \\ v \\ w \end{Bmatrix}
+      </md>
     </p>
 
     <p>
@@ -233,11 +271,15 @@
     </p>
 
     <p>
-      <me>{\bf C}_B(\vec{F}_{C}) = \begin{Bmatrix} X \\ Y \\ Z \end{Bmatrix} = X \hat{I}_B + Y \hat{J}_B + Z \hat{K}_B</me>
+      <md number="yes">
+        {\bf C}_B(\vec{F}_{C}) = \begin{Bmatrix} X \\ Y \\ Z \end{Bmatrix} = X \hat{I}_B + Y \hat{J}_B + Z \hat{K}_B
+      </md>
     </p>
 
     <p>
-      <me>{\bf C}_B(\vec{M}_{C}) = \begin{Bmatrix} L \\ M \\ N \end{Bmatrix} = L \hat{I}_B + M \hat{J}_B + N \hat{K}_B</me>
+      <md number="yes">
+        {\bf C}_B(\vec{M}_{C}) = \begin{Bmatrix} L \\ M \\ N \end{Bmatrix} = L \hat{I}_B + M \hat{J}_B + N \hat{K}_B
+      </md>
     </p>
   </section>
 </chapter>

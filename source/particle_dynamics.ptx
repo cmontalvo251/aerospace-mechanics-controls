@@ -17,7 +17,9 @@
     </p>
 
     <p>
-      <me>\sum_{i=0}^N \vec{F}_{ji} = \frac{d\vec{p}_j}{dt}</me>
+      <md number="yes">
+      \sum_{i=0}^N \vec{F}_{ji} = \frac{d\vec{p}_j}{dt}
+      </md>
     </p>
 
     <p>
@@ -25,7 +27,9 @@
     </p>
 
     <p>
-      <me>\sum_{i=0}^N \vec{F}_{1i} + \vec{f}_{12} = \frac{d\vec{p}_1}{dt} \quad \sum_{i=0}^N \vec{F}_{2i} + \vec{f}_{21} = \frac{d\vec{p}_2}{dt}</me>
+      <md number="yes">
+      \sum_{i=0}^N \vec{F}_{1i} + \vec{f}_{12} = \frac{d\vec{p}_1}{dt} \quad \sum_{i=0}^N \vec{F}_{2i} + \vec{f}_{21} = \frac{d\vec{p}_2}{dt}
+      </md>
     </p>
 
     <p>
@@ -33,7 +37,9 @@
     </p>
 
     <p>
-      <me>\sum_{j=0}^P \sum_{i=0}^N \vec{F}_{ji} = \sum_{j=0}^P \frac{d\vec{p}_j}{dt}</me>
+      <md number="yes">
+      \sum_{j=0}^P \sum_{i=0}^N \vec{F}_{ji} = \sum_{j=0}^P \frac{d\vec{p}_j}{dt}
+      </md>
     </p>
 
     <p>
@@ -49,7 +55,9 @@
     </p>
 
     <p>
-      <me>\vec{r}_C = \frac{1}{m}\sum_{j=0}^P m_j\vec{r}_{j}</me>
+      <md number="yes">
+      \vec{r}_C = \frac{1}{m}\sum_{j=0}^P m_j\vec{r}_{j}
+      </md>
     </p>
 
     <p>
@@ -57,7 +65,9 @@
     </p>
 
     <p>
-      <me>m = \sum_{j=0}^P m_j</me>
+      <md number="yes">
+      m = \sum_{j=0}^P m_j
+      </md>
     </p>
 
     <p>
@@ -65,7 +75,9 @@
     </p>
 
     <p>
-      <me>\sum_{j=0}^P \sum_{i=0}^N \mathbf{S}(\vec{r}_{Cj}) \vec{F}_{ji} = \vec{M}_C = \sum_{j=0}^P \mathbf{S}(\vec{r}_{Cj}) \frac{d\vec{p}_j}{dt}</me>
+      <md number="yes">
+      \sum_{j=0}^P \sum_{i=0}^N \mathbf{S}(\vec{r}_{Cj}) \vec{F}_{ji} = \vec{M}_C = \sum_{j=0}^P \mathbf{S}(\vec{r}_{Cj}) \frac{d\vec{p}_j}{dt}
+      </md>
     </p>
 
     <p>
@@ -73,7 +85,9 @@
     </p>
 
     <p>
-      <me>\mathbf{S}(\vec{r}_{Cj}) = \begin{bmatrix} 0 &amp; -z_{Cj} &amp; y_{Cj} \\ z_{Cj} &amp; 0 &amp; -x_{Cj} \\ -y_{Cj} &amp; x_{Cj} &amp; 0 \end{bmatrix}</me>
+      <md number="yes">
+      \mathbf{S}(\vec{r}_{Cj}) = \begin{bmatrix} 0 &amp; -z_{Cj} &amp; y_{Cj} \\ z_{Cj} &amp; 0 &amp; -x_{Cj} \\ -y_{Cj} &amp; x_{Cj} &amp; 0 \end{bmatrix}
+      </md>
     </p>
   </section>
 </chapter>
