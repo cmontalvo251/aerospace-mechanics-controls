@@ -28,6 +28,7 @@
     <xi:include href="./laplace.ptx"/>
     <xi:include href="./open_loop.ptx"/>
     <xi:include href="./stability.ptx"/>
+    <xi:include href="./state_estimation.ptx"/>
     <xi:include href="./lti_controls.ptx"/>
     <xi:include href="./nonlinear.ptx"/>
 

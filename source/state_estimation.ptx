@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="chap-aerospace-state-estimation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Aerospace State Estimation</title>
+
+  <introduction>
+    <p>
+      This chapter presents state estimation methodologies tailored for aerospace applications. It covers foundational concepts including linear and weighted least squares, filter design (such as complementary and Kalman filtering), and specific applications including spacecraft attitude determination, Euler angle estimation via IMUs, and GPS-based speed and heading tracking.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-sensor-measurement">
+    <title>Sensor Measurement</title>
+
+    <p>
+      During the standard estimation procedure, it is assumed that measurements are made that relate to the state or the state is directly measured. If the state is directly measured like star trackers no special formulation need to be made. However, other sensors such as Sun sensors, magnetometers and horizon sensors measure a vector in 3-D space. In general a measurement <m>\bar{y}_k</m> can be expressed by the nonlinear equation shown below where <m>\vec{x}</m> is the state vector.
+    </p>
+
+    <men xml:id="eq-measurement-nonlinear">
+      \bar{y}_k = \vec{h}(\vec{x}_k) + \vec{\nu}_k
+    </men>
+
+    <p>
+      The vector <m>\vec{\nu}_k</m> is noise associated with the sensor <xref ref="Munoz"/> <xref ref="cassidis"/>. If the system is linearized about some equilibrium point the measurement equation can be written as
+    </p>
+
+    <men xml:id="eq-measurement-linear">
+      \bar{y}_k = {\bf h}_k\vec{x}_k + \vec{\nu}_k
+    </men>
+
+    <p>
+      where <m>{\bf h}_k = \partial \vec{h}/\partial \vec{x}</m>. It's easy to see here that in the case of the star tracker the matrix <m>{\bf h}_k</m> is just the identity matrix. The noise vector <m>\vec{\nu}_k</m> is assumed to be gaussian white noise while the covariance <m>cov()</m> is given by the equation below using the expectation operator <m>{\bf E}()</m>.
+    </p>
+
+    <men xml:id="eq-measurement-covariance">
+      cov(\vec{\nu}_k) = {\bf E}(\vec{\nu}_k\vec{\nu}_k^T) = {\bf R}_k
+    </men>
+
+    <p>
+      If a measurement is made by a Sun sensor or similar where a vector in 3-D space can be compared to a known inertial reference vector the measurement update can be given as
+    </p>
+
+    <men xml:id="eq-vector-measurement">
+      {\bar{r}^B}_k = {\bf T}_{BI}(\vec{q}_k){\vec{r}^I}_k + \vec{\nu}_k
+    </men>
+
+    <p>
+      where <m>{\bar{r}^B}_k</m> is a measurement in the body reference frame at time <m>t_k</m>. The angular velocity measurement in particular can be denoted as <m>\bar{\omega}_k</m>. Measurements are typically polluted with bias and white noise. For example, the angular velocity measurement can be given as
+    </p>
+
+    <men xml:id="eq-angular-velocity-measurement">
+      \bar{\omega} = \vec{\omega} + \vec{b} + \vec{\eta}_g
+    </men>
+
+    <p>
+      where <m>\vec{b}</m> is a bias that has dynamics given by <m>\dot{\vec{b}}=\vec{\eta}_b</m>. The vectors <m>\vec{\eta}_g</m> and <m>\vec{\eta}_b</m> are standard Gaussian white noise vectors. Typically white noise can be filtered out using lowpass filters, complimentary filters or even Kalman Filters while bias can just be substracted. Thus, the estimate for the angular velocity can be written as
+    </p>
+
+    <men xml:id="eq-angular-velocity-estimate">
+      \tilde{\omega} = \bar{\omega}-\tilde{b}
+    </men>
+
+    <p>
+      where <m>\tilde{b}</m> is the estimate of the bias.
+    </p>
+  </section>
+
+  <section xml:id="sec-linear-least-squares">
+    <title>Linear Least Squares</title>
+
+    <p>
+      In order to understand the nature of a Kalman filter, the linear least squares solution is shown below. Assume for the moment that <m>M</m> independent measurements are made such that <m>\bar{Y} = [\bar{y}_1,...,\bar{y}_M]^T</m>.
+    </p>
+
+    <men xml:id="eq-least-squares-system">
+      \bar{Y} = {\bf H}\vec{x} + \vec{V}
+    </men>
+
+    <p>
+      In this case <m>{\bf H} = [{\bf h}_1,...,{\bf h}_M]^T</m> and <m>\vec{V} = [\nu_1,...,\nu_M]^T</m>. The vector <m>\vec{V}</m> is a vector of error values between your measurements and the actual truth signals <m>Y = {\bf H}\vec{x}</m>. Absent of all measurement and model noise there would be a unique solution to this problem to solve for the vector <m>\vec{x}</m>. The matrices <m>\bar{Y}</m> and <m>{\bf H}</m> are known and are the measurements and the output equation relating the measurements to the state values in <m>\vec{x}</m> respectively. Because of measurement and model noise, a unique solution is not possible. That is, the problem is overconstrained since typically the number of measurements is larger than the number of unknowns. Take the linear example as shown in the figure below.
+    </p>
+
+    <figure xml:id="fig-linear-regression">
+      <title>Linear Regression Example</title>
+      <image source="Linear_Regression.png"/>
+    </figure>
+
+    <p>
+      In this case the ordinate axis is the output <m>Y</m> and the abscissa is the independent variable that characterizes the matrix <m>{\bf H}</m>. The black dots then are the measurements <m>\bar{Y}</m> while the trend line is the estimate <m>\tilde{Y} = {\bf H}\tilde{x}</m>. In this case the residuals <m>\hat{Y} = \tilde{Y}-\bar{Y}</m> is the distance between the trend line in red and the black dots (the measurements). For this linear example, the unknowns would be the slope and intercept. It is clear here that there exists no linear solution <m>\vec{x}</m> that goes through all black data points. Thus, the equation below can be constructed.
+    </p>
+
+    <men xml:id="eq-least-squares-residual">
+      \bar{Y} = {\bf H}\tilde{x} + \hat{Y}
+    </men>
+
+    <p>
+      This implies that the trendline <m>\tilde{Y}</m> would go through all data points if <m>\hat{Y}</m> were zero. Thus the solution to this problem was originally found by Gauss <xref ref="stigler1981"/> and involved minimizing the residuals between <m>\bar{Y}</m> and <m>\tilde{Y}</m> (the estimated Y values). To do this, a cost function is generated such that
+    </p>
+
+    <men xml:id="eq-cost-function">
+      J = \frac{1}{2}\hat{Y}^T \hat{Y}
+    </men>
+
+    <p>
+      Substituting in the equation <m>\hat{Y} = \bar{Y} - {\bf H}\tilde{x}</m> and minimizing the cost function <m>\partial J/\partial \tilde{x} = 0</m> results in the solution below.
+    </p>
+
+    <men xml:id="eq-least-squares-solution">
+      \tilde{x} = ({\bf H}^T{\bf H})^{-1}{\bf H}^T\bar{Y}
+    </men>
+
+    <p>
+      Note that the equation above only works if the number of measurements <m>M</m> is greater than or equal to the number of unknowns <m>N</m>. If not, the solution will always be rank deficient and no solution will be found. This is called an under constrained problem. In this there are an infinite number of solutions that satisfy <m>\bar{Y} = {\bf H}\vec{x}</m> even in the presence of modeling errors. In order to get around this issue Lagrange's method of optimization is used <xref ref="lagrange"/>. For problems like this the residuals between the estimate <m>\tilde{Y}</m> and the measured signals <m>\bar{Y}</m> can be easily made to be zero. Thus minimizing the residuals is trivial since the solution will still be an infinite number of solutions. Therefore a constraint can be placed where <m>\bar{Y}=\tilde{Y}={\bf H}\tilde{x}</m>. In order to find a unique solution then the requirement is placed to minimize the estimate <m>\tilde{x}</m>. In this case, the cost function to be minimized is given by Lagrange's extension to optimization as shown below
+    </p>
+
+    <men xml:id="eq-lagrange-cost">
+      L = \frac{1}{2}\tilde{x}^T\tilde{x} + \lambda^T(\bar{Y}-{\bf H}\tilde{x})
+    </men>
+
+    <p>
+      The cost function above utilizes the method of Lagrange multipliers in order to satisfy the constraint that the solution must pass through all measurements again only if the number of measurements <m>M</m> is less than the number of unknowns <m>N</m>. In the equation above the vector <m>\tilde{x}</m> must be solved and so must the Lagrange multipliers <m>\lambda</m>. The solution to the problem above requires <m>\partial L / \partial \tilde{x} = 0</m> and <m>\partial L / \partial \lambda = 0</m>. Carrying out the partial derivatives and solving for the estimate yields the following equations.
+    </p>
+
+    <men xml:id="eq-lagrange-solution">
+      \tilde{x} = {\bf H}^T({\bf H}{\bf H}^T)^{-1}\bar{Y}
+    </men>
+
+    <p>
+      Note, it is standard practice in state estimation to have at least as many measurements as unknowns. In this case <m>M=N</m> and Gauss' solution is sufficient.
+    </p>
+  </section>
+
+  <section xml:id="sec-weighted-least-squares">
+    <title>Weighted Least Squares</title>
+
+    <p>
+      The weighted least squares solution is found by setting the cost function equal to <m>J = \frac{1}{2}\hat{Y}^T{\bf W}\hat{Y}</m> where <m>{\bf W}</m> is a positive definite and symmetric weighting matrix. The solution then is shown below.
+    </p>
+
+    <men xml:id="eq-weighted-least-squares">
+      \tilde{x} = ({\bf H}^T{\bf W}{\bf H})^{-1}{\bf H}^T{\bf W}\bar{Y}
+    </men>
+
+    <p>
+      In the standard Kalman Filter approach, the weighting matrix is given by the inverse covariance of the error <m>{\bf r} = {\bf E}[\vec{v}\vec{v}^T]</m>. Placing this into a matrix yield <m>{\bf W} = {\bf R}^{-1}</m> where <m>{\bf R} = diag([{\bf r}_1,...{\bf r}_M])</m>. The weighted least squares solution then reduces to
+    </p>
+
+    <men xml:id="eq-weighted-solution-covariance">
+      \tilde{x} = ({\bf H}^T{\bf R}^{-1}{\bf H})^{-1}{\bf H}^T{\bf R}^{-1}\bar{Y}
+    </men>
+  </section>
+
+  <section xml:id="sec-a-priori-knowledge-of-the-state-vector">
+    <title>A Priori Knowledge of the State Vector</title>
+
+    <p>
+      If a priori knowledge is obtained via other means or in the case of the standard Kalman Filter from integration of the state, it is possible to obtain an updated estimate of the state based on the previous state estimate and the new sensor measurements. First, the a priori estimate <m>\tilde{x}^{-}</m> is written as
+    </p>
+
+    <men xml:id="eq-apriori-estimate">
+      \tilde{x}^{-} = \vec{x} + \vec{w}
+    </men>
+
+    <p>
+      where <m>\vec{w}</m> is model noise associated with the error in the state estimate. The covariance of this noise is also denoted as a matrix and defined below.
+    </p>
+
+    <men xml:id="eq-model-noise-covariance">
+      cov(\vec{w}) = {\bf E}(\vec{w}\vec{w}^T) = {\bf q}
+    </men>
+
+    <p>
+      In this case it is desired for the updated measurement to be some linear combination of the a priori equation and the measurements such that
+    </p>
+
+    <men xml:id="eq-update-linear-combination">
+      \tilde{x} = {\bf \Lambda}\bar{Y} + {\bf \Gamma}\tilde{x}^{-}
+    </men>
+
+    <p>
+      The matrices <m>{\bf \Lambda}</m> and <m>{\bf \Gamma}</m> have an added constraint which can be shown by assuming the a priori measurement is perfect <m>\tilde{x}^- = \vec{x}</m> and the measurements <m>\bar{Y} = Y = {\bf H}\vec{x}</m>. In this case, we must have the updated estimate equal the truth signal: <m>\tilde{x} = \vec{x}</m>. Rearranging the equation above yields
+    </p>
+
+    <men xml:id="eq-constraint-rearranged">
+      \vec{x} = {\bf \Lambda}{\bf H}\vec{x} + {\bf \Gamma}\vec{x}
+    </men>
+
+    <p>
+      which means that <m>({\bf \Lambda}{\bf H} + {\bf \Gamma}) = {\bf I}</m>. Again using the method of lagrange multipliers the cost function to be minimized is given as
+    </p>
+
+    <men xml:id="eq-lagrange-apriori">
+      L = {\bf E}[\frac{1}{2}\hat{x}^T\hat{x} + \lambda^T({\bf I} - {\bf \Lambda}{\bf H} - {\bf \Gamma})]
+    </men>
+
+    <p>
+      where <m>\hat{x} = \tilde{x} - \vec{x}</m> and again <m>{\bf E}</m> is the expectation operator. Remembering that <m>{\bf q}</m> is the covariance of the model noise and <m>{\bf r}</m> is the covariance of the measurement noise, the solution to the minimization problem is given by the equation below.
+    </p>
+
+    <men xml:id="eq-apriori-solution">
+      \tilde{x} = ({\bf H}^T{\bf R}^{-1}{\bf H}+{\bf q}^{-1})^{-1}({\bf H}^T{\bf R}^{-1}\bar{Y}+{\bf q}^{-1}\tilde{x}^{-})
+    </men>
+
+    <p>
+      Note that this solution assumes that <m>{\bf E}(\vec{w}\vec{v}^T) = 0</m>. Measurement and model noise are uncorrelated.
+    </p>
+  </section>
+
+  <section xml:id="sec-complimentary-filter">
+    <title>Complimentary Filter</title>
+
+    <p>
+      Looking at the equation for the A priori knowledge it is possible to formulate the complimentary filter. First, the measurements are assumed to be identical to the state vector such that <m>{\bf h}_k = {\bf I}</m>. From here a few extremes are shown below. First, assume that the measurement error is very low such that the <m>cov(\vec{\nu})\lt\lt 1</m> while the model noise <m>\vec{w}</m> is very large approaching infinity. In this case, <m>{\bf q}^{-1} =0</m>. Substituting this into the weighted apriori equation yields
+    </p>
+
+    <men xml:id="eq-sensor-belief">
+      \tilde{x} = average(\bar{Y})
+    </men>
+
+    <p>
+      which essentially states that the estimate completely believes the sensor measurement. If instead we assume that the model noise is perfect such that <m>cov(\vec{w})\lt\lt 1</m> and the sensor noise is approaching infinity, then <m>{\bf R}^{-1}=0</m>. This yields the following equation.
+    </p>
+
+    <men xml:id="eq-model-belief">
+      \tilde{x} = \tilde{x}^{-}
+    </men>
+
+    <p>
+      Thus it can be seen that there is a sliding bar between believing the apriori estimate or the sensor measurement. As such it is possible to develop a much simpler filter. First a constraint is placed on <m>{\bf q}</m> and <m>{\bf R}</m> such that
+    </p>
+
+    <men xml:id="eq-filter-constraint">
+      ({\bf H}^T{\bf R}^{-1}{\bf H}+{\bf q}^{-1}) = {\bf I}
+    </men>
+
+    <p>
+      This causes the update law to reduce to the following
+    </p>
+
+    <men xml:id="eq-update-law-reduced">
+      \tilde{x} = {\bf H}^T{\bf R}^{-1}\bar{Y}+{\bf q}^{-1}\tilde{x}^{-}
+    </men>
+
+    <p>
+      If only one measurement is investigated the equation collapses to the following.
+    </p>
+
+    <men xml:id="eq-scalar-update-law">
+      \tilde{x} = {\bf r}^{-1}\bar{y}+{\bf q}^{-1}\tilde{x}^{-}
+    </men>
+
+    <p>
+      The constraint also collapses to
+    </p>
+
+    <men xml:id="eq-scalar-constraint">
+      {\bf r}^{-1}+{\bf q}^{-1} = {\bf 1}
+    </men>
+
+    <p>
+      If <m>{\bf q}^{-1} = {\bf s}</m> and <m>{\bf r}^{-1}={\bf 1}-{\bf s}</m> the update law simplifies to
+    </p>
+
+    <men xml:id="eq-s-parameter-filter">
+      \tilde{x} = ({\bf 1}-{\bf s})\bar{y}+{\bf s}\tilde{x}^{-}
+    </men>
+
+    <p>
+      Here it is clear that if <m>{\bf s} = {\bf 1}</m> the new estimate will be equal to the old estimate meaning that the sensor noise is approaching infinite. If <m>{\bf s} = 0</m> it means that the new estimate is equal to the sensor measurement meaning the model noise is approaching infinity. This is a simple crude first order filter that can be used when only a simple understanding of covariance is known.
+    </p>
+  </section>
+
+  <section xml:id="sec-sequential-linear-estimator">
+    <title>Sequential Linear Estimator</title>
+
+    <p>
+      In the above two scenarios, it is assumed that all measurements from 1 to <m>M</m> are known at the same time instant <m>t</m> and thus the least squares estimate can be done <q>all at once</q>. For discrete time sensors on board a spacecraft this is not possible. For example, if we take the weighted least squares solution assuming we have a <em>0th</em> batch of measurements, the estimate of <m>\tilde{x}</m> would be
+    </p>
+
+    <men xml:id="eq-batch-0-estimate">
+      \tilde{x}_0 = ({\bf h}_0^T{\bf w}_0{\bf h}_0)^{-1}{\bf h}_0^T{\bf w}_0\bar{y}_0
+    </men>
+
+    <p>
+      If we then waited <m>\Delta t</m> seconds for a new set of measurements we would have to obtain a new estimate of <m>\tilde{x}</m> which could be done using the equation below
+    </p>
+
+    <men xml:id="eq-batch-1-estimate">
+      \tilde{x}_1 = ({\bf h}_1^T{\bf w}_1{\bf h}_1)^{-1}{\bf h}_1^T{\bf w}_1\bar{y}_1
+    </men>
+
+    <p>
+      This solution however would only take into account the new measurements. Thus, if larger matrices were constructed like <m>{\bf H} = [{\bf h}_0,{\bf h}_1]</m> the solution for <m>\tilde{x}</m> becomes the same as it was in <xref ref="sec-weighted-least-squares"/>. This process would be tedious if these matrices were computed over and over again. This is because the matrices would continue to grow larger and larger over time and eventually overflow the memory management system on the computer. Thus, a method for updating the state vector every time a new measurement is obtained must be derived. To do this the two equations are substituted into <xref ref="sec-weighted-least-squares"/>. Then a covariance matrix is used such that <m>{\bf p} = ({\bf h}^T{\bf w}{\bf h})^{-1}</m> which never grows in size. Using that simplification and making use of a estimation gain matrix <m>{\bf k}</m>, the estimation algorithm is as follows:
+    </p>
+
+    <ol>
+      <li>
+        <p>The first measurement is obtained <m>\bar{y}_0</m></p>
+      </li>
+      <li>
+        <p>Compute the matrix <m>{\bf p_0} = ({\bf h}_0^T{\bf w_0}{\bf h}_0)^{-1}</m></p>
+      </li>
+      <li>
+        <p>Obtain the estimate for <m>\tilde{x}_0 = {\bf p_0}{\bf h}_0^T{\bf w_0}\bar{y}_0</m> (Notice that if you use the equation above this is the same solution as the weighted least squares estimate)</p>
+      </li>
+      <li>
+        <p>Every time a new measurement, <m>\bar{y}_k</m>, is obtained use the recursive least squares update law shown in the equation below.</p>
+      </li>
+    </ol>
+
+    <men xml:id="eq-recursive-least-squares">
+      \begin{matrix}
+        {\bf k}_{k+1} = {\bf p}_{k}{\bf h}_{k+1}^T[{\bf h}_{k+1}{\bf p}_k{\bf h}_{k+1}^T+{\bf w}_k^{-1}]^{-1}\\
+        {\bf p}_{k+1} = [{\bf 1} - {\bf k}_{k+1}{\bf h}_{k+1}]{\bf p}_k\\
+        \tilde{x}_{k+1} = \tilde{x}_k + {\bf k}_{k+1}(\bar{y}_{k+1} - {\bf h}_{k+1}\tilde{x}_k) \\
+      \end{matrix}
+    </men>
+
+    <p>
+      In the special case where the weighting matrix <m>{\bf w}_k</m> is equal to a constant <m>{\bf w}</m> and the state vector is directly measured such that <m>{\bf h}_k</m> is also identity, the sequential linear estimator gives the following simplified steps.
+    </p>
+
+    <ol>
+      <li>
+        <p>The first measurement is obtained <m>\bar{y}_0</m></p>
+      </li>
+      <li>
+        <p>Compute <m>{\bf p}_0 = {\bf w}^{-1}</m></p>
+      </li>
+      <li>
+        <p>Obtain the estimate for <m>\tilde{x}_0 = \bar{y}_0</m> (this is a fault of <m>{\bf h}_k</m> being identity)</p>
+      </li>
+      <li>
+        <p>Every time a new measurement, <m>\bar{y}_k</m>, is obtained use the recursive least squares update law shown in the equation below.</p>
+      </li>
+    </ol>
+
+    <men xml:id="eq-simplified-recursive-least-squares">
+      \begin{matrix}
+        {\bf k}_{k+1} = {\bf p}_k[{\bf p}_k + {\bf w}^{-1}]^{-1}\\ 
+        {\bf p}_{k+1} = [{\bf 1} - {\bf k}_{k+1}]{\bf p}_k\\
+        \tilde{x}_{k+1} = \tilde{x}_k + {\bf k}_{k+1}(\bar{y}_{k+1} - \tilde{x}_k) \\
+      \end{matrix}
+    </men>
+  </section>
+
+  <section xml:id="sec-continuous-time-complimentary-filter">
+    <title>The Continuous Time Complimentary Filter</title>
+
+    <p>
+      In the above section a discrete sequential least squares update law was formulated. In that derivation it is assumed that the state estimate is held constant in between state measurements. It is possible however to integrate a model of the state dynamics and use that estimate in between state measurements. The is the start of a Kalman Filter. To formulate the Continuous Time Complimentary Filter the dynamics of the system are written such that
+    </p>
+
+    <men xml:id="eq-continuous-system-dynamics">
+      \begin{matrix}
+        \dot{\vec{x}} = {\bf f}\vec{x} + {\bf g}u +{\bf m}\vec{w} \\
+        \vec{y} = {\bf h}\vec{x}
+      \end{matrix}
+    </men>
+
+    <p>
+      where the initial conditions are <m>\vec{x}_0</m> and <m>\vec{w}</m> is a modeling noise term where <m>{\bf E}[\vec{w}\vec{w}^T]={\bf q}</m> just as was defined in the a priori estimation section. The model dynamics are set up such that
+    </p>
+
+    <men xml:id="eq-model-observer-dynamics">
+      \begin{matrix}
+        \dot{\tilde{x}} = \tilde{{\bf f}}\tilde{x} + \tilde{{\bf g}}u + \vec{\gamma}\\
+        \tilde{y} = {\bf h}\tilde{x} \\
+        \bar{y} = {\bf h}\vec{x} + \vec{v}
+      \end{matrix}
+    </men>
+
+    <p>
+      where again <m>\bar{y}</m> is the state measurement and <m>\vec{v}</m> is noise associated with the sensor where <m>{\bf E}[\vec{v}\vec{v}^T]={\bf r}</m>. The term <m>\vec{\gamma}</m> is added as a psuedo control which can be whatever we want. The idea is for <m>u</m> to be the control input to drive <m>\vec{x} \rightarrow \vec{x}_c</m> while the psuedo control is for the observer dynamics to drive <m>\tilde{y} \rightarrow \bar{y}</m>. The model dynamics are going to deviate in between sensor measurements so if the observer dynamics are designed properly the estimate can converge to the measurement. Of course, this means your estimate is only as good as your measurement noise but it is a start. To design the psuedo control law, measurement feedback is used in the same form as standard unity feedback control laws such that <m>\vec{\gamma} = {\bf k}\hat{y}</m> where <m>\hat{y}</m> is the difference between the estimate and the measurement. The closed loop dynamics can then be written as
+    </p>
+
+    <men xml:id="eq-closed-loop-dynamics">
+      \dot{\tilde{x}} = (\tilde{{\bf f}}-{\bf k}{\bf h})\tilde{x} + \tilde{{\bf g}}u + {\bf k}\bar{y}
+    </men>
+
+    <p>
+      Looking at this equation it's hard to see the effect of the observer. Thus the error dynamics must be investigated where <m>\hat{x}=\tilde{x}-\vec{x}</m>. For the simple case it is assumed that <m>{\bf f}=\tilde{{\bf f}}</m> and <m>{\bf g}=\tilde{{\bf g}}</m>. The closed loop error dynamics can then be written as
+    </p>
+
+    <men xml:id="eq-closed-loop-error-dynamics">
+      \dot{\hat{x}} = ({\bf f} - {\bf k}{\bf h})\hat{x} + {\bf k}\vec{v}
+    </men>
+
+    <p>
+      in this case the solution to this equation is
+    </p>
+
+    <men xml:id="eq-error-dynamics-solution">
+      \hat{x}(t) = \hat{x}_0e^{({\bf f} - {\bf k}{\bf h})t} + \vec{\eta}
+    </men>
+
+    <p>
+      where the term <m>\vec{\eta}</m> is a function of the noise term <m>{\bf k}\vec{v}</m>. In this case, if <m>{\bf k}</m> is chosen to be large, the error dynamics will be very fast but the noise term will be very large. If <m>{\bf k}</m> is chosen to be very small the error dynamics will be slow but the error term will not be a prevalent. The issue with this filter of course comes with how to tune the gain matrix <m>{\bf k}</m> which is what the Kalman filter seeks to address.
+    </p>
+  </section>
+
+  <section xml:id="sec-continuous-discrete-kalman-filter">
+    <title>The Continuous Discrete Kalman Filter</title>
+
+    <p>
+      In the case of the continuous discrete Kalman Filter, the model dynamics are integrated just as in the complimentary filter. The only difference is instead of using a continuous observer the state estimate is updated every time a new measurement is obtained much like the sequential least squares technique. First, let's write the model dynamics as before without the observer and the measurement equations are written such that the measurement is taken at timestep <m>t_k</m> and thereafter every <m>\Delta t</m>.
+    </p>
+
+    <men xml:id="eq-model-dynamics">
+      \begin{matrix}
+        \dot{\tilde{x}} = \tilde{{\bf f}}\tilde{x} + \tilde{{\bf g}}u \\
+        \tilde{y} = {\bf h}\tilde{x} \\
+        \bar{y}_k = {\bf h_k}\vec{x}(t_k) + \vec{v}_k
+      \end{matrix}
+    </men>
+
+    <p>
+      The update equation is written using the continuous observer dynamics used for the complimentary filter only in this case the update is discrete.
+    </p>
+
+    <men xml:id="eq-state-update">
+      \tilde{x}_k^+ = \tilde{x}_k^- + {\bf k}_k(\bar{y}_k-{\bf h_k}\tilde{x}_k^-)
+    </men>
+
+    <p>
+      In this case <m>\tilde{x}_k^+</m> is the estimated state after the update while <m>\tilde{x}_k^-</m> is the estimate before the update. The equation for the covariance update and the Kalman Gain matrix are identical in that the derivation is formulated just as it was before. The equations are shown below again only <m>+</m> and <m>-</m> is used to denote the matrices before and after update.
+    </p>
+
+    <men xml:id="eq-kalman-gain">
+      \begin{matrix}
+        {\bf k}_{k} = {\bf p}_{k}{\bf h}_{k}^T[{\bf h}_{k}{\bf p}_k^-{\bf h}_{k}^T+{\bf r}]^{-1}\\
+        {\bf p}_{k}^+ = [{\bf 1} - {\bf k}_{k}{\bf h}_{k}]{\bf p}_k^-
+      \end{matrix}
+    </men>
+
+    <p>
+      In the sequential linear estimator however, the covariance matrix was set using a weighted least squares approach. In this case the covariance matrix is set such that <m>{\bf p} = {\bf E}[\hat{x}\hat{x}^T]</m>. Taking a derivative of this equation and substituting in the closed loop error dynamics yields the covariance propagation equation shown below.
+    </p>
+
+    <men xml:id="eq-covariance-dynamics">
+      \dot{{\bf p}} = \tilde{{\bf f}}{\bf p} + {\bf p}\tilde{{\bf f}}^T + {\bf m}{\bf q}{\bf m}^T
+    </men>
+
+    <p>
+      The final Continuous Discrete Kalman Filter then goes like this.
+    </p>
+
+    <ol>
+      <li>
+        <p>Integrate the model dynamics in <xref ref="eq-model-dynamics"/> and the covariance dynamics in <xref ref="eq-covariance-dynamics"/></p>
+      </li>
+      <li>
+        <p>When a measurement is received, the Kalman Gain matrix is computed using <xref ref="eq-kalman-gain"/>.</p>
+      </li>
+      <li>
+        <p><xref ref="eq-kalman-gain"/> is also used to update the covariance matrix</p>
+      </li>
+      <li>
+        <p>Finally, <xref ref="eq-state-update"/> is used to update the state vector estimate and then the process repeats.</p>
+      </li>
+    </ol>
+
+    <p>
+      An example figure is shown below for a first order system. In this figure the blue stars represent discrete sensor measurements with some noise. Everytime the sensor is updated the model performs and update and instantaneously changes to a new value. The model then integrates (incorrectly due to model mismatch) until a new sensor measurement is obtained. In this case the model is so inaccurate it makes more sense to update the sensor more frequently or perform some sort of adaptive control algorithm to estimate the plant dynamics.
+    </p>
+
+    <figure xml:id="fig-kalman">
+      <title>First Order Kalman Filter Example</title>
+      <image source="Kalman_Filter_Example.png"/>
+    </figure>
+  </section>
+
+  <section xml:id="sec-kalman-filter-for-spacecraft-dynamics">
+    <title>Kalman Filter for Spacecraft Dynamics</title>
+
+    <p>
+      Attitude estimation involves a combination of attitude determination and state estimation. Assuming at time <m>t=t_0</m> the attitude estimation algorithm is performed and an estimate of the quaternion is obtained as <m>\tilde{q}_0</m>. If discrete regular angular velocity (<m>\bar{\omega}_{k}</m>) measurements are made every <m>\Delta t</m> seconds, the quaternion can be estimated by simply integrating the attitude equations of motion. Even if perfect sensor measurements are made, it is possible to integrate these equations of motion over time and the quaternion <m>\vec{q}</m> will be much different than the estimated quaternion <m>\tilde{q}</m>. Thus, the attitude estimation algorithm can run again to obtain a new absolute quaternion measurement. The equations of motion are integrated and when a new sensor measurement is obtained the estimated state is updated based on the estimated covariance combined with and estimate of model errors and sensor errors. Finally, it is possible to create an Extended State Kalman Filter (EKF) which can estimate sensor inaccuracies simply by finding the least squares solution between the sensor measurements and state estimates. The sections that follow details the Kalman Filter for Spacecraft Dynamics as well as the extended state version which estimate bias values in the rate gyro.
+    </p>
+
+    <p>
+      First, the 4-dimensionality of the quaternion renders the above Kalman filter formulation to be impossible mostly because the quaternion derivative is a 4 by 1 matrix while the angular velocity vector is a 3 by 1. Furthermore, the quaternion derivative is not linear and cannot be expressed as the linear matrices in the previous section. As such the Kalman Filter must be updated somewhat. The derivative of the state <m>\dot{\vec{q}}</m> is cumbersome and follows the reference in <xref ref="Liu_Estimation"/>. First the angular velocity measurement is substituted into the derivative of quaternions where the <m>{\bf \Omega}()</m> and <m>{\bf \chi}()</m> identity is used to separate out the white noise parameter.
+    </p>
+
+    <men xml:id="eq-quaternion-derivative-expanded">
+      \dot{\vec{q}} = \frac{1}{2}{\bf \Omega}(\vec{\omega})\vec{q} = \frac{1}{2}{\bf \Omega}(\bar{\omega}-\vec{b}-\vec{\eta}_g)\vec{q} = \frac{1}{2}{\bf \Omega}(\bar{\omega}-\vec{b})\vec{q} - \frac{1}{2}{\bf \chi}(\vec{q})\vec{\eta}_g
+    </men>
+
+    <p>
+      At this point an error quaternion is created using the difference between <m>\vec{q}</m> and <m>\tilde{q}</m>. Recall that the error quaternion is given by the equation below.
+    </p>
+
+    <men xml:id="eq-error-quaternion">
+      \delta \vec{q} = \vec{q} \otimes \tilde{q}^{-1}
+    </men>
+
+    <p>
+      The derivative of this difference quaternion is beyond the scope of this report but can be found in <xref ref="kalman_quat"/>.
+    </p>
+
+    <men xml:id="eq-difference-quaternion-derivative">
+      \dot{\delta \vec{q}} = \begin{Bmatrix} 0 \\ -{\bf S}(\tilde{\omega})\delta \vec{\epsilon} \end{Bmatrix} + \frac{1}{2}{\bf \Omega}(\delta \vec{\omega})\delta \vec{q}
+    </men>
+
+    <p>
+      where <m>\delta \vec{\omega} = \vec{\omega} - \tilde{\omega}</m> and <m>\delta \vec{\epsilon} = \vec{\epsilon} - \tilde{\epsilon}</m>. Recall that <m>\tilde{\omega} = \bar{\omega}-\tilde{b}</m>. The second term in the equation above can be expanded using the equations in <xref ref="sec-sensor-measurement"/>. Note that <m>\delta \vec{\omega}</m> simplifies to <m>-\delta \vec{b} - \vec{\eta}_g</m> and <m>\dot{\delta \vec{q}} = [\dot{\delta q_0},\dot{\delta \vec{\epsilon}}]^T</m>.
+    </p>
+
+    <men xml:id="eq-difference-quaternion-expanded">
+      \dot{\delta \vec{q}} = \begin{Bmatrix} 0 \\ -{\bf S}(\tilde{\omega})\delta \vec{\epsilon} \end{Bmatrix} - \frac{1}{2}\begin{Bmatrix} -\delta \vec{\epsilon}^T\delta \vec{b} \\ \delta q_0 \delta \vec{b} + {\bf S}(\delta \vec{\epsilon})\delta \vec{b} \end{Bmatrix} - \frac{1}{2}\begin{Bmatrix} -\delta \vec{\epsilon} \vec{\eta}_g \\ \delta q_0 \vec{\eta}_g + {\bf S}(\delta \vec{\epsilon})\vec{\eta}_g \end{Bmatrix}
+    </men>
+
+    <p>
+      In order to proceed further, small angle approximations are made such that <m>|\delta \vec{q}|\lt\lt 1</m>. The latter 3 variables in the quaternion are further approximated as <m>\delta \vec{\rho} = \delta \vec{\epsilon}</m>. In order to fit in with the standard Kalman filter, the state vector <m>\vec{x} = \vec{\rho}</m> and thus the state dynamics <m>\dot{\delta \vec{x}}</m> can then be written as
+    </p>
+
+    <men xml:id="eq-approximated-state-dynamics">
+      \dot{\delta \vec{x}} = \dot{\delta \vec{\rho}} = -{\bf S}(\tilde{\omega})\delta \vec{d} - \frac{1}{2}\delta \vec{b} - \frac{1}{2}\vec{\eta}_g
+    </men>
+
+    <p>
+      In order to extract the attitude quaternion from the approximated state the following equations are used.
+    </p>
+
+    <men xml:id="eq-extract-quaternion">
+      \begin{matrix}
+        \delta \vec{\epsilon} = \frac{\delta \vec{\rho}}{\sqrt{1+\delta \vec{\rho}^T\delta \vec{\rho}}} &amp; q_0 = \frac{1}{\sqrt{1+\delta \vec{\rho}^T\delta \vec{\rho}}}
+      \end{matrix}
+    </men>
+  </section>
+
+  <section xml:id="sec-extended-state-kalman-filter">
+    <title>Extended State Kalman Filter</title>
+
+    <p>
+      As shown in the previous section, a Kalman filter can be used to estimate the state. The standard Kalman filter however can be extended to include the bias of the angular velocity measurement. Thus the state vector is augmented to be <m>\vec{x} = [\vec{q},\vec{b}]^T</m>. Since the derivative of the bias is the white noise vector, the difference state vector after much simplification is shown below.
+    </p>
+
+    <men xml:id="eq-augmented-difference-state">
+      \dot{\delta \vec{x}} = \begin{Bmatrix} \dot{\delta \vec{\rho}} \\ \delta \vec{b} \end{Bmatrix} = \begin{bmatrix} -{\bf S}(\tilde{\omega}) &amp; -\frac{1}{2}{\bf I}_{3x3} \\ {\bf 0}_{3x3} &amp; {\bf 0}_{3x3} \end{bmatrix} \begin{Bmatrix} \delta \vec{\rho} \\\delta \vec{b} \end{Bmatrix} + \begin{Bmatrix} -\frac{1}{2}\vec{\eta}_g \\ \vec{\eta}_b \end{Bmatrix}
+    </men>
+
+    <p>
+      In this formulation <m>\delta \vec{b} = \vec{b} - \tilde{b}</m>. The derivative is then <m>\delta \dot{\vec{b}} = \vec{\eta}_b - 0</m>. It is assumed that the derivative of the estimate is zero and thus is only updated when sensor measurements are made. The states equation above can be reduced to the state space form shown below.
+    </p>
+
+    <men xml:id="eq-state-space-reduced">
+      \dot{\delta \vec{x}} = {\bf A}\delta \vec{x} + \vec{\eta}
+    </men>
+  </section>
+
+  <section xml:id="sec-euler-angle-estimation-via-imu">
+    <title>Euler Angle Estimation via IMU</title>
+
+    <p>
+      Using an IMU it is possible to obtain Euler Angles assuming a Flat Earth Approximation. Recall that Euler angles are a 3D transformation from the Inertial frame to the Body Frame. The angle <m>\phi</m> and <m>\theta</m> can directly be measured via the accelerometer by creating a relationship between the gravity vector in the inertial and body frames. The heading angle can be measured by creating a relationship between the magnetic field in the body frame and the inertial frame using a magnetometer. The rate gyro can be used to integrate the angular velocity to obtain Euler angles as well but is prone to drift. The accelerometer though is prone to errors when the vehicle experiences large acceleration loads. Thus, typically the Euler angles from the rate gyro are fused with the estimates from the magnetometer and the accelerometer. Still, some errors can still exist and the Euler angles can be fused with estimates from GPS but that will be explored in a separate section. First, let's examine the direct estimation of roll and pitch using the accelerometer.
+    </p>
+
+    <section xml:id="subsec-direct-measurement-of-roll-and-pitch">
+      <title>Direct Measurement of Roll and Pitch</title>
+
+      <p>
+        Understand that the gravity vector in the inertial frame can be written as <m>{\bf C}_I(\vec{g}) = [0,0,g]^T</m>. However, since the first rotation in the Euler angle sequence is about the z-axis, the gravity vector in the A frame and Inertial (I) frames are identical. That is, <m>{\bf C}_A(\vec{g}) = {\bf C}_I(\vec{g})</m>. Normalizing the gravity vector yields <m>{\bf C}_A(\bar{g})=[0,0,1]^T</m>. The measurement from the accelerometer must also be normalized such that <m>\bar{a}_{B/I}=\hat{a}_{B/I}/||\hat{a}_{B/I}||</m>. Since the aircraft is always experiencing gravity, and the accelerometer is measuring the acceleration vector a relationship can be obtained between the gravity vector in the A frame and the acceleration vector in the body frame. Note that an assumption is being made here. It is assumed that the only acceleration being experienced is gravity. Therefore, if any external accelerations are experienced by the vehicle via thrust or aerodynamics, this equation is not valid. Still, for small UAV applications these equations can be accurate if fused properly with the rate gyro measurements.
+      </p>
+
+      <men xml:id="eq-gravity-body-frame">
+        {\bf C}_B(\bar{a}_{B/I}) = {\bf T}_{NRB}^T{\bf T}_{ANR}^T{\bf C}_A(\bar{g}) = \begin{Bmatrix} -s_{\theta} \\ s_{\phi}c_{\theta} \\ c_{\phi}c_{\theta}\end{Bmatrix}
+      </men>
+
+      <p>
+        The equation above takes the normalized gravity vector in the A frame and rotates it to the body frame through the no roll frame. Since the rotation is from the A frame to the body frame, only two rotations are required. Notice also that the first row can be used to obtain the pitch angle.
+      </p>
+
+      <men xml:id="eq-pitch-arcsin">
+        \theta = -sin^{-1}(\bar{a}_x)
+      </men>
+
+      <p>
+        The roll angle can then be obtained by taking the second two rows and dividing them together to get a tangent function.
+      </p>
+
+      <men xml:id="eq-roll-arctan">
+        \phi = tan^{-1}\left(\frac{\bar{a}_y}{\bar{a}_z}\right)
+      </men>
+
+      <p>
+        Note that this equation is only valid if <m>c_{\theta} \neq \pi/2</m>. This means the vehicle cannot fly straight up. For quadcopters and airplanes this is pretty typical for standard and level flight. For rockets however, either the IMU must be placed in an orientation that doesn't result in this singularity at launch or quaternions must be used. For spacecraft an entirely different algorithm is needed and is explained in a different section.
+      </p>
+
+      <p>
+        Note that the pitch angle equation is written using the inverse sine function. Often times it is beneficial to compute the pitch angle using the inverse tangent function so that the <em>atan2</em> function may be utilized on a microcontroller which determines the quadrant of the angle more robustly. To do this the gravity vector must be written in the no roll frame.
+      </p>
+
+      <men xml:id="eq-gravity-no-roll">
+        {\bf C}_{NR}(\bar{g}) = {\bf T}_{ANR}^T{\bf C}_A(\bar{g}) = \begin{Bmatrix} -s_{\theta} \\ 0 \\ c_{\theta}\end{Bmatrix}
+      </men>
+
+      <p>
+        Then the acceleration vector is rotated to no roll frame as well from the body frame
+      </p>
+
+      <men xml:id="eq-acceleration-no-roll">
+        {\bf C}_{NR}(\bar{a}_{B/I}) = {\bf T}_{NRB}{\bf C}_B(\bar{a}_{B/I}) = \begin{Bmatrix} \bar{a}_x \\ \bar{a}_y c_{\phi} - \bar{a}_z s_{\phi} \\ \bar{a}_y s_{\phi} + \bar{a}_z c_{\phi} \end{Bmatrix}
+      </men>
+
+      <p>
+        Setting the two equations above equal to each other and diving the first row by the second row results in a tangent equation for pitch. This result is shown in the equation below.
+      </p>
+
+      <men xml:id="eq-pitch-arctan">
+        \theta = -tan^{-1}\left(\frac{\bar{a}_x}{\bar{a}_y s_{\phi} + \bar{a}_z c_{\phi}}\right)
+      </men>
+
+      <p>
+        Notice that these equations for pitch can be constructed by drawing a right triangle with the gravity vector as the hypotenuse. The sine function is the opposite side of the triangle divided by the hypotenuse which is 1 since the gravity vector was normalized while the inverse tangent function is the opposite side over the adjacent side.
+      </p>
+    </section>
+
+    <section xml:id="subsec-direct-measurement-of-yaw">
+      <title>Direct Measurement of Yaw</title>
+
+      <p>
+        In order to obtain the yaw angle of the vehicle through a direct measurement, the magnetometer is used. First it is assumed that the magnetic field strength is a constant through the flight of the vehicle and that it is oriented along the x-axis in the inertial frame of the Flat Earth Approximation. Remember that the x-axis is North using the Flat Earth Approximation. The magnetic field vector of the Earth is then normalized to unity.
+      </p>
+
+      <men xml:id="eq-earth-magnetic-field-inertial">
+        {\bf C}(\bar{\beta}_{\text{Earth}}) = \begin{Bmatrix} 1 \\ 0 \\ 0 \end{Bmatrix}
+      </men>
+
+      <p>
+        Again, in order to get a tangent function for the yaw angle estimation, the magnetic field of the Earth is written in the A frame.
+      </p>
+
+      <men xml:id="eq-earth-magnetic-field-a-frame">
+        {\bf C}_A(\bar{\beta}_{\text{Earth}}) = {\bf T}_{IA}^T{\bf C}_I(\bar{\beta}_{\text{Earth}}) = \begin{Bmatrix} c_{\psi} \\ -s_{\psi} \\ 0 \end{Bmatrix}
+      </men>
+
+      <p>
+        The magnetic field measurment of the magnetometer is then written in the A frame as well. However, the magnetometer measures the magnetic field in the body frame. Thus 2 rotations are requires to get from the body frame to the A frame. Again the magnetometer measurement is normalized.
+      </p>
+
+      <men xml:id="eq-body-magnetic-field-a-frame">
+        {\bf C}_A(\bar{\beta}_{B}) = {\bf T}_{ANR}{\bf T}_{NRB}{\bf C}_B(\bar{\beta}_B)=\begin{Bmatrix} \bar{\beta}_x c_{\phi} + \bar{\beta}_y s_{\theta}s_{\phi} + \bar{\beta}_z c_{\phi}s_{\theta} \\ \bar{\beta}_y c_{\phi} - \bar{\beta}_z s_{\phi} \\ -\bar{\beta}_x s_{\theta} + \bar{\beta}_y s_{\phi}c_{\theta} + \bar{\beta}_z c_{\phi} c_{\theta} \end{Bmatrix}
+      </men>
+
+      <p>
+        The two equations for magnetic field in the A frame can then be equated. In this case, the second row is divided by the first row to obtain a tangent relationship for yaw. The result for yaw is shown below.
+      </p>
+
+      <men xml:id="eq-yaw-arctan">
+        \psi = tan^{-1}\left(\frac{\bar{\beta}_z s_{\phi} - \bar{\beta}_y c_{\phi}}{\bar{\beta}_x c_{\phi} + \bar{\beta}_y s_{\theta}s_{\phi} + \bar{\beta}_z c_{\phi}s_{\theta}}\right)
+      </men>
+    </section>
+  </section>
+
+  <section xml:id="sec-low-earth-orbit-attitude-estimation">
+    <title>Low Earth Orbit Attitude Estimation</title>
+
+    <p>
+      In LEO the main algorithm begins with obtaining the magnetic field in the body frame using magnetometers <m>\vec{\beta}_B</m>. Using the IGRF model the locally measured magnetic field can be compared with the known magnetic field for any given location within its orbit. Using the true data and the measured data, the spacecraft can compute its actual position to the measured position and make the correct adjustments. A Sun measurement is then taken using a Sun sensor <m>\vec{S}_B</m>. Once those two independent body frame measurements are taken the inertial reference vectors must be obtained from a database. Startrackers have this database built in; however, for the magnetic field and the Sun vector these must be obtained from a separate database as discussed in Section. The idea is that if the position of the Earth is known then the position of the Sun with respect to the Earth is also known. The magnetic field vector can be obtained from the IGRF model as discussed in Section. The magnetic field vector in the inertial frame is given as <m>\vec{\beta}_I</m>. Note that the IGRF model requires the latitude and longitude to be known. Thus, in LEO a GPS is required to feed into the database. The inertial Sun vector <m>\vec{S}_I</m> only requires the Julian time which can be obtained from GPS as well. The julian time is based on the julian day as explained in Section.
+    </p>
+
+    <p>
+      The initial attitude determination algorithm itself requires two independent vectors. As stated previously, startrackers provided a large enough aperture and enough stars to produce the full quaternion by obtaining multiple unique vectors to unique stars. Multiple solar sensors or multiple magnetometers unfortunately do not obtain non-unique vectors and the algorithm fails. In LEO this is typically done with solar sensors and magnetometers but it can be done with star trackers. In deep space it is typically done with startrackers but it could be possible to obtain a Moon vector that would require a Moon sensor.
+    </p>
+
+    <p>
+      The derivation below is done for the LEO case with a Sun and magnetic field measurement. The derivation is identical for the deep space case with a Moon sensor simply by substituting the magnetic field measurment with a Moon measurement. Every vector is first normalized to obtain <m>\hat{\beta}_B,\hat{\beta}_I,\hat{S}_B,\hat{S}_I</m>. A triad is then created from body frame vectors using the equations below.
+    </p>
+
+    <men xml:id="eq-triad-body">
+      \begin{matrix} \hat{f}_1 = \hat{S}_B &amp; \hat{f}_2 = \hat{f}_1 \times \hat{\beta}_B &amp; \hat{f}_3 = \hat{f}_1 \times \hat{f}_2 \end{matrix}
+    </men>
+
+    <p>
+      The matrix <m>{\bf F}</m> is then created using the triad as an orthonormal basis <m>F = [\hat{f}_1,\hat{f}_2,\hat{f}_3]</m>. Similar equations are used for the inertial measurements.
+    </p>
+
+    <men xml:id="eq-triad-inertial">
+      \begin{matrix} \hat{g}_1 = \hat{S}_I &amp; \hat{g}_2 = \hat{g}_1 \times \hat{\beta}_I &amp; \hat{g}_3 = \hat{g}_1 \times \hat{g}_2 \end{matrix}
+    </men>
+
+    <p>
+      The matrix <m>{\bf G}</m> is then created just as the <m>{\bf F}</m> matrix such that <m>{\bf G} = [\hat{g}_1,\hat{g}_2,\hat{g}_3]</m>. The transformation from inertial to body frame is then created using the formula below.
+    </p>
+
+    <men xml:id="eq-transformation-matrix">
+      {\bf T}_{BI} = {\bf FG}^T
+    </men>
+
+    <p>
+      This matrix above is similar to the matrix in equation and thus the Euler angles can be extracted from the matrix itself using the formulation defined in Section. Euler can then be converted to quaternions if needed. Note that it is relatively easy to extract Euler angles from the <m>{\bf T}_{IB}</m> matrix, it is not so simple to extract quaternions. This is due to the fact that for every orientation there exists two quaternions that represent this space. Thus, it is more ideal to obtain Euler angles from the transformation matrix and then convert them to quaternions.
+    </p>
+  </section>
+
+  <section xml:id="sec-spacecraft-position-estimation-using-a-ground-station-network-gsn">
+    <title>Spacecraft Position Estimation using a Ground Station Network (GSN)</title>
+
+    <p>
+      There are several types of ground stations depending on the spacecraft’s distance from Earth. Ground services may be either Direct-to-Earth (DTE) or space relay. DTE ground stations are located on the Earth’s surface. They provide direct point-to-point access with antennas at ground stations. DTE services are great for missions needing frequent, short-duration contacts with high data transfer.
+    </p>
+
+    <p>
+      Space relay services involve an intermediate satellite that communicates with a ground station on the Earth’s surface. Relay communication satellites for low-Earth orbit spacecraft can be in Geosynchronous Equatorial Orbit (GEO), roughly 36,000 km from the surface of Earth, or in low-Earth orbit. Relays are important for providing communication and tracking when direct-to-ground communications are not feasible due to physical asset visibility constraints. Space-based relay assets give missions full-time coverage and continuous access to communication and tracking services.
+    </p>
+
+    <p>
+      Finally, deep space communication is also possible. The Deep Space Network (DSN) is developed to conduct telecommunication and tracking operations with space missions in GEO. This includes missions at lunar distances, the Sun-Earth LaGrange points, and in highly elliptical Earth orbits, and even missions to other planets <xref ref="qp40"/>. The DSN network consists of three ground stations placed around 120 degrees apart on Earth which provides 360 degrees coverage <xref ref="qp41"/>.
+    </p>
+
+    <figure xml:id="fig-dsn-coverage">
+      <title>Deep Space Network Satellite Coverage <xref ref="qp42"/></title>
+      <image source="DSNSC.png"/>
+    </figure>
+  </section>
+
+  <section xml:id="sec-heading-angle-and-speed-estimation-using-gps">
+    <title>Heading Angle and Speed Estimation using GPS</title>
+
+    <p>
+      On Earth there is no need for a DSN because the vehicle is within the GPS constellation. Assuming the vehicle has the necessary GPS sensors a full NMEA (National Marine Electronics Association) can be obtained. However, in this example it is assumed that only the latitude, longitude and altitude coordinates are obtained in a discrete fashion. In order to get heading and speed it is assumed that consecutive measurements are obtained at <m>i</m> and <m>i+1</m> timestamps. Let's assume that the vehicle is traveling in a specific direction or heading and obtains a GPS coordinate <m>(\lambda_{\text{LAT},i},\lambda_{\text{LON},i},h_i)</m> at time <m>t_i</m>. A few seconds later or whenever the update period may be the vehicle moves and the GPS returns a new GPS coordinate <m>(\lambda_{\text{LAT},i+1},\lambda_{\text{LON},i+1},h_{i+1})</m> at time <m>t_{i+1}</m>. First, the coordinates are converted to a cartesian coordinate system. This is explained in the External Model section. This results in <m>x_i,y_i,z_i</m> at time <m>t_i</m> and <m>x_{i+1},y_{i+1},z_{i+1}</m> at time <m>t_{i+1}</m>. First, the speed estimate is given by using a simple first order differentiation as given by
+    </p>
+
+    <men xml:id="eq-gps-speed">
+      \begin{matrix}
+        v_x = (x_{i+1}-x_{i})/\Delta t \\
+        v_y = (y_{i+1}-y_{i})/\Delta t \\
+      \end{matrix}
+    </men>
+
+    <p>
+      where <m>\Delta t = t_{i+1}-t_i</m>. Note that it is not recomended to compute the velocity in the z-axis as the altitude estimate of GPS is often not very good. Finally, the estimate for heading can follow from the speed estimate and is given as
+    </p>
+
+    <men xml:id="eq-gps-heading">
+      \psi = tan^{-1}\left(\frac{v_y}{v_x}\right)
+    </men>
+
+    <p>
+      Note that it is recommended to filter these estimates as GPS on its own is only accurate to around 3 meters.
+    </p>
+  </section>
+</chapter>

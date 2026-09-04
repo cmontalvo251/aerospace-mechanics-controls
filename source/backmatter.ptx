@@ -67,6 +67,12 @@
     <biblio xml:id="Cobar_FASTSim_AVIATION_2022"><p>Maxwell Cobar and Carlos Montalvo. The facility for aerospace systems and technology simulation: Fastsim- an open-source configurable software in the loop simulation environment. In AIAA AVIATION Forum -Chicago, IL, June 2022.</p></biblio>
     <biblio xml:id="CobarMeta2019"><p>Maxwell Cobar and Carlos Montalvo. Takeoff and landing of a wingtip connected meta aircraft with feedback control. Journal of Aircraft - Q1, 58(4):733–742, 2021.</p></biblio>
     <biblio xml:id="CobarMASTERS"><p>Maxwell Cobar and Carlos Montalvo (Chair). Waypoint control for a wingtip connected meta aircraft, December 2022.</p></biblio>
+    <biblio xml:id="stigler1981"><p>Stephen M. Stigler. Gauss and the invention of least squares. doi:10.1214/aos/1176345451.</p></biblio>
+    <biblio xml:id="lagrange"><p>Lagrange, J. L. (Joseph Louis). Mécanique analytique. Paris, Ve Courcier, 1, 1811.</p></biblio>
+    <biblio xml:id="kalman_quat"><p>A. B. Younes, D. Mortari, J. D. Turner, and J. L. Junkins. Attitude error kinematics. Journal of Guidance, Control and Dynamics, 37(1), 2014</p></biblio>
+    <biblio xml:id="qp40"><p>S. Caldwell. Ground data systems and mission operations. nasa. http://www.nasa.gov/smallsat-institute/sst-soa/ground-data-systems-and-mission-operations. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp41"><p>H. Monaghan. Networks. nasa. http://www.nasa.gov/directorates/heo/scan/services/networks/index.html.Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp42"><p>AmericaSpace. Happy birthday, dsn: Nasa’s iconic deep space communications network turns 50. https://www.americaspace.com/2013/12/26/happy-birthday-dsn-nasas-iconic-deep-space-communications-network-turns-50/. Accessed Nov. 4, 2021.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->
