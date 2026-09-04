@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Equation of Motion Formulation for Practical Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta property="og:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta property="book:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '8.2.10';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.e3f9706509fcf6f7.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.c5ba0ffa5f963084.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.efe427683fc41f98.css">
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="aerospace-mechanics-and-controls.html"><span class="title">Aerospace Mechanics and Controls</span> <span class="subtitle">Planes, Rockets, Quadcopters, Satellites and everything in between</span></a></h1>
+<p class="byline">Carlos Montalvo</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-general-formulation.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="lti.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-solutions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} \newcommand{\Z}{\mathbb Z} \newcommand{\Q}{\mathbb Q} \newcommand{\R}{\mathbb R}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="current-edition.html" class="internal"><span class="codenumber">1</span> <span class="title">Current Edition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="manuscript-changes.html" class="internal"><span class="codenumber">2</span> <span class="title">Manuscript Changes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="future-changes.html" class="internal"><span class="codenumber">3</span> <span class="title">Changes Needed and Future Project Ideas</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="introduction.html" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="nomenclature.html" class="internal"><span class="codenumber">2</span> <span class="title">Nomenclature</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="particle-dynamics.html" class="internal"><span class="codenumber">3</span> <span class="title">Particle Dynamics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-systems-of-particles.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Systems of Particles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-rotational-dynamics.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Rotational Dynamics for Systems of Particles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="rigid-bodies.html" class="internal"><span class="codenumber">4</span> <span class="title">Rigid Bodies</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-translational-dynamics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Translational Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_rotational_motion.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Rotational Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-inertia-estimation.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Inertia Estimation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-aerospace-convention.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Aerospace Convention</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="attitude-parameterization.html" class="internal"><span class="codenumber">5</span> <span class="title">Attitude Parameterization</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s_Euler_Angles.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Euler Angles</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-321-sequence" class="internal"><span class="codenumber">5.1.1</span> <span class="title">3-2-1 Sequence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-euler-derivatives" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-screw-rotation" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Screw Rotation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-transformation-matrix-to-euler" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Transformation Matrix to Euler Angles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s_quat.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Quaternions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-general-quaternion" class="internal"><span class="codenumber">5.2.1</span> <span class="title">The General Quaternion</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-transformations" class="internal"><span class="codenumber">5.2.2</span> <span class="title">Quaternion Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-euler-to-quaternion" class="internal"><span class="codenumber">5.2.3</span> <span class="title">Euler to Quaternion Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-operations" class="internal"><span class="codenumber">5.2.4</span> <span class="title">Quaternion Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-derivatives" class="internal"><span class="codenumber">5.2.5</span> <span class="title">Quaternion Derivatives</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="equations-of-motion.html" class="internal"><span class="codenumber">6</span> <span class="title">Equations of Motion</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="translational-eoms.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Translational Equations of Motion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="reaction-wheels.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Reaction Wheels</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="attitude-eoms.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Attitude Equations of Motion</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="external-models.html" class="internal"><span class="codenumber">7</span> <span class="title">External Models</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_llh_to_cartesian.html" class="internal"><span class="codenumber">7.1</span> <span class="title">GPS Coordinates to Cartesian Coordinates (Flat Earth Approximation)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-density-model.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Density Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_magnetic_field.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Magnetic Field Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-gravitational-models.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Gravitational Models</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="external-forces.html" class="internal"><span class="codenumber">8</span> <span class="title">External Forces and Moments</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-solar-radiation.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Solar Radiation Pressure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-propulsion-model.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Propulsion Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-magnetorquer-model.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Magnetorquer Model</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s-aerodynamics.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Aerodynamics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-aircraft-aero" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Aircraft Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-projectile-aero" class="internal"><span class="codenumber">8.4.2</span> <span class="title">Projectile Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-quadcopter-aero" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Quadcopter Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-spacecraft-aero" class="internal"><span class="codenumber">8.4.4</span> <span class="title">Spacecraft Aerodynamics</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="planetary-positions.html" class="internal"><span class="codenumber">9</span> <span class="title">Planetary Positions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-julian-day.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Julian Day</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-orbital-elements.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Orbital Elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sun-centered-inertial-coordinates.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Sun Centered Inertial Coordinates</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="numerical-integration.html" class="internal"><span class="codenumber">10</span> <span class="title">Numerical Integration Techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-eulers-method.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Euler’s Method</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-runge-kutta-4.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Runge-Kutta-4</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-discrete-dynamics.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Discrete Dynamics</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="lti.html" class="internal"><span class="codenumber">11</span> <span class="title">Linear Time Invariant Systems</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-linearization.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Linearization of Non-Linear Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-general-formulation.html" class="internal"><span class="codenumber">11.2</span> <span class="title">General Formulation of Differential Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-general-formulation.html#subsec-first-order-systems" class="internal"><span class="codenumber">11.2.1</span> <span class="title">First Order Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-general-formulation.html#subsec-second-order-systems" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Second Order Systems</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-practical-systems.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Equation of Motion Formulation for Practical Systems</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-car-position-velocity" class="internal"><span class="codenumber">11.3.1</span> <span class="title">Position and Velocity of a Car</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-mass-spring-damper" class="internal"><span class="codenumber">11.3.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-satellite-quadcopter" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Attitude Dynamics of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-aircraft-pitch" class="internal"><span class="codenumber">11.3.4</span> <span class="title">Pitch Dynamics of an Aircraft</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-rocket-pitch" class="internal"><span class="codenumber">11.3.5</span> <span class="title">Pitch Dynamics of a Rocket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-pendulum-pitch" class="internal"><span class="codenumber">11.3.6</span> <span class="title">Pitch Dynamics of a Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solutions.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Characteristic and Particular Solutions to Differential Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-sol-first-order" class="internal"><span class="codenumber">11.4.1</span> <span class="title">General First Order System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-sol-second-order" class="internal"><span class="codenumber">11.4.2</span> <span class="title">General Second Order Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-special-wn-zero" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Special Case of Natural Frequency Equal to Zero</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-special-wn-zeta-zero" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Special Case of Natural Frequency and Damping Ratio Equal to Zero</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="laplace-solutions.html" class="internal"><span class="codenumber">12</span> <span class="title">Laplace Solutions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-first-order.html" class="internal"><span class="codenumber">12.1</span> <span class="title">General First Order Systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-second-order.html" class="internal"><span class="codenumber">12.2</span> <span class="title">General Second Order Systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-wn-zero.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Special Case of Natural Frequency Equal to Zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-wn-zeta-zero.html" class="internal"><span class="codenumber">12.4</span> <span class="title">Special Case of Natural Frequency and Damping Ratio Equal to Zero</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="open-loop-response.html" class="internal"><span class="codenumber">13</span> <span class="title">Open Loop Time Response</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-velocity-car.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Position and Velocity Response of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-mass-spring-damper.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-attitude-satellite-quadcopter.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Attitude of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-response-aircraft.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Pitch Response of an Aircraft</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-response-rocket.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Pitch Response of a Rocket</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-angle-inverted-pendulum.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Angle of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_stability.html" class="internal"><span class="codenumber">14</span> <span class="title">Stability</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-and-velocity-of-a-car.html" class="internal"><span class="codenumber">14.1</span> <span class="title">Position and Velocity of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-of-a-mass-spring-damper.html" class="internal"><span class="codenumber">14.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-attitude-dynamics-of-a-satellite-or-quadcopter.html" class="internal"><span class="codenumber">14.3</span> <span class="title">Attitude Dynamics of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-dynamics-of-an-aircraft.html" class="internal"><span class="codenumber">14.4</span> <span class="title">Pitch Dynamics of an Aircraft</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-dynamics-of-a-rocket.html" class="internal"><span class="codenumber">14.5</span> <span class="title">Pitch Dynamics of a Rocket</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-angle-of-an-inverted-pendulum.html" class="internal"><span class="codenumber">14.6</span> <span class="title">Angle of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-aerospace-state-estimation.html" class="internal"><span class="codenumber">15</span> <span class="title">Aerospace State Estimation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sensor-measurement.html" class="internal"><span class="codenumber">15.1</span> <span class="title">Sensor Measurement</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-linear-least-squares.html" class="internal"><span class="codenumber">15.2</span> <span class="title">Linear Least Squares</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-weighted-least-squares.html" class="internal"><span class="codenumber">15.3</span> <span class="title">Weighted Least Squares</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-a-priori-knowledge-of-the-state-vector.html" class="internal"><span class="codenumber">15.4</span> <span class="title">A Priori Knowledge of the State Vector</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-complimentary-filter.html" class="internal"><span class="codenumber">15.5</span> <span class="title">Complimentary Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sequential-linear-estimator.html" class="internal"><span class="codenumber">15.6</span> <span class="title">Sequential Linear Estimator</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuous-time-complimentary-filter.html" class="internal"><span class="codenumber">15.7</span> <span class="title">The Continuous Time Complimentary Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuous-discrete-kalman-filter.html" class="internal"><span class="codenumber">15.8</span> <span class="title">The Continuous Discrete Kalman Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-kalman-filter-for-spacecraft-dynamics.html" class="internal"><span class="codenumber">15.9</span> <span class="title">Kalman Filter for Spacecraft Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-extended-state-kalman-filter.html" class="internal"><span class="codenumber">15.10</span> <span class="title">Extended State Kalman Filter</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html" class="internal"><span class="codenumber">15.11</span> <span class="title">Euler Angle Estimation via IMU</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html#subsec-direct-measurement-of-roll-and-pitch" class="internal"><span class="codenumber">15.11.1</span> <span class="title">Direct Measurement of Roll and Pitch</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html#subsec-direct-measurement-of-yaw" class="internal"><span class="codenumber">15.11.2</span> <span class="title">Direct Measurement of Yaw</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-low-earth-orbit-attitude-estimation.html" class="internal"><span class="codenumber">15.12</span> <span class="title">Low Earth Orbit Attitude Estimation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-spacecraft-position-estimation-using-a-ground-station-network-gsn.html" class="internal"><span class="codenumber">15.13</span> <span class="title">Spacecraft Position Estimation using a Ground Station Network (GSN)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-heading-angle-and-speed-estimation-using-gps.html" class="internal"><span class="codenumber">15.14</span> <span class="title">Heading Angle and Speed Estimation using GPS</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_control_systems.html" class="internal"><span class="codenumber">16</span> <span class="title">Linear Feedback Control Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-controllability.html" class="internal"><span class="codenumber">16.1</span> <span class="title">Controllability</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bang-bang-control-satellite.html" class="internal"><span class="codenumber">16.2</span> <span class="title">Bang Bang Control of a Satellite</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-control-satellite-quadcopter.html" class="internal"><span class="codenumber">16.3</span> <span class="title">Proportional Control of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-control-satellite-quadcopter.html" class="internal"><span class="codenumber">16.4</span> <span class="title">Proportional Derivative Control of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-control-car.html" class="internal"><span class="codenumber">16.5</span> <span class="title">Proportional Control of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-integral-control-car.html" class="internal"><span class="codenumber">16.6</span> <span class="title">Proportional Integral Control of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-integral-control-spring-mass-damper.html" class="internal"><span class="codenumber">16.7</span> <span class="title">Proportional Derivative Integral Control of a Spring Mass Damper System</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-control-inverted-pendulum.html" class="internal"><span class="codenumber">16.8</span> <span class="title">Proportional Derivative Control of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_nonlinear_controls.html" class="internal"><span class="codenumber">17</span> <span class="title">Nonlinear Control Techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_phase_portraits.html" class="internal"><span class="codenumber">17.1</span> <span class="title">Phase Portraits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_lyapunov_control.html" class="internal"><span class="codenumber">17.2</span> <span class="title">Lyapunov Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_sliding_mode_control.html" class="internal"><span class="codenumber">17.3</span> <span class="title">Sliding Mode Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_adaptive_control.html" class="internal"><span class="codenumber">17.4</span> <span class="title">Adaptive Control</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="conclusions.html" class="internal"><span class="codenumber">18</span> <span class="title">Conclusions</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="acknowledgements.html" class="internal"><span class="codenumber">19</span> <span class="title">Acknowledgements</span></a></div></li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">References</span></a></div></li></ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="section" id="sec-practical-systems">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equation of Motion Formulation for Practical Systems</span>
+</h2>
+<section class="introduction" id="sec-practical-systems-2">
+<div class="para" id="sec-practical-systems-2-1">The sections below will discuss practical examples of first and second order systems. Many of these examples are classic examples found in many dynamics and controls textbooks and ones that I typically teach budding control systems aerospace/mechanical engineers. Each one offers a slightly different set of dynamics and challenges that will help the undergraduate controls engineer understand the concepts of linear systems as well as how to control them and also determine stability.<div class="autopermalink" data-description="Paragraph"><a href="#sec-practical-systems-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<section class="subsection" id="subsec-car-position-velocity">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Position and Velocity of a Car</span>
+</h3>
+<div class="para" id="subsec-car-position-velocity-2">Consider a car moving in one dimension. The primary forces acting on the car are the driving force from the tires, <span class="process-math">\(F\text{,}\)</span> and a linear viscous drag force, <span class="process-math">\(D = -cv\text{,}\)</span> where <span class="process-math">\(c\)</span> is the viscous drag coefficient, <span class="process-math">\(x\)</span> is the position of the car and <span class="process-math">\(v\)</span> is the velocity of the car.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="f-car_fbd"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/car_fbd.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Free body diagram of a car<div class="autopermalink" data-description="Figure 11.3.1"><a href="#f-car_fbd" title="Copy heading and permalink for Figure 11.3.1" aria-label="Copy heading and permalink for Figure 11.3.1">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-car-position-velocity-4">Applying Newton’s second law, the sum of forces is equal to mass times acceleration:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-first_order.html" id="eq-car-newton">
+\begin{equation}
+m\dot{v} = F - cv\tag{11.3.1}
+\end{equation}
+</div>
+<div class="para" id="subsec-car-position-velocity-6">where <span class="process-math">\(m\)</span> is the mass of the car, <span class="process-math">\(F\)</span> is the force generated by the tires, and <span class="process-math">\(-cv\)</span> is the linear drag. In this case to make the system first order we simply leave acceleration as <span class="process-math">\(\dot{v}\)</span> instead of <span class="process-math">\(\ddot{x}\)</span> where <span class="process-math">\(x\)</span> would be the position of the vehicle. Rearranging, we obtain the standard first-order linear differential equation:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-first_order.html" id="eq-car-first-order">
+\begin{equation}
+\dot{v} + \frac{c}{m}v = \frac{F}{m}\tag{11.3.2}
+\end{equation}
+</div>
+<div class="para" id="subsec-car-position-velocity-8">This equation describes the velocity dynamics of the car under a linear drag assumption. In this case <span class="process-math">\(\sigma = c/m\)</span> and <span class="process-math">\(F = cf\text{.}\)</span> With these substitutions you arrive at the same equation as <a href="sec-general-formulation.html#e-first_order" class="xref" data-knowl="./knowl/xref/e-first_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.1">(11.2.1)</a>. Note that if <span class="process-math">\(v\)</span> is replaced with <span class="process-math">\(\dot{x}\)</span> and <span class="process-math">\(\dot{v}\)</span> is replaced with <span class="process-math">\(\ddot{x}\)</span> the equation describes the position of car and is second order as shown below.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-first_order.html" id="eq-car-position">
+\begin{equation}
+\ddot{x} + \frac{c}{m}\dot{x} = \frac{F}{m}\tag{11.3.3}
+\end{equation}
+</div>
+<div class="para" id="subsec-car-position-velocity-10">This is another general second order system where the natural frequency <span class="process-math">\({\omega_n}^2=0\text{.}\)</span> Using the same substitions as above the general formulation is<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-first_order.html" id="eq-car-general-pos">
+\begin{equation}
+\ddot{q} + \sigma \dot{q} = \sigma f\tag{11.3.4}
+\end{equation}
+</div>
+<div class="para" id="subsec-car-position-velocity-12">where <span class="process-math">\(x\)</span> is replaced by <span class="process-math">\(q\text{.}\)</span> The result is similar to the first order system but still slightly different given the absence of the constant term. It will be shown later that this system is marginally stable and that the difference between the first and second order transfer function is simply a factor of <span class="process-math">\(s\)</span> given the difference from velocity to position.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-car-position-velocity-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.1: Position and Velocity of a Car"><a href="#subsec-car-position-velocity" title="Copy heading and permalink for Subsection 11.3.1: Position and Velocity of a Car" aria-label="Copy heading and permalink for Subsection 11.3.1: Position and Velocity of a Car">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-mass-spring-damper">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Position of a Mass Spring Damper</span>
+</h3>
+<div class="para" id="subsec-mass-spring-damper-2">A mass-spring-damper system is a classic example of a second-order system. The system consists of a mass <span class="process-math">\(m\)</span> attached to a spring with spring constant <span class="process-math">\(k\)</span> and a damper with damping coefficient <span class="process-math">\(c\text{.}\)</span> The mass is free to move along a single axis <span class="process-math">\(x\text{,}\)</span> and the system is subject to an external force <span class="process-math">\(f\)</span> as shown in Figure <a href="sec-practical-systems.html#f-msd" class="xref" data-knowl="./knowl/xref/f-msd.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 11.3.2">Figure 11.3.2</a>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-mass-spring-damper-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="f-msd"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/msd.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Mass-spring-damper system<div class="autopermalink" data-description="Figure 11.3.2"><a href="#f-msd" title="Copy heading and permalink for Figure 11.3.2" aria-label="Copy heading and permalink for Figure 11.3.2">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-mass-spring-damper-4">Consider the mass-spring-damper system depicted above. The spring exerts a restoring force <span class="process-math">\(-kx\)</span> that is always directed opposite to the displacement <span class="process-math">\(x\)</span> of the mass from equilibrium, while the damper exerts a resistive force <span class="process-math">\(-c\dot{x}\)</span> proportional and opposite to the velocity <span class="process-math">\(\dot{x}\text{.}\)</span> The external force <span class="process-math">\(F(t)\)</span> acts in the direction of motion. According to Newton’s second law, the sum of these forces acting on the mass equals the mass times its acceleration, leading to the equation<div class="autopermalink" data-description="Paragraph"><a href="#subsec-mass-spring-damper-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/f-msd.html ./knowl/xref/e-second_order.html ./knowl/xref/e-second_order.html" id="eq-msd-forces">
+\begin{equation}
+m\ddot{x} = F - c\dot{x} - kx \tag{11.3.5}
+\end{equation}
+</div>
+<div class="para" id="subsec-mass-spring-damper-6">Rearranging terms, we obtain the standard form of the equation of motion for the mass-spring-damper system.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-mass-spring-damper-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/f-msd.html ./knowl/xref/e-second_order.html ./knowl/xref/e-second_order.html" id="eq-msd-standard">
+\begin{equation}
+\ddot{x} + \frac{c}{m}\dot{x} + \frac{k}{m}x = \frac{F}{m}\tag{11.3.6}
+\end{equation}
+</div>
+<div class="para" id="subsec-mass-spring-damper-8">This second-order linear differential equation fully describes the dynamic response of the system to any external force <span class="process-math">\(F\text{.}\)</span> Looking at equation <a href="sec-general-formulation.html#e-second_order" class="xref" data-knowl="./knowl/xref/e-second_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.2">(11.2.2)</a> we can see that <span class="process-math">\(\omega_n = \sqrt{k/m}\)</span> and <span class="process-math">\(\zeta = c/(2\sqrt{mk})\text{.}\)</span> Furthermore, if we let <span class="process-math">\(F = kf\)</span> we arrive at the same equation as <a href="sec-general-formulation.html#e-second_order" class="xref" data-knowl="./knowl/xref/e-second_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.2">(11.2.2)</a>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-mass-spring-damper-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.2: Position of a Mass Spring Damper"><a href="#subsec-mass-spring-damper" title="Copy heading and permalink for Subsection 11.3.2: Position of a Mass Spring Damper" aria-label="Copy heading and permalink for Subsection 11.3.2: Position of a Mass Spring Damper">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-satellite-quadcopter">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Attitude Dynamics of a Satellite or Quadcopter</span>
+</h3>
+<div class="para" id="subsec-satellite-quadcopter-2">For a satellite undergoing free 1-D rotational motion the dynamics are quite interesting from a controls perspective given the somewhat marginal stability of the satellite. The same can be said for a quadcopter undergoing slow rotational motion. In this case, it is assumed that the spacecraft or quadcopter rotates through the angle <span class="process-math">\(\theta\)</span> about its center of mass. The spacecraft/quadcopter has a moment of inertia <span class="process-math">\(J\)</span> and is subject to an external torque <span class="process-math">\(\tau\)</span> as shown in Figure <a href="sec-practical-systems.html#f-satellite" class="xref" data-knowl="./knowl/xref/f-satellite.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 11.3.3">Figure 11.3.3</a>. In this case ,the torque is created by reaction control thrusters or propellors with a force <span class="process-math">\(F\)</span> at a distance <span class="process-math">\(d\)</span> from the center of mass. Note that in the case of the satellite there are 4 thrusters but only 2 operate at a time. If the top right and bottom left thrusters fire the torque is negative and if the top left and bottom right thrusters fire the torque is positive. In this case we let <span class="process-math">\(F_1=F_2=F_3=F_4=F\text{.}\)</span> If <span class="process-math">\(F&gt;0\)</span> it means it is a positive torque and <span class="process-math">\(F_1=F_4\)</span> are non-zero while <span class="process-math">\(F_2=F_3=0\text{.}\)</span> If <span class="process-math">\(F&lt;0\)</span> the torque is negative and <span class="process-math">\(F_1=F_4=0\)</span> while <span class="process-math">\(F_2=F_3\)</span> are non-zero. For a quadcopter the 4 propellors are offset by a nominal thrust to keep the quadcopter aloft. Furthermore, since the quadcopter is symmetric about the rotational axis it can be assumed that the quadcopter only has 2 propellors <span class="process-math">\(F_3\)</span> and <span class="process-math">\(F_4\text{.}\)</span> The torque is created by increasing the thrust on one side and decreasing it on the other side. In this case <span class="process-math">\(F_3=F_H+\Delta F\text{,}\)</span> <span class="process-math">\(F_4=F_H-\Delta F\)</span> where <span class="process-math">\(F_H\)</span> is the thrust required for hovering. Adding the effect of <span class="process-math">\(F_3\)</span> and <span class="process-math">\(F_4\)</span> yields <span class="process-math">\(2\Delta F\)</span> which can just be replaced with <span class="process-math">\(2F\)</span> and the formulation can continue.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-satellite-quadcopter-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="f-satellite"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/satellite.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Satellite with reaction control thrusters<div class="autopermalink" data-description="Figure 11.3.3"><a href="#f-satellite" title="Copy heading and permalink for Figure 11.3.3" aria-label="Copy heading and permalink for Figure 11.3.3">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-satellite-quadcopter-4">The equation of motion for the satellite can be derived from Newton’s second law for rotational motion, which states that the sum of torques acting on a body equals the moment of inertia times its angular acceleration as derived in <a href="s_rotational_motion.html" class="internal" title="Section 4.2: Rotational Dynamics">Section 4.2</a>. The full equation is repeated here for clarity.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-satellite-quadcopter-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/f-satellite.html ./knowl/xref/s_rotational_motion.html ./knowl/xref/s_stability.html ./knowl/xref/e-second_order.html" id="eq-sat-torque-full">
+\begin{equation}
+\vec{M}_C = \dot{{\bf I}}\vec{\omega}_{B/I} + {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} + {\bf S}(\vec{\omega}_{B/I}){\bf I}_C\vec{\omega}_{B/I}\tag{11.3.7}
+\end{equation}
+</div>
+<div class="para" id="subsec-satellite-quadcopter-6">In this section however the inertia is constant, thus the entire first term goes to zero, and since the motion of the satellite is planar the third term is also zero. Thus, the equation reduces to<div class="autopermalink" data-description="Paragraph"><a href="#subsec-satellite-quadcopter-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/f-satellite.html ./knowl/xref/s_rotational_motion.html ./knowl/xref/s_stability.html ./knowl/xref/e-second_order.html" id="eq-sat-torque-reduced">
+\begin{equation}
+\vec{M}_C = {\bf I}_C\frac{{}^Bd (\vec{\omega}_{B/I})}{dt} = J \vec{\alpha}_{B/I} = J\ddot{\theta}\tag{11.3.8}
+\end{equation}
+</div>
+<div class="para" id="subsec-satellite-quadcopter-8">where <span class="process-math">\(\vec{\alpha}_{B/I}\)</span> is the angular acceleration of the satellite. The torque generated by the thrusters is given as <span class="process-math">\(\vec{M}_C = \tau = 2Fd\text{.}\)</span> The multiplication by 2 is due to 2 thrusters firing at a time or in the case of the quadcopter it is due to the symmetry of the rotation axis as explained above. The final equations of motion for the satellite/quadcopter are then given as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-satellite-quadcopter-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/f-satellite.html ./knowl/xref/s_rotational_motion.html ./knowl/xref/s_stability.html ./knowl/xref/e-second_order.html" id="eq-sat-eom">
+\begin{equation}
+\ddot{\theta} = \frac{2Fd}{J}\tag{11.3.9}
+\end{equation}
+</div>
+<div class="para" id="subsec-satellite-quadcopter-10">This is a classic second order system where <span class="process-math">\(\omega_n = 0\)</span> and <span class="process-math">\(\zeta = 0\text{.}\)</span> This means that the system is marginally stable and will not return to equilibrium after a disturbance. Stability will be discussed in <a href="s_stability.html" class="internal" title="Chapter 14: Stability">Chapter 14</a>. Letting <span class="process-math">\(F=f\frac{J}{2d}\)</span> results in <span class="process-math">\(\ddot{\theta}=f\)</span> which is almost the same equation as equation <a href="sec-general-formulation.html#e-second_order" class="xref" data-knowl="./knowl/xref/e-second_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.2">(11.2.2)</a> but where the natural frequency and damping ratio are both zero.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-satellite-quadcopter-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.3: Attitude Dynamics of a Satellite or Quadcopter"><a href="#subsec-satellite-quadcopter" title="Copy heading and permalink for Subsection 11.3.3: Attitude Dynamics of a Satellite or Quadcopter" aria-label="Copy heading and permalink for Subsection 11.3.3: Attitude Dynamics of a Satellite or Quadcopter">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-aircraft-pitch">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Pitch Dynamics of an Aircraft</span>
+</h3>
+<div class="para" id="subsec-aircraft-pitch-2">For an aircraft we assume that the aircraft is symmetric about the longitudinal axis and that the aircraft is only pitching about its center of mass. The pitch dynamics of an aircraft are similar to a spring mass damper since there is a constant restoring moment given by <span class="process-math">\(C_{m\alpha}\)</span> due to the aerodynamic forces acting on the aircraft as well as a damping term <span class="process-math">\(C_{mq}\)</span> also created by aerodynamic forces. Using the aerodynamic equations given in Equation <a href="s-aerodynamics.html#e-LMN" class="xref" data-knowl="./knowl/xref/e-LMN.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.7">(8.4.7)</a>, the pitch dynamics of an aircraft are given as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-pitch-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-LMN.html ./knowl/xref/e-second_order.html" id="eq-aircraft-pitch-full">
+\begin{equation}
+I_{yy}\ddot{\theta} = \vec{M_C} = \frac{1}{2}\rho V^2 S \bar{c} (C_{m\alpha}\theta + C_{mq}\frac{\bar{c}}{2V}\dot{\theta} + C_{m\delta_e}\delta_e)\tag{11.3.10}
+\end{equation}
+</div>
+<div class="para" id="subsec-aircraft-pitch-4">Note that in this case we assume that <span class="process-math">\(\theta=\alpha\)</span> the angle of attack which is not necessarily true but for quick motion about the pitch axis this can be assumed to be true. Again the moment of inertia is <span class="process-math">\(I_{yy}\)</span> and the pitch angle is <span class="process-math">\(\theta\text{.}\)</span> The aerodynamic force is given by the dynamic pressure <span class="process-math">\(q = (1/2)\rho V^2\)</span> where <span class="process-math">\(\rho\)</span> is the density of air, <span class="process-math">\(V\)</span> is the velocity of the aircraft (assumed to be constant for pure pitching), <span class="process-math">\(S\)</span> is the reference area and <span class="process-math">\(\bar{c}\)</span> is the mean aerodynamic chord. The moment coefficients are <span class="process-math">\(C_{m\alpha}\)</span> which is the restoring moment coefficient, <span class="process-math">\(C_{mq}\)</span> which is the damping moment coefficient and <span class="process-math">\(C_{m\delta_e}\)</span> which is the control moment coefficient due to elevator deflection <span class="process-math">\(\delta_e\text{.}\)</span> Rearranging the equation into standard form yields<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-pitch-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-LMN.html ./knowl/xref/e-second_order.html" id="eq-aircraft-standard">
+\begin{equation}
+\ddot{\theta} + \left(-\frac{\rho V^2 S \bar{c}^2 C_{mq}}{4I_{yy} V}\right)\dot{\theta} + \left(-\frac{\rho V^2 S \bar{c} C_{m\alpha}}{2I_{yy}}\right)\theta = \frac{\rho V^2 S \bar{c} C_{m\delta_e}}{2I_{yy}}\delta_e\tag{11.3.11}
+\end{equation}
+</div>
+<div class="para" id="subsec-aircraft-pitch-6">which is in the standard form of second order systems with a natural frequency and damping ratio given as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-pitch-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-LMN.html ./knowl/xref/e-second_order.html" id="eq-aircraft-wn-zeta">
+\begin{equation}
+{\omega_n}^2 = -\frac{\rho V^2 S \bar{c} C_{m\alpha}}{2I_{yy}}, \quad \zeta = -\frac{\rho V^2 S \bar{c}^2 C_{mq}}{8I_{yy} V {\omega_n}}\tag{11.3.12}
+\end{equation}
+</div>
+<div class="para" id="subsec-aircraft-pitch-8">Note that <span class="process-math">\(C_{m\alpha}\)</span> and <span class="process-math">\(C_{mq}\)</span> are typically negative which makes both <span class="process-math">\(\omega_n\)</span> and <span class="process-math">\(\zeta\)</span> positive. However, in the case of the F-16 <span class="process-math">\(C_{m\alpha}\)</span> is actually negative. In this case the natural frequency squared becomes negative and the solution quite different. In The control term is the elevator deflection <span class="process-math">\(\delta_e\)</span> which means performing the final substitution below<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-pitch-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-LMN.html ./knowl/xref/e-second_order.html" id="eq-delta-e-sub">
+\begin{equation}
+\delta_e = f \frac{C_{m\alpha}}{C_{m\delta_e}}\tag{11.3.13}
+\end{equation}
+</div>
+<div class="para" id="subsec-aircraft-pitch-10">results in the same equation as equation <a href="sec-general-formulation.html#e-second_order" class="xref" data-knowl="./knowl/xref/e-second_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.2">(11.2.2)</a> provided you subsitute <span class="process-math">\(\theta\)</span> with the generalized q coordinate.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-pitch-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.4: Pitch Dynamics of an Aircraft"><a href="#subsec-aircraft-pitch" title="Copy heading and permalink for Subsection 11.3.4: Pitch Dynamics of an Aircraft" aria-label="Copy heading and permalink for Subsection 11.3.4: Pitch Dynamics of an Aircraft">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-rocket-pitch">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Pitch Dynamics of a Rocket</span>
+</h3>
+<div class="para" id="subsec-rocket-pitch-2">The pitch dynamic of a rocket are interesting in that the system is also marginally stable much like the satellite/quadcopter systems explained above. The difference of course is that the system is in the presence of the atmosphere and thus the aerodynamic forces create a damping effect which is proportional to the square of the velocity. This damping term is also nonlinear. However, in order to make the system linear it is assumed that the velocity is constant. For the sake of clarity the full equations of motion will be shown and then simplified to attain a simple linear form. First, the free body diagram of the rocket is shown in the Figure below.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="f-rocket"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/Rocket.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Rocket Pitch Dynamics Free Body Diagram<div class="autopermalink" data-description="Figure 11.3.4"><a href="#f-rocket" title="Copy heading and permalink for Figure 11.3.4" aria-label="Copy heading and permalink for Figure 11.3.4">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-rocket-pitch-4">Here thrust acts at an angle <span class="process-math">\(\beta\)</span> with respect to the centerline of the rocket with a thrust equal to <span class="process-math">\(T\text{.}\)</span> The length of the rocket is <span class="process-math">\(b\)</span> and thus the moment arm of the thrust vector is <span class="process-math">\(b/2\text{.}\)</span> The aerodynamic force <span class="process-math">\(D\)</span> acts at the center of pressure which is a distance <span class="process-math">\(c\)</span> from the center of mass. It is assumed that the rocket is constantly traveling upwards and thus the Drag force <span class="process-math">\(D\)</span> is always pointed down at a distance of <span class="process-math">\(a\)</span> from the center of mass. The moment of inertia of the rocket is <span class="process-math">\(J\)</span> and the pitch angle is <span class="process-math">\(\theta\text{.}\)</span> The equations of motion are similar to the quadcopter/satellite system undergoing 1-D rotational motion with a few subtle differences.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-rocket-q.html ./knowl/xref/e-aeroF.html" id="eq-rocket">
+\begin{equation}
+J\ddot{\theta} = \vec{M_C} = -D a \sin{\theta} + \frac{Tb}{2} \sin(\beta)\tag{11.3.14}
+\end{equation}
+</div>
+<div class="para" id="subsec-rocket-pitch-6">First you’ll see that the aerodynamic force which is restoring is nonlinear due to the <span class="process-math">\(\sin{\theta}\)</span> term. Furthermore, the thrust force <span class="process-math">\(T\)</span> acts through the angle <span class="process-math">\(\beta\)</span> leading to a problem where the thrust force <span class="process-math">\(T\)</span> could change in addition to the angle <span class="process-math">\(\beta\text{.}\)</span> Two control terms would represent a multi-input system which requires the use of optimization to determine the best course of action. Since the focus of this chapter is on Single-Input-Single-Ouput (SISO) systems, the force <span class="process-math">\(T\)</span> will be represented as a constant. Thus, the control term for this system will actually be the angle <span class="process-math">\(\beta\text{.}\)</span> However, note that the control term is also nonlinear. Both <span class="process-math">\(\sin()\)</span> terms can be linearized for small angles such that <span class="process-math">\(\sin{\theta} \approx \theta\)</span> and <span class="process-math">\(\sin{\beta} \approx \beta\text{.}\)</span> Note that <span class="process-math">\(\theta=0\)</span> is the equilibrium position in this case. The equation of motion then becomes<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-rocket-q.html ./knowl/xref/e-aeroF.html" id="eq-rocket-linear1">
+\begin{equation}
+J\ddot{\theta} + D a \theta = T \frac{b}{2} \beta\tag{11.3.15}
+\end{equation}
+</div>
+<div class="para" id="subsec-rocket-pitch-8">Which is linear...almost. The second issue in this equation is that the aerodynamic force is a function of velocity squared. The drag force is given in Equations <a href="s-aerodynamics.html#e-rocket-q" class="xref" data-knowl="./knowl/xref/e-rocket-q.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.8">(8.4.8)</a> and <a href="s-aerodynamics.html#e-aeroF" class="xref" data-knowl="./knowl/xref/e-aeroF.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.9">(8.4.9)</a>. As stated above it is assumed that the velocity is constant and thus <span class="process-math">\(D\)</span> is constant as well. The final equation of motion for the rocket pitch dynamics is then given as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-rocket-q.html ./knowl/xref/e-aeroF.html" id="eq-rocket-linear2">
+\begin{equation}
+\ddot{\theta} + \frac{\pi}{J8}\rho V^2 d^2 a \theta = \frac{Tb}{2J} \beta\tag{11.3.16}
+\end{equation}
+</div>
+<div class="para" id="subsec-rocket-pitch-10">If <span class="process-math">\((\pi/(J8))\rho V^2 d^2 a = {\omega_n}^2\text{,}\)</span> <span class="process-math">\(Tb/(2J) \beta = \kappa {\omega_n}^2 f\)</span> and <span class="process-math">\(\theta = q\text{,}\)</span> the equations of motion are identical to the general form of second order systems except that <span class="process-math">\(\kappa\)</span> is a gain applied to the forcing function.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-rocket-q.html ./knowl/xref/e-aeroF.html" id="eq-rocket-final">
+\begin{equation}
+\ddot{q} + {\omega_n}^2 q = \kappa {\omega_n}^2 f\tag{11.3.17}
+\end{equation}
+</div>
+<div class="para" id="subsec-rocket-pitch-12">In addition, it is clear that the damping ratio <span class="process-math">\(\zeta\)</span> is zero.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-rocket-pitch-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.5: Pitch Dynamics of a Rocket"><a href="#subsec-rocket-pitch" title="Copy heading and permalink for Subsection 11.3.5: Pitch Dynamics of a Rocket" aria-label="Copy heading and permalink for Subsection 11.3.5: Pitch Dynamics of a Rocket">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-pendulum-pitch">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Pitch Dynamics of a Pendulum</span>
+</h3>
+<div class="para" id="subsec-pendulum-pitch-2">The dynamics of a pendulum are interesting for two reasons. First, the system is non-linear in the angle <span class="process-math">\(\theta\)</span> and the system has an infinite number of equilibrium points. Half of the equilibrium points are also unstable. For the sake of this problem though we will restrict the system to be between <span class="process-math">\(-\pi\)</span> and <span class="process-math">\(\pi\)</span> which means the system will only have 3 equilibrium points. The first is <span class="process-math">\(\theta=0\)</span> and the other two are <span class="process-math">\(\theta=-\pi\)</span> and <span class="process-math">\(\theta=\pi\text{.}\)</span> Obviously the second two equilibrium points are the same. To formulate the dynamics we start with the figure below<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="f-pendulum"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/pendulum.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Pendulum Free Body Diagram<div class="autopermalink" data-description="Figure 11.3.5"><a href="#f-pendulum" title="Copy heading and permalink for Figure 11.3.5" aria-label="Copy heading and permalink for Figure 11.3.5">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-pendulum-pitch-4">The pendulum consists of a mass <span class="process-math">\(m\)</span> attached to a rigid, massless rod of length <span class="process-math">\(L\text{.}\)</span> The pendulum swings about a pivot point under the influence of gravity, which exerts a downward force <span class="process-math">\(mg\)</span> on the mass. An external torque <span class="process-math">\(\tau\)</span> acts at the pivot point itself. The angle <span class="process-math">\(\theta\)</span> represents the angular displacement of the pendulum from the vertical equilibrium position. The equation of motion for the pendulum can be derived just as before with the sum of torques acting on a body equaling the moment of inertia times its angular acceleration. The moment of inertia <span class="process-math">\(J\)</span> for a point mass at a distance <span class="process-math">\(L\)</span> from the pivot is given by <span class="process-math">\(J = mL^2\text{.}\)</span> The torque generated by the gravitational force is <span class="process-math">\(\tau_g = -mgL \sin{\theta}\text{,}\)</span> where the negative sign indicates that gravity acts to restore the pendulum to its equilibrium position. Thus, the equation of motion is given as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum">
+\begin{equation}
+J\ddot{\theta} = \vec{M_C} = -mgL \sin{\theta} + \tau\tag{11.3.18}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-6">Rearranging and substituting the moment of inertia yields<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-rearranged">
+\begin{equation}
+\ddot{\theta} = \frac{\tau}{mL} - \frac{g}{L} \sin{\theta}\tag{11.3.19}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-8">This equation is close to the second order equations where the damping ratio is zero but it is nonlinear due to the <span class="process-math">\(\sin{\theta}\)</span> and <span class="process-math">\(\cos{\theta}\)</span> terms. In this case the system can be linearized about the equilibrium point <span class="process-math">\(\theta=0\)</span> but can also be linearized about the equilibrium point <span class="process-math">\(\theta=\pi\)</span> if the pendulum is inverted. In order to linearize the equations of motion you need to use equation <a href="sec-linearization.html#e-linearize" class="xref" data-knowl="./knowl/xref/e-linearize.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.1.2">(11.1.2)</a>. Note that in this case the matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are expanded out instead of using matrix notation.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-expanded">
+\begin{equation}
+\Delta \ddot{\theta} = \frac{\partial f}{\partial \dot{\theta}} \Delta \dot{\theta} + \frac{\partial f}{\partial \theta}\Delta \theta + \frac{\partial g}{\partial \tau} \Delta \tau \tag{11.3.20}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-10">where <span class="process-math">\(f = -(g/L) \sin{\theta}\)</span> and <span class="process-math">\(g = \tau/(mL)\text{.}\)</span> Calculating the partial derivative and plugging into the equation above yields<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-partials">
+\begin{equation}
+\Delta \ddot{\theta} = 0 -\frac{g}{L}\cos(\theta_e)\Delta \theta + \frac{1}{mL} \Delta \tau\tag{11.3.21}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-12">Rearranging and dropping the <span class="process-math">\(\Delta\)</span> terms yields<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-linearized">
+\begin{equation}
+\ddot{\theta} + \frac{g}{L}\cos(\theta_e)\theta = \frac{1}{mL} \tau\tag{11.3.22}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-14">This will now yield two separate and quite different equations depending on the equilibrium point chosen. First, if the equilibrium point is <span class="process-math">\(\theta_e=0\)</span> the equation becomes<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-stable">
+\begin{equation}
+\ddot{\theta} + \frac{g}{L}\theta = \frac{1}{mL} \tau\tag{11.3.23}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-16">which is in the standard form of second order systems where <span class="process-math">\({\omega_n}^2 = g/L\)</span> and <span class="process-math">\(\zeta = 0\text{.}\)</span> The control term is <span class="process-math">\(\tau = fmg\)</span> which results in the same equation as <a href="sec-general-formulation.html#e-second_order" class="xref" data-knowl="./knowl/xref/e-second_order.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 11.2.2">(11.2.2)</a>. If <span class="process-math">\(\theta_e=\pi\)</span> the equation becomes<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/e-linearize.html ./knowl/xref/e-second_order.html ./knowl/xref/s_stability.html" id="eq-pendulum-unstable">
+\begin{equation}
+\ddot{\theta} - \frac{g}{L}\theta = \frac{1}{mL} \tau\tag{11.3.24}
+\end{equation}
+</div>
+<div class="para" id="subsec-pendulum-pitch-18">which is again in the standard form of second order systems except that the constant term is negative which means the system is actually unstable. More on this system will be discussed in <a href="s_stability.html" class="internal" title="Chapter 14: Stability">Chapter 14</a>. Furthermore, the solution is also quite different and will be explored in the sections that follow.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-pendulum-pitch-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 11.3.6: Pitch Dynamics of a Pendulum"><a href="#subsec-pendulum-pitch" title="Copy heading and permalink for Subsection 11.3.6: Pitch Dynamics of a Pendulum" aria-label="Copy heading and permalink for Subsection 11.3.6: Pitch Dynamics of a Pendulum">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 11.3: Equation of Motion Formulation for Practical Systems"><a href="#sec-practical-systems" title="Copy heading and permalink for Section 11.3: Equation of Motion Formulation for Practical Systems" aria-label="Copy heading and permalink for Section 11.3: Equation of Motion Formulation for Practical Systems">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-general-formulation.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-solutions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

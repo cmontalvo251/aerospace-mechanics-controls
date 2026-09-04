@@ -19,64 +19,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
-<script>
-var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
-window.MathJax = {
-  "tex": {
-    "inlineMath": [
-      [
-        "\\(",
-        "\\)"
-      ]
-    ],
-    "tags": "none",
-    "tagSide": "right",
-    "tagIndent": ".8em",
-    "packages": {
-      "[+]": [
-        "base",
-        "ams",
-        "amscd",
-        "color",
-        "newcommand",
-        "knowl"
-      ]
-    }
-  },
-  "options": {
-    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
-    "processHtmlClass": "process-math"
-  },
-  "chtml": {
-    "scale": 0.98,
-    "mtextInheritFont": true
-  },
-  "loader": {
-    "load": [
-      "input/asciimath",
-      "[tex]/amscd",
-      "[tex]/color",
-      "[tex]/newcommand",
-      "[pretext]/mathjaxknowl3.js"
-    ],
-    "paths": {
-      "pretext": "_static/pretext/js"
-    }
-  },
-  "startup": {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-  }
-};
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<script type="module">import { startMathJax } from './_static/pretext/js/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta property="book:title" content="Aerospace Mechanics and Controls">
-<meta property="book:author" content="Carlos Montalvo">
+<meta name="twitter:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta property="og:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta property="book:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
 <script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
@@ -99,15 +57,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.2.5';
+eBookConfig.runestone_version = '8.2.10';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.18d8728f6d56e11d.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.b388362b5f43738a.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8086b62682b271d1.css">
+<script src="_static/prefix-runtime.e3f9706509fcf6f7.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.c5ba0ffa5f963084.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.efe427683fc41f98.css">
 <script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
@@ -136,7 +94,7 @@ eBookConfig.enable_chatcodes =  false;
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth1 focused" data-preexpanded-levels="0" data-max-levels="1"><ul class="structural toc-item-list contains-active">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-frontmatter">
 <div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural toc-item-list">
@@ -146,89 +104,664 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="conclusions.html" class="internal"><span class="codenumber">1</span> <span class="title">Conclusions</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="acknowledgements.html" class="internal"><span class="codenumber">2</span> <span class="title">Acknowledgements</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="introduction.html" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="nomenclature.html" class="internal"><span class="codenumber">2</span> <span class="title">Nomenclature</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="particle-dynamics.html" class="internal"><span class="codenumber">3</span> <span class="title">Particle Dynamics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-systems-of-particles.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Systems of Particles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-rotational-dynamics.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Rotational Dynamics for Systems of Particles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="rigid-bodies.html" class="internal"><span class="codenumber">4</span> <span class="title">Rigid Bodies</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-translational-dynamics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Translational Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_rotational_motion.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Rotational Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-inertia-estimation.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Inertia Estimation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-aerospace-convention.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Aerospace Convention</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="attitude-parameterization.html" class="internal"><span class="codenumber">5</span> <span class="title">Attitude Parameterization</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s_Euler_Angles.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Euler Angles</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-321-sequence" class="internal"><span class="codenumber">5.1.1</span> <span class="title">3-2-1 Sequence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-euler-derivatives" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-screw-rotation" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Screw Rotation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_Euler_Angles.html#subsec-transformation-matrix-to-euler" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Transformation Matrix to Euler Angles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s_quat.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Quaternions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-general-quaternion" class="internal"><span class="codenumber">5.2.1</span> <span class="title">The General Quaternion</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-transformations" class="internal"><span class="codenumber">5.2.2</span> <span class="title">Quaternion Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-euler-to-quaternion" class="internal"><span class="codenumber">5.2.3</span> <span class="title">Euler to Quaternion Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-operations" class="internal"><span class="codenumber">5.2.4</span> <span class="title">Quaternion Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s_quat.html#subsec-quaternion-derivatives" class="internal"><span class="codenumber">5.2.5</span> <span class="title">Quaternion Derivatives</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="equations-of-motion.html" class="internal"><span class="codenumber">6</span> <span class="title">Equations of Motion</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="translational-eoms.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Translational Equations of Motion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="reaction-wheels.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Reaction Wheels</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="attitude-eoms.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Attitude Equations of Motion</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="external-models.html" class="internal"><span class="codenumber">7</span> <span class="title">External Models</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_llh_to_cartesian.html" class="internal"><span class="codenumber">7.1</span> <span class="title">GPS Coordinates to Cartesian Coordinates (Flat Earth Approximation)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-density-model.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Density Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_magnetic_field.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Magnetic Field Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-gravitational-models.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Gravitational Models</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="external-forces.html" class="internal"><span class="codenumber">8</span> <span class="title">External Forces and Moments</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-solar-radiation.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Solar Radiation Pressure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-propulsion-model.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Propulsion Model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-magnetorquer-model.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Magnetorquer Model</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="s-aerodynamics.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Aerodynamics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-aircraft-aero" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Aircraft Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-projectile-aero" class="internal"><span class="codenumber">8.4.2</span> <span class="title">Projectile Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-quadcopter-aero" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Quadcopter Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="s-aerodynamics.html#subsec-spacecraft-aero" class="internal"><span class="codenumber">8.4.4</span> <span class="title">Spacecraft Aerodynamics</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="planetary-positions.html" class="internal"><span class="codenumber">9</span> <span class="title">Planetary Positions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-julian-day.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Julian Day</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-orbital-elements.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Orbital Elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sun-centered-inertial-coordinates.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Sun Centered Inertial Coordinates</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="numerical-integration.html" class="internal"><span class="codenumber">10</span> <span class="title">Numerical Integration Techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-eulers-method.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Euler’s Method</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-runge-kutta-4.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Runge-Kutta-4</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-discrete-dynamics.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Discrete Dynamics</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="lti.html" class="internal"><span class="codenumber">11</span> <span class="title">Linear Time Invariant Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-linearization.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Linearization of Non-Linear Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-general-formulation.html" class="internal"><span class="codenumber">11.2</span> <span class="title">General Formulation of Differential Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-general-formulation.html#subsec-first-order-systems" class="internal"><span class="codenumber">11.2.1</span> <span class="title">First Order Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-general-formulation.html#subsec-second-order-systems" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Second Order Systems</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-practical-systems.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Equation of Motion Formulation for Practical Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-car-position-velocity" class="internal"><span class="codenumber">11.3.1</span> <span class="title">Position and Velocity of a Car</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-mass-spring-damper" class="internal"><span class="codenumber">11.3.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-satellite-quadcopter" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Attitude Dynamics of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-aircraft-pitch" class="internal"><span class="codenumber">11.3.4</span> <span class="title">Pitch Dynamics of an Aircraft</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-rocket-pitch" class="internal"><span class="codenumber">11.3.5</span> <span class="title">Pitch Dynamics of a Rocket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-practical-systems.html#subsec-pendulum-pitch" class="internal"><span class="codenumber">11.3.6</span> <span class="title">Pitch Dynamics of a Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solutions.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Characteristic and Particular Solutions to Differential Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-sol-first-order" class="internal"><span class="codenumber">11.4.1</span> <span class="title">General First Order System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-sol-second-order" class="internal"><span class="codenumber">11.4.2</span> <span class="title">General Second Order Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-special-wn-zero" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Special Case of Natural Frequency Equal to Zero</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solutions.html#subsec-special-wn-zeta-zero" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Special Case of Natural Frequency and Damping Ratio Equal to Zero</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="laplace-solutions.html" class="internal"><span class="codenumber">12</span> <span class="title">Laplace Solutions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-first-order.html" class="internal"><span class="codenumber">12.1</span> <span class="title">General First Order Systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-second-order.html" class="internal"><span class="codenumber">12.2</span> <span class="title">General Second Order Systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-wn-zero.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Special Case of Natural Frequency Equal to Zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="subsec-laplace-wn-zeta-zero.html" class="internal"><span class="codenumber">12.4</span> <span class="title">Special Case of Natural Frequency and Damping Ratio Equal to Zero</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="open-loop-response.html" class="internal"><span class="codenumber">13</span> <span class="title">Open Loop Time Response</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-velocity-car.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Position and Velocity Response of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-mass-spring-damper.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-attitude-satellite-quadcopter.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Attitude of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-response-aircraft.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Pitch Response of an Aircraft</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-response-rocket.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Pitch Response of a Rocket</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-angle-inverted-pendulum.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Angle of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_stability.html" class="internal"><span class="codenumber">14</span> <span class="title">Stability</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-and-velocity-of-a-car.html" class="internal"><span class="codenumber">14.1</span> <span class="title">Position and Velocity of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-of-a-mass-spring-damper.html" class="internal"><span class="codenumber">14.2</span> <span class="title">Position of a Mass Spring Damper</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-attitude-dynamics-of-a-satellite-or-quadcopter.html" class="internal"><span class="codenumber">14.3</span> <span class="title">Attitude Dynamics of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-dynamics-of-an-aircraft.html" class="internal"><span class="codenumber">14.4</span> <span class="title">Pitch Dynamics of an Aircraft</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-pitch-dynamics-of-a-rocket.html" class="internal"><span class="codenumber">14.5</span> <span class="title">Pitch Dynamics of a Rocket</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-angle-of-an-inverted-pendulum.html" class="internal"><span class="codenumber">14.6</span> <span class="title">Angle of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-aerospace-state-estimation.html" class="internal"><span class="codenumber">15</span> <span class="title">Aerospace State Estimation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sensor-measurement.html" class="internal"><span class="codenumber">15.1</span> <span class="title">Sensor Measurement</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-linear-least-squares.html" class="internal"><span class="codenumber">15.2</span> <span class="title">Linear Least Squares</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-weighted-least-squares.html" class="internal"><span class="codenumber">15.3</span> <span class="title">Weighted Least Squares</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-a-priori-knowledge-of-the-state-vector.html" class="internal"><span class="codenumber">15.4</span> <span class="title">A Priori Knowledge of the State Vector</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-complimentary-filter.html" class="internal"><span class="codenumber">15.5</span> <span class="title">Complimentary Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-sequential-linear-estimator.html" class="internal"><span class="codenumber">15.6</span> <span class="title">Sequential Linear Estimator</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuous-time-complimentary-filter.html" class="internal"><span class="codenumber">15.7</span> <span class="title">The Continuous Time Complimentary Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-continuous-discrete-kalman-filter.html" class="internal"><span class="codenumber">15.8</span> <span class="title">The Continuous Discrete Kalman Filter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-kalman-filter-for-spacecraft-dynamics.html" class="internal"><span class="codenumber">15.9</span> <span class="title">Kalman Filter for Spacecraft Dynamics</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-extended-state-kalman-filter.html" class="internal"><span class="codenumber">15.10</span> <span class="title">Extended State Kalman Filter</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html" class="internal"><span class="codenumber">15.11</span> <span class="title">Euler Angle Estimation via IMU</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html#subsec-direct-measurement-of-roll-and-pitch" class="internal"><span class="codenumber">15.11.1</span> <span class="title">Direct Measurement of Roll and Pitch</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-euler-angle-estimation-via-imu.html#subsec-direct-measurement-of-yaw" class="internal"><span class="codenumber">15.11.2</span> <span class="title">Direct Measurement of Yaw</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-low-earth-orbit-attitude-estimation.html" class="internal"><span class="codenumber">15.12</span> <span class="title">Low Earth Orbit Attitude Estimation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-spacecraft-position-estimation-using-a-ground-station-network-gsn.html" class="internal"><span class="codenumber">15.13</span> <span class="title">Spacecraft Position Estimation using a Ground Station Network (GSN)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-heading-angle-and-speed-estimation-using-gps.html" class="internal"><span class="codenumber">15.14</span> <span class="title">Heading Angle and Speed Estimation using GPS</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_control_systems.html" class="internal"><span class="codenumber">16</span> <span class="title">Linear Feedback Control Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-controllability.html" class="internal"><span class="codenumber">16.1</span> <span class="title">Controllability</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bang-bang-control-satellite.html" class="internal"><span class="codenumber">16.2</span> <span class="title">Bang Bang Control of a Satellite</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-control-satellite-quadcopter.html" class="internal"><span class="codenumber">16.3</span> <span class="title">Proportional Control of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-control-satellite-quadcopter.html" class="internal"><span class="codenumber">16.4</span> <span class="title">Proportional Derivative Control of a Satellite or Quadcopter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-control-car.html" class="internal"><span class="codenumber">16.5</span> <span class="title">Proportional Control of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-integral-control-car.html" class="internal"><span class="codenumber">16.6</span> <span class="title">Proportional Integral Control of a Car</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-integral-control-spring-mass-damper.html" class="internal"><span class="codenumber">16.7</span> <span class="title">Proportional Derivative Integral Control of a Spring Mass Damper System</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-proportional-derivative-control-inverted-pendulum.html" class="internal"><span class="codenumber">16.8</span> <span class="title">Proportional Derivative Control of an Inverted Pendulum</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_nonlinear_controls.html" class="internal"><span class="codenumber">17</span> <span class="title">Nonlinear Control Techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_phase_portraits.html" class="internal"><span class="codenumber">17.1</span> <span class="title">Phase Portraits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_lyapunov_control.html" class="internal"><span class="codenumber">17.2</span> <span class="title">Lyapunov Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_sliding_mode_control.html" class="internal"><span class="codenumber">17.3</span> <span class="title">Sliding Mode Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_adaptive_control.html" class="internal"><span class="codenumber">17.4</span> <span class="title">Adaptive Control</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="conclusions.html" class="internal"><span class="codenumber">18</span> <span class="title">Conclusions</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="acknowledgements.html" class="internal"><span class="codenumber">19</span> <span class="title">Acknowledgements</span></a></div></li>
 <li class="toc-item toc-backmatter contains-active">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
 <ul class="structural toc-item-list contains-active"><li class="toc-item toc-references active"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">References</span></a></div></li></ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="references" id="backmatter-1"><h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="references" id="backmatter-1">
+<h2 class="heading hide-type">
 <span class="type">References</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">References</span>
 </h2>
 <article class="bib" id="copilot"><div class="bibitem">[1]</div>
-<div class="bibentry"><div class="para" id="copilot-1">GitHub. GitHub Copilot. https://copilot.github.com/, 2021. Accessed on December 5, 2025.<div class="autopermalink" data-description="Paragraph"><a href="#copilot-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 1"><a href="#copilot" title="Copy heading and permalink for Bibliographic Entry 1" aria-label="Copy heading and permalink for Bibliographic Entry 1">🔗</a></div></article><article class="bib" id="gemini"><div class="bibitem">[2]</div>
-<div class="bibentry"><div class="para" id="gemini-1">Google DeepMind. Gemini: Googles multimodal ai model. https://gemini.google.com/, 2023. Accessed on December 5, 2025.<div class="autopermalink" data-description="Paragraph"><a href="#gemini-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 2"><a href="#gemini" title="Copy heading and permalink for Bibliographic Entry 2" aria-label="Copy heading and permalink for Bibliographic Entry 2">🔗</a></div></article><article class="bib" id="vandv"><div class="bibitem">[3]</div>
-<div class="bibentry"><div class="para" id="vandv-1">Wikipedia. V-model. https://en.wikipedia.org/wiki/V-Model. Accessed December 21st, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#vandv-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 3"><a href="#vandv" title="Copy heading and permalink for Bibliographic Entry 3" aria-label="Copy heading and permalink for Bibliographic Entry 3">🔗</a></div></article><article class="bib" id="drawio"><div class="bibitem">[4]</div>
-<div class="bibentry"><div class="para" id="drawio-1">Draw.io. JGraph Ltd, 2026, www.drawio.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#drawio-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 4"><a href="#drawio" title="Copy heading and permalink for Bibliographic Entry 4" aria-label="Copy heading and permalink for Bibliographic Entry 4">🔗</a></div></article><article class="bib" id="blender"><div class="bibitem">[5]</div>
-<div class="bibentry"><div class="para" id="blender-1">Blender. Blender Foundation, 2026, www.blender.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#blender-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 5"><a href="#blender" title="Copy heading and permalink for Bibliographic Entry 5" aria-label="Copy heading and permalink for Bibliographic Entry 5">🔗</a></div></article><article class="bib" id="fritzing"><div class="bibitem">[6]</div>
-<div class="bibentry"><div class="para" id="fritzing-1">Fritzing. Fritzing, 2026, fritzing.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#fritzing-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 6"><a href="#fritzing" title="Copy heading and permalink for Bibliographic Entry 6" aria-label="Copy heading and permalink for Bibliographic Entry 6">🔗</a></div></article><article class="bib" id="solidworks"><div class="bibitem">[7]</div>
-<div class="bibentry"><div class="para" id="solidworks-1">SolidWorks. Dassault Systèmes, 2026, www.solidworks.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#solidworks-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 7"><a href="#solidworks" title="Copy heading and permalink for Bibliographic Entry 7" aria-label="Copy heading and permalink for Bibliographic Entry 7">🔗</a></div></article><article class="bib" id="autodesk"><div class="bibitem">[8]</div>
-<div class="bibentry"><div class="para" id="autodesk-1">Autodesk. Autodesk, 2026, www.autodesk.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#autodesk-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 8"><a href="#autodesk" title="Copy heading and permalink for Bibliographic Entry 8" aria-label="Copy heading and permalink for Bibliographic Entry 8">🔗</a></div></article><article class="bib" id="cirkit"><div class="bibitem">[9]</div>
-<div class="bibentry"><div class="para" id="cirkit-1">Cirkit Designer. Cirkit, 2026, https://app.cirkitdesigner.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#cirkit-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 9"><a href="#cirkit" title="Copy heading and permalink for Bibliographic Entry 9" aria-label="Copy heading and permalink for Bibliographic Entry 9">🔗</a></div></article><article class="bib" id="inkscape"><div class="bibitem">[10]</div>
-<div class="bibentry"><div class="para" id="inkscape-1">Inkscape. Inkscape, 2026, www.inkscape.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#inkscape-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 10"><a href="#inkscape" title="Copy heading and permalink for Bibliographic Entry 10" aria-label="Copy heading and permalink for Bibliographic Entry 10">🔗</a></div></article><article class="bib" id="CircuitPython"><div class="bibitem">[11]</div>
-<div class="bibentry"><div class="para" id="CircuitPython-1">CircuitPython. https://circuitpython.org/, 2021. Accessed: 12-09-2021.<div class="autopermalink" data-description="Paragraph"><a href="#CircuitPython-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 11"><a href="#CircuitPython" title="Copy heading and permalink for Bibliographic Entry 11" aria-label="Copy heading and permalink for Bibliographic Entry 11">🔗</a></div></article><article class="bib" id="Gitbook"><div class="bibitem">[12]</div>
-<div class="bibentry"><div class="para" id="Gitbook-1">Carlos Montalvo, Lisa Schibelius, and Marine Leabeater. Project Based Engineering Instrumentation with CircuitPython. Github, 2023. https://cmontalvo251.github.io/project-based-instrumentation/.<div class="autopermalink" data-description="Paragraph"><a href="#Gitbook-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 12"><a href="#Gitbook" title="Copy heading and permalink for Bibliographic Entry 12" aria-label="Copy heading and permalink for Bibliographic Entry 12">🔗</a></div></article><article class="bib" id="Adafruit"><div class="bibitem">[13]</div>
-<div class="bibentry"><div class="para" id="Adafruit-1">Adafruit. Adafruit learn, 2021. Adafruit https://learn.adafruit.com/.<div class="autopermalink" data-description="Paragraph"><a href="#Adafruit-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 13"><a href="#Adafruit" title="Copy heading and permalink for Bibliographic Entry 13" aria-label="Copy heading and permalink for Bibliographic Entry 13">🔗</a></div></article><article class="bib" id="Github"><div class="bibitem">[14]</div>
-<div class="bibentry"><div class="para" id="Github-1">Carlos Montalvo. Facility for aerial systems and technology github repository. cmontalvo251, 2022. https://github.com/cmontalvo251<div class="autopermalink" data-description="Paragraph"><a href="#Github-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 14"><a href="#Github" title="Copy heading and permalink for Bibliographic Entry 14" aria-label="Copy heading and permalink for Bibliographic Entry 14">🔗</a></div></article><article class="bib" id="AdafruitMAIN"><div class="bibitem">[15]</div>
-<div class="bibentry"><div class="para" id="AdafruitMAIN-1">Adafruit. Adafruit, 2023. Adafruit https://adafruit.com/.<div class="autopermalink" data-description="Paragraph"><a href="#AdafruitMAIN-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 15"><a href="#AdafruitMAIN" title="Copy heading and permalink for Bibliographic Entry 15" aria-label="Copy heading and permalink for Bibliographic Entry 15">🔗</a></div></article><article class="bib" id="Arduino"><div class="bibitem">[16]</div>
-<div class="bibentry"><div class="para" id="Arduino-1">Arduino. Arduino, 2023. https://www.arduino.cc/.<div class="autopermalink" data-description="Paragraph"><a href="#Arduino-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 16"><a href="#Arduino" title="Copy heading and permalink for Bibliographic Entry 16" aria-label="Copy heading and permalink for Bibliographic Entry 16">🔗</a></div></article><article class="bib" id="youtube"><div class="bibitem">[17]</div>
-<div class="bibentry"><div class="para" id="youtube-1">Montalvo, Carlos. YouTube, 2026, www.youtube.com/@CarlosMontalvo251.<div class="autopermalink" data-description="Paragraph"><a href="#youtube-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 17"><a href="#youtube" title="Copy heading and permalink for Bibliographic Entry 17" aria-label="Copy heading and permalink for Bibliographic Entry 17">🔗</a></div></article><article class="bib" id="python"><div class="bibitem">[18]</div>
-<div class="bibentry"><div class="para" id="python-1">Python Software Foundation. Python, 2026. https://www.python.org/.<div class="autopermalink" data-description="Paragraph"><a href="#python-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 18"><a href="#python" title="Copy heading and permalink for Bibliographic Entry 18" aria-label="Copy heading and permalink for Bibliographic Entry 18">🔗</a></div></article><article class="bib" id="thonny"><div class="bibitem">[19]</div>
-<div class="bibentry"><div class="para" id="thonny-1">Aasumets, Aivar. Thonny: Python IDE for Beginners. 2026, thonny.org/.<div class="autopermalink" data-description="Paragraph"><a href="#thonny-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 19"><a href="#thonny" title="Copy heading and permalink for Bibliographic Entry 19" aria-label="Copy heading and permalink for Bibliographic Entry 19">🔗</a></div></article><article class="bib" id="spyder"><div class="bibitem">[20]</div>
-<div class="bibentry"><div class="para" id="spyder-1">Spyder: The Scientific Python Development Environment. Spyder Project Contributors, 2026, www.spyder-ide.org/.<div class="autopermalink" data-description="Paragraph"><a href="#spyder-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 20"><a href="#spyder" title="Copy heading and permalink for Bibliographic Entry 20" aria-label="Copy heading and permalink for Bibliographic Entry 20">🔗</a></div></article><article class="bib" id="colab"><div class="bibitem">[21]</div>
-<div class="bibentry"><div class="para" id="colab-1">Google Colaboratory. Google, 2026. https://colab.research.google.com/.<div class="autopermalink" data-description="Paragraph"><a href="#colab-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 21"><a href="#colab" title="Copy heading and permalink for Bibliographic Entry 21" aria-label="Copy heading and permalink for Bibliographic Entry 21">🔗</a></div></article><article class="bib" id="mu"><div class="bibitem">[22]</div>
-<div class="bibentry"><div class="para" id="mu-1">Mu Editor. Mu, 2026. https://codewith.mu/en/.<div class="autopermalink" data-description="Paragraph"><a href="#mu-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 22"><a href="#mu" title="Copy heading and permalink for Bibliographic Entry 22" aria-label="Copy heading and permalink for Bibliographic Entry 22">🔗</a></div></article><article class="bib" id="octave"><div class="bibitem">[23]</div>
-<div class="bibentry"><div class="para" id="octave-1">GNU Octave. GNU, 2026. https://www.gnu.org/software/octave/.<div class="autopermalink" data-description="Paragraph"><a href="#octave-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 23"><a href="#octave" title="Copy heading and permalink for Bibliographic Entry 23" aria-label="Copy heading and permalink for Bibliographic Entry 23">🔗</a></div></article><article class="bib" id="sheets"><div class="bibitem">[24]</div>
-<div class="bibentry"><div class="para" id="sheets-1">Google Sheets. Google, 2026. https://www.google.com/sheets/about/.<div class="autopermalink" data-description="Paragraph"><a href="#sheets-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div>
-<div class="autopermalink" data-description="Bibliographic Entry 24"><a href="#sheets" title="Copy heading and permalink for Bibliographic Entry 24" aria-label="Copy heading and permalink for Bibliographic Entry 24">🔗</a></div></article><div class="autopermalink" data-description="References: References"><a href="#backmatter-1" title="Copy heading and permalink for References: References" aria-label="Copy heading and permalink for References: References">🔗</a></div></section></div>
+<div class="bibentry">
+<div class="para" id="copilot-1">GitHub. GitHub Copilot. https://copilot.github.com/, 2021. Accessed on December 5, 2025.<div class="autopermalink" data-description="Paragraph"><a href="#copilot-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 1"><a href="#copilot" title="Copy heading and permalink for Bibliographic Entry 1" aria-label="Copy heading and permalink for Bibliographic Entry 1">🔗</a></div>
+</article>
+<article class="bib" id="gemini"><div class="bibitem">[2]</div>
+<div class="bibentry">
+<div class="para" id="gemini-1">Google DeepMind. Gemini: Googles multimodal ai model. https://gemini.google.com/, 2023. Accessed on December 5, 2025.<div class="autopermalink" data-description="Paragraph"><a href="#gemini-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 2"><a href="#gemini" title="Copy heading and permalink for Bibliographic Entry 2" aria-label="Copy heading and permalink for Bibliographic Entry 2">🔗</a></div>
+</article>
+<article class="bib" id="vandv"><div class="bibitem">[3]</div>
+<div class="bibentry">
+<div class="para" id="vandv-1">Wikipedia. V-model. https://en.wikipedia.org/wiki/V-Model. Accessed December 21st, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#vandv-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 3"><a href="#vandv" title="Copy heading and permalink for Bibliographic Entry 3" aria-label="Copy heading and permalink for Bibliographic Entry 3">🔗</a></div>
+</article>
+<article class="bib" id="drawio"><div class="bibitem">[4]</div>
+<div class="bibentry">
+<div class="para" id="drawio-1">Draw.io. JGraph Ltd, 2026, www.drawio.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#drawio-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 4"><a href="#drawio" title="Copy heading and permalink for Bibliographic Entry 4" aria-label="Copy heading and permalink for Bibliographic Entry 4">🔗</a></div>
+</article>
+<article class="bib" id="blender"><div class="bibitem">[5]</div>
+<div class="bibentry">
+<div class="para" id="blender-1">Blender. Blender Foundation, 2026, www.blender.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#blender-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 5"><a href="#blender" title="Copy heading and permalink for Bibliographic Entry 5" aria-label="Copy heading and permalink for Bibliographic Entry 5">🔗</a></div>
+</article>
+<article class="bib" id="fritzing"><div class="bibitem">[6]</div>
+<div class="bibentry">
+<div class="para" id="fritzing-1">Fritzing. Fritzing, 2026, fritzing.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#fritzing-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 6"><a href="#fritzing" title="Copy heading and permalink for Bibliographic Entry 6" aria-label="Copy heading and permalink for Bibliographic Entry 6">🔗</a></div>
+</article>
+<article class="bib" id="solidworks"><div class="bibitem">[7]</div>
+<div class="bibentry">
+<div class="para" id="solidworks-1">SolidWorks. Dassault Systèmes, 2026, www.solidworks.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#solidworks-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 7"><a href="#solidworks" title="Copy heading and permalink for Bibliographic Entry 7" aria-label="Copy heading and permalink for Bibliographic Entry 7">🔗</a></div>
+</article>
+<article class="bib" id="autodesk"><div class="bibitem">[8]</div>
+<div class="bibentry">
+<div class="para" id="autodesk-1">Autodesk. Autodesk, 2026, www.autodesk.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#autodesk-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 8"><a href="#autodesk" title="Copy heading and permalink for Bibliographic Entry 8" aria-label="Copy heading and permalink for Bibliographic Entry 8">🔗</a></div>
+</article>
+<article class="bib" id="cirkit"><div class="bibitem">[9]</div>
+<div class="bibentry">
+<div class="para" id="cirkit-1">Cirkit Designer. Cirkit, 2026, https://app.cirkitdesigner.com/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#cirkit-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 9"><a href="#cirkit" title="Copy heading and permalink for Bibliographic Entry 9" aria-label="Copy heading and permalink for Bibliographic Entry 9">🔗</a></div>
+</article>
+<article class="bib" id="inkscape"><div class="bibitem">[10]</div>
+<div class="bibentry">
+<div class="para" id="inkscape-1">Inkscape. Inkscape, 2026, www.inkscape.org/. Accessed 29 Mar. 2026<div class="autopermalink" data-description="Paragraph"><a href="#inkscape-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 10"><a href="#inkscape" title="Copy heading and permalink for Bibliographic Entry 10" aria-label="Copy heading and permalink for Bibliographic Entry 10">🔗</a></div>
+</article>
+<article class="bib" id="CircuitPython"><div class="bibitem">[11]</div>
+<div class="bibentry">
+<div class="para" id="CircuitPython-1">CircuitPython. https://circuitpython.org/, 2021. Accessed: 12-09-2021.<div class="autopermalink" data-description="Paragraph"><a href="#CircuitPython-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 11"><a href="#CircuitPython" title="Copy heading and permalink for Bibliographic Entry 11" aria-label="Copy heading and permalink for Bibliographic Entry 11">🔗</a></div>
+</article>
+<article class="bib" id="Gitbook"><div class="bibitem">[12]</div>
+<div class="bibentry">
+<div class="para" id="Gitbook-1">Carlos Montalvo, Lisa Schibelius, and Marine Leabeater. Project Based Engineering Instrumentation with CircuitPython. Github, 2023. https://cmontalvo251.github.io/project-based-instrumentation/.<div class="autopermalink" data-description="Paragraph"><a href="#Gitbook-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 12"><a href="#Gitbook" title="Copy heading and permalink for Bibliographic Entry 12" aria-label="Copy heading and permalink for Bibliographic Entry 12">🔗</a></div>
+</article>
+<article class="bib" id="Adafruit"><div class="bibitem">[13]</div>
+<div class="bibentry">
+<div class="para" id="Adafruit-1">Adafruit. Adafruit learn, 2021. Adafruit https://learn.adafruit.com/.<div class="autopermalink" data-description="Paragraph"><a href="#Adafruit-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 13"><a href="#Adafruit" title="Copy heading and permalink for Bibliographic Entry 13" aria-label="Copy heading and permalink for Bibliographic Entry 13">🔗</a></div>
+</article>
+<article class="bib" id="Github"><div class="bibitem">[14]</div>
+<div class="bibentry">
+<div class="para" id="Github-1">Carlos Montalvo. Facility for aerial systems and technology github repository. cmontalvo251, 2022. https://github.com/cmontalvo251<div class="autopermalink" data-description="Paragraph"><a href="#Github-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 14"><a href="#Github" title="Copy heading and permalink for Bibliographic Entry 14" aria-label="Copy heading and permalink for Bibliographic Entry 14">🔗</a></div>
+</article>
+<article class="bib" id="AdafruitMAIN"><div class="bibitem">[15]</div>
+<div class="bibentry">
+<div class="para" id="AdafruitMAIN-1">Adafruit. Adafruit, 2023. Adafruit https://adafruit.com/.<div class="autopermalink" data-description="Paragraph"><a href="#AdafruitMAIN-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 15"><a href="#AdafruitMAIN" title="Copy heading and permalink for Bibliographic Entry 15" aria-label="Copy heading and permalink for Bibliographic Entry 15">🔗</a></div>
+</article>
+<article class="bib" id="Arduino"><div class="bibitem">[16]</div>
+<div class="bibentry">
+<div class="para" id="Arduino-1">Arduino. Arduino, 2023. https://www.arduino.cc/.<div class="autopermalink" data-description="Paragraph"><a href="#Arduino-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 16"><a href="#Arduino" title="Copy heading and permalink for Bibliographic Entry 16" aria-label="Copy heading and permalink for Bibliographic Entry 16">🔗</a></div>
+</article>
+<article class="bib" id="youtube"><div class="bibitem">[17]</div>
+<div class="bibentry">
+<div class="para" id="youtube-1">Montalvo, Carlos. YouTube, 2026, www.youtube.com/@CarlosMontalvo251.<div class="autopermalink" data-description="Paragraph"><a href="#youtube-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 17"><a href="#youtube" title="Copy heading and permalink for Bibliographic Entry 17" aria-label="Copy heading and permalink for Bibliographic Entry 17">🔗</a></div>
+</article>
+<article class="bib" id="python"><div class="bibitem">[18]</div>
+<div class="bibentry">
+<div class="para" id="python-1">Python Software Foundation. Python, 2026. https://www.python.org/.<div class="autopermalink" data-description="Paragraph"><a href="#python-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 18"><a href="#python" title="Copy heading and permalink for Bibliographic Entry 18" aria-label="Copy heading and permalink for Bibliographic Entry 18">🔗</a></div>
+</article>
+<article class="bib" id="thonny"><div class="bibitem">[19]</div>
+<div class="bibentry">
+<div class="para" id="thonny-1">Aasumets, Aivar. Thonny: Python IDE for Beginners. 2026, thonny.org/.<div class="autopermalink" data-description="Paragraph"><a href="#thonny-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 19"><a href="#thonny" title="Copy heading and permalink for Bibliographic Entry 19" aria-label="Copy heading and permalink for Bibliographic Entry 19">🔗</a></div>
+</article>
+<article class="bib" id="spyder"><div class="bibitem">[20]</div>
+<div class="bibentry">
+<div class="para" id="spyder-1">Spyder: The Scientific Python Development Environment. Spyder Project Contributors, 2026, www.spyder-ide.org/.<div class="autopermalink" data-description="Paragraph"><a href="#spyder-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 20"><a href="#spyder" title="Copy heading and permalink for Bibliographic Entry 20" aria-label="Copy heading and permalink for Bibliographic Entry 20">🔗</a></div>
+</article>
+<article class="bib" id="colab"><div class="bibitem">[21]</div>
+<div class="bibentry">
+<div class="para" id="colab-1">Google Colaboratory. Google, 2026. https://colab.research.google.com/.<div class="autopermalink" data-description="Paragraph"><a href="#colab-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 21"><a href="#colab" title="Copy heading and permalink for Bibliographic Entry 21" aria-label="Copy heading and permalink for Bibliographic Entry 21">🔗</a></div>
+</article>
+<article class="bib" id="mu"><div class="bibitem">[22]</div>
+<div class="bibentry">
+<div class="para" id="mu-1">Mu Editor. Mu, 2026. https://codewith.mu/en/.<div class="autopermalink" data-description="Paragraph"><a href="#mu-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 22"><a href="#mu" title="Copy heading and permalink for Bibliographic Entry 22" aria-label="Copy heading and permalink for Bibliographic Entry 22">🔗</a></div>
+</article>
+<article class="bib" id="octave"><div class="bibitem">[23]</div>
+<div class="bibentry">
+<div class="para" id="octave-1">GNU Octave. GNU, 2026. https://www.gnu.org/software/octave/.<div class="autopermalink" data-description="Paragraph"><a href="#octave-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 23"><a href="#octave" title="Copy heading and permalink for Bibliographic Entry 23" aria-label="Copy heading and permalink for Bibliographic Entry 23">🔗</a></div>
+</article>
+<article class="bib" id="sheets"><div class="bibitem">[24]</div>
+<div class="bibentry">
+<div class="para" id="sheets-1">Google Sheets. Google, 2026. https://www.google.com/sheets/about/.<div class="autopermalink" data-description="Paragraph"><a href="#sheets-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 24"><a href="#sheets" title="Copy heading and permalink for Bibliographic Entry 24" aria-label="Copy heading and permalink for Bibliographic Entry 24">🔗</a></div>
+</article>
+<article class="bib" id="etkins"><div class="bibitem">[25]</div>
+<div class="bibentry">
+<div class="para" id="etkins-1">B. Etkins. Dynamics of Atmospheric Flight. Dover, Mineola, New York, 2000. pages 9-13, 134-151, 196-318.<div class="autopermalink" data-description="Paragraph"><a href="#etkins-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 25"><a href="#etkins" title="Copy heading and permalink for Bibliographic Entry 25" aria-label="Copy heading and permalink for Bibliographic Entry 25">🔗</a></div>
+</article>
+<article class="bib" id="phil"><div class="bibitem">[26]</div>
+<div class="bibentry">
+<div class="para" id="phil-1">Warren F. Phillips. Mechanics of Flight. John Wiley and Sons, Hoboken, New Jersey, 2010.<div class="autopermalink" data-description="Paragraph"><a href="#phil-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 26"><a href="#phil" title="Copy heading and permalink for Bibliographic Entry 26" aria-label="Copy heading and permalink for Bibliographic Entry 26">🔗</a></div>
+</article>
+<article class="bib" id="nelson"><div class="bibitem">[27]</div>
+<div class="bibentry">
+<div class="para" id="nelson-1">R.C. Nelson. Flight Stability and Automatic Control. McGraw-Hill, 2nd edition, 1998.<div class="autopermalink" data-description="Paragraph"><a href="#nelson-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 27"><a href="#nelson" title="Copy heading and permalink for Bibliographic Entry 27" aria-label="Copy heading and permalink for Bibliographic Entry 27">🔗</a></div>
+</article>
+<article class="bib" id="astrodynamics"><div class="bibitem">[28]</div>
+<div class="bibentry">
+<div class="para" id="astrodynamics-1">Jerry E. White, Roger R. Bate, Donald D. Mueller. Fundamentals of Astrodynamics. Dover, 1971.<div class="autopermalink" data-description="Paragraph"><a href="#astrodynamics-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 28"><a href="#astrodynamics" title="Copy heading and permalink for Bibliographic Entry 28" aria-label="Copy heading and permalink for Bibliographic Entry 28">🔗</a></div>
+</article>
+<article class="bib" id="Lin"><div class="bibitem">[29]</div>
+<div class="bibentry">
+<div class="para" id="Lin-1">Arthur KL Lin and Regina Lee. Attitude control for small spacecraft with sensor errors. In <span class="booktitle">AIAA SPACE Conferences and Exposition</span>, Pasadena, California, page 4423, August 2015.<div class="autopermalink" data-description="Paragraph"><a href="#Lin-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 29"><a href="#Lin" title="Copy heading and permalink for Bibliographic Entry 29" aria-label="Copy heading and permalink for Bibliographic Entry 29">🔗</a></div>
+</article>
+<article class="bib" id="Filipe"><div class="bibitem">[30]</div>
+<div class="bibentry">
+<div class="para" id="Filipe-1">Nuno Filipe and Panagiotis Tsiotras. Adaptive position and attitude-tracking controller for satellite proximity operations using dual quaternions. <span class="booktitle">Journal of Guidance, Control, and Dynamics</span>, 38(4):566–577, 2015. doi:10.2514/1.G000054.<div class="autopermalink" data-description="Paragraph"><a href="#Filipe-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 30"><a href="#Filipe" title="Copy heading and permalink for Bibliographic Entry 30" aria-label="Copy heading and permalink for Bibliographic Entry 30">🔗</a></div>
+</article>
+<article class="bib" id="multibody"><div class="bibitem">[31]</div>
+<div class="bibentry">
+<div class="para" id="multibody-1">O. A. Bauchau. <span class="booktitle">Flexible Multibody Dynamics</span>. Springer, 2008.<div class="autopermalink" data-description="Paragraph"><a href="#multibody-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 31"><a href="#multibody" title="Copy heading and permalink for Bibliographic Entry 31" aria-label="Copy heading and permalink for Bibliographic Entry 31">🔗</a></div>
+</article>
+<article class="bib" id="quaternions"><div class="bibitem">[32]</div>
+<div class="bibentry">
+<div class="para" id="quaternions-1">Karsten Grosekathofer and Zizung Yoon. Introduction into quaternions for spacecraft attitude representation. Technical University of Berlin Department of Astronautics and Aeronautics, 2012.<div class="autopermalink" data-description="Paragraph"><a href="#quaternions-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 32"><a href="#quaternions" title="Copy heading and permalink for Bibliographic Entry 32" aria-label="Copy heading and permalink for Bibliographic Entry 32">🔗</a></div>
+</article>
+<article class="bib" id="cassidis"><div class="bibitem">[33]</div>
+<div class="bibentry">
+<div class="para" id="cassidis-1">John L. Crassidis and John L. Junkins. <span class="booktitle">Optimal Estimation of Dynamic Systems</span>. Chapman and Hall/CRC, 2004.<div class="autopermalink" data-description="Paragraph"><a href="#cassidis-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 33"><a href="#cassidis" title="Copy heading and permalink for Bibliographic Entry 33" aria-label="Copy heading and permalink for Bibliographic Entry 33">🔗</a></div>
+</article>
+<article class="bib" id="Munoz"><div class="bibitem">[34]</div>
+<div class="bibentry">
+<div class="para" id="Munoz-1">Sebastian Munoz and E. Glenn Lightsey. A sensor driven trade study for autonomous navigation capabilities. AIAA.<div class="autopermalink" data-description="Paragraph"><a href="#Munoz-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 34"><a href="#Munoz" title="Copy heading and permalink for Bibliographic Entry 34" aria-label="Copy heading and permalink for Bibliographic Entry 34">🔗</a></div>
+</article>
+<article class="bib" id="Markley"><div class="bibitem">[35]</div>
+<div class="bibentry">
+<div class="para" id="Markley-1">John L. Crassidis, F. Landis Markley, and Yang Cheng. Survey of nonlinear attitude estimation methods. <span class="booktitle">Journal of Guidance, Control, and Dynamics</span>, 30(1), 2007.<div class="autopermalink" data-description="Paragraph"><a href="#Markley-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 35"><a href="#Markley" title="Copy heading and permalink for Bibliographic Entry 35" aria-label="Copy heading and permalink for Bibliographic Entry 35">🔗</a></div>
+</article>
+<article class="bib" id="Liu_Estimation"><div class="bibitem">[36]</div>
+<div class="bibentry">
+<div class="para" id="Liu_Estimation-1">Bing Liu, Zhen Chen, Xiangdong Liu, and Fan Yang. An efficient nonlinear filter for spacecraft attitude estimation. <span class="booktitle">International Journal of Aerospace Engineering</span>, 2014(540235), 2014.<div class="autopermalink" data-description="Paragraph"><a href="#Liu_Estimation-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 36"><a href="#Liu_Estimation" title="Copy heading and permalink for Bibliographic Entry 36" aria-label="Copy heading and permalink for Bibliographic Entry 36">🔗</a></div>
+</article>
+<article class="bib" id="Radiation"><div class="bibitem">[37]</div>
+<div class="bibentry">
+<div class="para" id="Radiation-1">R. M. Georgevic. The solar radiation pressure forces and torques model. <span class="booktitle">The Journal of the Astronautical Sciences</span>, 27(1), 1973.<div class="autopermalink" data-description="Paragraph"><a href="#Radiation-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 37"><a href="#Radiation" title="Copy heading and permalink for Bibliographic Entry 37" aria-label="Copy heading and permalink for Bibliographic Entry 37">🔗</a></div>
+</article>
+<article class="bib" id="AndersonD"><div class="bibitem">[38]</div>
+<div class="bibentry">
+<div class="para" id="AndersonD-1">Anderson D. <span class="booktitle">Fundamentals of Aerodynamics</span> 4th Edition. McGraw Hill Series, 2007.<div class="autopermalink" data-description="Paragraph"><a href="#AndersonD-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 38"><a href="#AndersonD" title="Copy heading and permalink for Bibliographic Entry 38" aria-label="Copy heading and permalink for Bibliographic Entry 38">🔗</a></div>
+</article>
+<article class="bib" id="Density_Model"><div class="bibitem">[39]</div>
+<div class="bibentry">
+<div class="para" id="Density_Model-1">Graham Gyatt. The standard atmosphere. A mathematical model of the 1976 U.S. Standard Atmosphere, Jan 2006.<div class="autopermalink" data-description="Paragraph"><a href="#Density_Model-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 39"><a href="#Density_Model" title="Copy heading and permalink for Bibliographic Entry 39" aria-label="Copy heading and permalink for Bibliographic Entry 39">🔗</a></div>
+</article>
+<article class="bib" id="GeographicLib"><div class="bibitem">[40]</div>
+<div class="bibentry">
+<div class="para" id="GeographicLib-1">Geographic library c++. https://geographiclib.sourceforge.io/. cited Jul 11, 2017.<div class="autopermalink" data-description="Paragraph"><a href="#GeographicLib-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 40"><a href="#GeographicLib" title="Copy heading and permalink for Bibliographic Entry 40" aria-label="Copy heading and permalink for Bibliographic Entry 40">🔗</a></div>
+</article>
+<article class="bib" id="Jacchia1"><div class="bibitem">[41]</div>
+<div class="bibentry">
+<div class="para" id="Jacchia1-1">L. G. Jacchia. Static diffusion models of the upper atmosphere with empirical temperature profiles. <span class="booktitle">Smithson. Astrophys. Obs. Spec. Rept.</span>, (170), 1964. Cambridge, Massachusetts.<div class="autopermalink" data-description="Paragraph"><a href="#Jacchia1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 41"><a href="#Jacchia1" title="Copy heading and permalink for Bibliographic Entry 41" aria-label="Copy heading and permalink for Bibliographic Entry 41">🔗</a></div>
+</article>
+<article class="bib" id="Jacchia2"><div class="bibitem">[42]</div>
+<div class="bibentry">
+<div class="para" id="Jacchia2-1">L. G. Jacchia. Revised static models of the thermosphere and exosphere with empirical temperature profiles. <span class="booktitle">Smithson. Astrophys. Obs. Spec. Rept.</span>, (332), 1971. Cambridge, Massachusetts.<div class="autopermalink" data-description="Paragraph"><a href="#Jacchia2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 42"><a href="#Jacchia2" title="Copy heading and permalink for Bibliographic Entry 42" aria-label="Copy heading and permalink for Bibliographic Entry 42">🔗</a></div>
+</article>
+<article class="bib" id="Jacchia3"><div class="bibitem">[43]</div>
+<div class="bibentry">
+<div class="para" id="Jacchia3-1">L. G. Jacchia. Thermospheric temperature, density, and composition: New models. <span class="booktitle">Smithson. Astrophys. Obs. Spec. Rept.</span>, (375), 1977. Cambridge, Massachusetts.<div class="autopermalink" data-description="Paragraph"><a href="#Jacchia3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 43"><a href="#Jacchia3" title="Copy heading and permalink for Bibliographic Entry 43" aria-label="Copy heading and permalink for Bibliographic Entry 43">🔗</a></div>
+</article>
+<article class="bib" id="EMM2015"><div class="bibitem">[44]</div>
+<div class="bibentry">
+<div class="para" id="EMM2015-1">Enhanced magnetic field model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 11, 2017.<div class="autopermalink" data-description="Paragraph"><a href="#EMM2015-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 44"><a href="#EMM2015" title="Copy heading and permalink for Bibliographic Entry 44" aria-label="Copy heading and permalink for Bibliographic Entry 44">🔗</a></div>
+</article>
+<article class="bib" id="ECI"><div class="bibitem">[45]</div>
+<div class="bibentry">
+<div class="para" id="ECI-1">Neil Ashby. The sagnac effect in the global positioning system. <span class="booktitle">Relativity in rotating frames: relativistic physics in rotating reference frames</span>, page 11, 2004. doi:1-4020-1805-3.<div class="autopermalink" data-description="Paragraph"><a href="#ECI-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 45"><a href="#ECI" title="Copy heading and permalink for Bibliographic Entry 45" aria-label="Copy heading and permalink for Bibliographic Entry 45">🔗</a></div>
+</article>
+<article class="bib" id="EGM2008"><div class="bibitem">[46]</div>
+<div class="bibentry">
+<div class="para" id="EGM2008-1">Earth gravity model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 31, 2017.<div class="autopermalink" data-description="Paragraph"><a href="#EGM2008-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 46"><a href="#EGM2008" title="Copy heading and permalink for Bibliographic Entry 46" aria-label="Copy heading and permalink for Bibliographic Entry 46">🔗</a></div>
+</article>
+<article class="bib" id="qp8"><div class="bibitem">[47]</div>
+<div class="bibentry">
+<div class="para" id="qp8-1">Chemical propulsion systems. glenn research center — nasa. https://www1.grc.nasa.gov/research-and-engineering/chemical-propulsion-systems/l-propulsion-systems/. Retrieved September 29, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#qp8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 47"><a href="#qp8" title="Copy heading and permalink for Bibliographic Entry 47" aria-label="Copy heading and permalink for Bibliographic Entry 47">🔗</a></div>
+</article>
+<article class="bib" id="qp9"><div class="bibitem">[48]</div>
+<div class="bibentry">
+<div class="para" id="qp9-1">Solid rocket propulsion. https://engineering.purdue.edu/ propulsi/propulsion/rockets/solids.html. Retrieved September 29, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#qp9-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 48"><a href="#qp9" title="Copy heading and permalink for Bibliographic Entry 48" aria-label="Copy heading and permalink for Bibliographic Entry 48">🔗</a></div>
+</article>
+<article class="bib" id="quadfdnc"><div class="bibitem">[49]</div>
+<div class="bibentry">
+<div class="para" id="quadfdnc-1">Waslander S.L. Hoffman G.M., Huang H. and Tomlin C.J. Quadrotor helicopter flight dynamics and control: Theory and experiment. AIAA Guidance, Navigation, and Control Conference and Exhibit, pages 6–15, 2007.<div class="autopermalink" data-description="Paragraph"><a href="#quadfdnc-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 49"><a href="#quadfdnc" title="Copy heading and permalink for Bibliographic Entry 49" aria-label="Copy heading and permalink for Bibliographic Entry 49">🔗</a></div>
+</article>
+<article class="bib" id="rotorflap"><div class="bibitem">[50]</div>
+<div class="bibentry">
+<div class="para" id="rotorflap-1">H. Huang, G. Hoffman, C. Talor, S. Waslander, and C. Tomlin. Aerodynamics and control of autonomous quadrotor helicopters in aggressive maneuvering. Proc. IEEE Int. Conference of Robotics and Automation (ICRA), pages 3277–3282, May 2009. doi:10.1109/ROBOT.2009.5152561.<div class="autopermalink" data-description="Paragraph"><a href="#rotorflap-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 50"><a href="#rotorflap" title="Copy heading and permalink for Bibliographic Entry 50" aria-label="Copy heading and permalink for Bibliographic Entry 50">🔗</a></div>
+</article>
+<article class="bib" id="swingload"><div class="bibitem">[51]</div>
+<div class="bibentry">
+<div class="para" id="swingload-1">Moosavian S.A.A. Sadr S. and Zarafshan P. Dynamics modeling and control of a quadrotor with swing load. Journal of Robotics, 2014.<div class="autopermalink" data-description="Paragraph"><a href="#swingload-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 51"><a href="#swingload" title="Copy heading and permalink for Bibliographic Entry 51" aria-label="Copy heading and permalink for Bibliographic Entry 51">🔗</a></div>
+</article>
+<article class="bib" id="JPL"><div class="bibitem">[52]</div>
+<div class="bibentry">
+<div class="para" id="JPL-1">Jet Propulsion Laboratory. Solar system dynamics. https://ssd.jpl.nasa.gov/ Accessed October 4th, 2019.<div class="autopermalink" data-description="Paragraph"><a href="#JPL-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 52"><a href="#JPL" title="Copy heading and permalink for Bibliographic Entry 52" aria-label="Copy heading and permalink for Bibliographic Entry 52">🔗</a></div>
+</article>
+<article class="bib" id="Chapra_MEANALYSIS"><div class="bibitem">[53]</div>
+<div class="bibentry">
+<div class="para" id="Chapra_MEANALYSIS-1">Steven C. Chapra and Raymond P. Canale. Numerical Methods for Engineers. McGraw-Hill Education, 7th edition, 2012.<div class="autopermalink" data-description="Paragraph"><a href="#Chapra_MEANALYSIS-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 53"><a href="#Chapra_MEANALYSIS" title="Copy heading and permalink for Bibliographic Entry 53" aria-label="Copy heading and permalink for Bibliographic Entry 53">🔗</a></div>
+</article>
+<article class="bib" id="apprentice"><div class="bibitem">[54]</div>
+<div class="bibentry">
+<div class="para" id="apprentice-1">LLC. Horizon Hobby. Eflite Apprentice S 15e Airplane Instruction Manual. Horizon Hobby, LLC., Champaign, IL USA, 1 edition, 4 2016. Retrieved October 5, 2020 https://www.horizonhobby.com/on/demandware.static/Sites-horizon-us-Site/Sites-horizon-master/default/Manuals/EFL2725-Apprentice-Manual.pdf.<div class="autopermalink" data-description="Paragraph"><a href="#apprentice-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 54"><a href="#apprentice" title="Copy heading and permalink for Bibliographic Entry 54" aria-label="Copy heading and permalink for Bibliographic Entry 54">🔗</a></div>
+</article>
+<article class="bib" id="Cobar_FASTSim_AVIATION_2022"><div class="bibitem">[55]</div>
+<div class="bibentry">
+<div class="para" id="Cobar_FASTSim_AVIATION_2022-1">Maxwell Cobar and Carlos Montalvo. The facility for aerospace systems and technology simulation: Fastsim- an open-source configurable software in the loop simulation environment. In AIAA AVIATION Forum -Chicago, IL, June 2022.<div class="autopermalink" data-description="Paragraph"><a href="#Cobar_FASTSim_AVIATION_2022-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 55"><a href="#Cobar_FASTSim_AVIATION_2022" title="Copy heading and permalink for Bibliographic Entry 55" aria-label="Copy heading and permalink for Bibliographic Entry 55">🔗</a></div>
+</article>
+<article class="bib" id="CobarMeta2019"><div class="bibitem">[56]</div>
+<div class="bibentry">
+<div class="para" id="CobarMeta2019-1">Maxwell Cobar and Carlos Montalvo. Takeoff and landing of a wingtip connected meta aircraft with feedback control. Journal of Aircraft - Q1, 58(4):733–742, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#CobarMeta2019-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 56"><a href="#CobarMeta2019" title="Copy heading and permalink for Bibliographic Entry 56" aria-label="Copy heading and permalink for Bibliographic Entry 56">🔗</a></div>
+</article>
+<article class="bib" id="CobarMASTERS"><div class="bibitem">[57]</div>
+<div class="bibentry">
+<div class="para" id="CobarMASTERS-1">Maxwell Cobar and Carlos Montalvo (Chair). Waypoint control for a wingtip connected meta aircraft, December 2022.<div class="autopermalink" data-description="Paragraph"><a href="#CobarMASTERS-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 57"><a href="#CobarMASTERS" title="Copy heading and permalink for Bibliographic Entry 57" aria-label="Copy heading and permalink for Bibliographic Entry 57">🔗</a></div>
+</article>
+<article class="bib" id="stigler1981"><div class="bibitem">[58]</div>
+<div class="bibentry">
+<div class="para" id="stigler1981-1">Stephen M. Stigler. Gauss and the invention of least squares. doi:10.1214/aos/1176345451.<div class="autopermalink" data-description="Paragraph"><a href="#stigler1981-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 58"><a href="#stigler1981" title="Copy heading and permalink for Bibliographic Entry 58" aria-label="Copy heading and permalink for Bibliographic Entry 58">🔗</a></div>
+</article>
+<article class="bib" id="lagrange"><div class="bibitem">[59]</div>
+<div class="bibentry">
+<div class="para" id="lagrange-1">Lagrange, J. L. (Joseph Louis). Mécanique analytique. Paris, Ve Courcier, 1, 1811.<div class="autopermalink" data-description="Paragraph"><a href="#lagrange-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 59"><a href="#lagrange" title="Copy heading and permalink for Bibliographic Entry 59" aria-label="Copy heading and permalink for Bibliographic Entry 59">🔗</a></div>
+</article>
+<article class="bib" id="kalman_quat"><div class="bibitem">[60]</div>
+<div class="bibentry">
+<div class="para" id="kalman_quat-1">A. B. Younes, D. Mortari, J. D. Turner, and J. L. Junkins. Attitude error kinematics. Journal of Guidance, Control and Dynamics, 37(1), 2014<div class="autopermalink" data-description="Paragraph"><a href="#kalman_quat-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 60"><a href="#kalman_quat" title="Copy heading and permalink for Bibliographic Entry 60" aria-label="Copy heading and permalink for Bibliographic Entry 60">🔗</a></div>
+</article>
+<article class="bib" id="qp40"><div class="bibitem">[61]</div>
+<div class="bibentry">
+<div class="para" id="qp40-1">S. Caldwell. Ground data systems and mission operations. nasa. http://www.nasa.gov/smallsat-institute/sst-soa/ground-data-systems-and-mission-operations. Accessed Nov. 4, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#qp40-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 61"><a href="#qp40" title="Copy heading and permalink for Bibliographic Entry 61" aria-label="Copy heading and permalink for Bibliographic Entry 61">🔗</a></div>
+</article>
+<article class="bib" id="qp41"><div class="bibitem">[62]</div>
+<div class="bibentry">
+<div class="para" id="qp41-1">H. Monaghan. Networks. nasa. http://www.nasa.gov/directorates/heo/scan/services/networks/index.html.Accessed Nov. 4, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#qp41-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 62"><a href="#qp41" title="Copy heading and permalink for Bibliographic Entry 62" aria-label="Copy heading and permalink for Bibliographic Entry 62">🔗</a></div>
+</article>
+<article class="bib" id="qp42"><div class="bibitem">[63]</div>
+<div class="bibentry">
+<div class="para" id="qp42-1">AmericaSpace. Happy birthday, dsn: Nasa’s iconic deep space communications network turns 50. https://www.americaspace.com/2013/12/26/happy-birthday-dsn-nasas-iconic-deep-space-communications-network-turns-50/. Accessed Nov. 4, 2021.<div class="autopermalink" data-description="Paragraph"><a href="#qp42-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="autopermalink" data-description="Bibliographic Entry 63"><a href="#qp42" title="Copy heading and permalink for Bibliographic Entry 63" aria-label="Copy heading and permalink for Bibliographic Entry 63">🔗</a></div>
+</article><div class="autopermalink" data-description="References: References"><a href="#backmatter-1" title="Copy heading and permalink for References: References" aria-label="Copy heading and permalink for References: References">🔗</a></div>
+</section>
+</div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="backmatter.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
 </div></main>
