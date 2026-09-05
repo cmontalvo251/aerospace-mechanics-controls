@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="radio-controlled-aircraft-design" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Radio-Controlled Aircraft Design</title>
+
+  <introduction>
+    <p>
+      Many principles for large aircraft design can be applied to smaller radio controlled aircraft but understand that
+    many of the aerodynamic principles are not quite well defined for slow and small aircraft.
+    </p>
+  </introduction>
+
+<section xml:id="sec-helpful-aircraft-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Helpful Aircraft Equations</title>
+
+  <introduction>
+    <p>
+      This section provides a collection of essential equations utilized in aircraft design and performance analysis. It covers fundamental relationships for atmospheric conditions, aerodynamic force and moment coefficients, non-dimensional parameters, and flight mechanics.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-mach-and-reynolds-number">
+    <title>Mach Number and Reynolds Number</title>
+
+    <p>
+      <md number="yes">
+        <mrow>M_{\infty} \amp = \frac{V}{a_{\infty}}</mrow>
+        <mrow></mrow>
+        <mrow>Re \amp = \frac{\rho V \bar{c}}{\mu_{\infty}}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-total-velocity">
+    <title>Total Velocity</title>
+
+    <p>
+      <md number="yes">
+        <mrow>V = \sqrt{u^2 + v^2 + w^2}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-angle-of-attack-and-sideslip">
+    <title>Angle of Attack and Sideslip</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\alpha \amp = \tan^{-1}\left(\frac{w}{u}\right)</mrow>
+        <mrow>\beta \amp = \sin^{-1}\left(\frac{v}{V}\right)</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-lift-drag-and-moment">
+    <title>Lift Drag and Moment</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\text{Lift }(L) \amp = \frac{1}{2} \rho V^2 S C_L</mrow>
+        <mrow>\text{Drag }(D) \amp = \frac{1}{2} \rho V^2 S C_D</mrow>
+        <mrow>\text{Roll Moment }(L) \amp = \frac{1}{2} \rho V^2 S b C_l</mrow>
+        <mrow>\text{Pitch Moment }(M) \amp = \frac{1}{2} \rho V^2 S \bar{c}C_m</mrow>
+        <mrow>\text{Yaw Moment }(N) \amp = \frac{1}{2} \rho V^2 S b C_n</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-lift-and-drag-coefficients">
+    <title>Lift and Drag Coefficients</title>
+
+    <p>
+      <md number="yes">
+        <mrow>C_L \amp = C_{L0} + C_{L\alpha}\alpha</mrow>
+        <mrow>C_L \amp = C_{L\alpha}(\alpha-\alpha_0)</mrow>
+        <mrow>C_D \amp = C_{D0} + C_{D\alpha}\alpha^2</mrow>
+        <mrow>C_D \amp = C_{D0} + k{C_L}^2</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-non-dimensional-angular-velocities">
+    <title>Non-dimensional Angular Velocities</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\hat{p} \amp = pb/2V</mrow>
+        <mrow>\hat{q} \amp = q\bar{c}/2V</mrow>
+        <mrow>\hat{r} \amp = rb/2V</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-pitch-moment-equation">
+    <title>Pitch Moment Equation</title>
+
+    <p>
+      <md number="yes">
+        <mrow>C_m = C_{m0} + C_{m\alpha}\alpha + C_{m\delta_e}\delta_e + C_{mq}\hat{q}</mrow>
+      </md>
+    </p>
+
+    <p>
+      <md number="yes">
+        <mrow>C_{m0} \amp = C_{\text{MAC}} + C_{L0}\bar{x}_{sm}</mrow>
+        <mrow>\bar{x}_{sm} \amp = \frac{x_{cg}}{\bar{c}} - \frac{x_{acW}}{\bar{c}}</mrow>
+        <mrow>C_{m\alpha} \amp = \left(C_{L\alpha,W} + \frac{S_t}{S}C_{L\alpha,t}\right)\bar{x}_{sm} - V_HC_{L\alpha,t}</mrow>
+        <mrow>V_H \amp = \frac{l_tS_t}{S\bar{c}}</mrow>
+        <mrow>C_{m\delta_e} \amp = \left(C_{Lt\delta_e}\frac{S_t}{S}\right)\bar{x}_{sm}-V_HC_{Lt\delta_e}</mrow>
+        <mrow>C_{mq} \amp = 2C_{L\alpha t}\frac{l^2}{\bar{c}^2}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-max-lift-to-drag-ratio">
+    <title>Max Lift to Drag Ratio (Only valid if <m>C_{L0}=0</m>)</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\alpha_{\max,L/D} = \sqrt{\frac{C_{D0}}{C_{D\alpha}}}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-lift-to-drag-zero-thrust">
+    <title>Lift to Drag when <m>T=0</m> (Sum of Forces still zero)</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\frac{D}{L} \amp = \tan(\alpha)</mrow>
+        <mrow>L\cos(\alpha) + D\sin(\alpha) \amp = W</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-airfoil-and-wing-aerodynamics">
+    <title>Airfoil and Wing Aerodynamics</title>
+
+    <p>
+      <md number="yes">
+        <mrow>x_{ac} = c/4 \amp \qquad a = \frac{a_0}{1+\frac{a_0}{\pi e AR}}</mrow>
+        <mrow>AR \amp = \frac{b^2}{S}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-standard-atmosphere">
+    <title>Standard Atmosphere</title>
+
+    <p>
+      <md number="yes">
+        <mrow>\rho \amp = 1.225\text{ kg/m}^3 = 0.00238\text{ slugs/ft}^3</mrow>
+        <mrow>\mu_{\infty} \amp = 1.81 \times 10^{-5}\text{ kg/(m-s)}</mrow>
+        <mrow>a_{\infty} \amp = 331.3\text{ m/s}</mrow>
+      </md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-general-notes">
+    <title>General Notes</title>
+
+    <ol>
+      <li>
+        <p>In trim or steady and level or cruise <m>q=0</m>, <m>C_m=0</m>, <m>L=W</m>, <m>T=D</m>.</p>
+      </li>
+      <li>
+        <p>For symmetric airfoil <m>C_{\text{MAC}} = 0</m> and <m>C_{L0}=0</m> thus <m>C_{m0} = 0</m>.</p>
+      </li>
+      <li>
+        <p>For a flat plate all symmetric properties apply but <m>a_0 = 2\pi</m>.</p>
+      </li>
+      <li>
+        <p>Tail surfaces are always assumed to be flat plates.</p>
+      </li>
+      <li>
+        <p>For longitudinal problems, <m>\beta = 0</m> so <m>v=0</m> (side velocity).</p>
+      </li>
+    </ol>
+  </subsection>
+</section>
+</chapter>

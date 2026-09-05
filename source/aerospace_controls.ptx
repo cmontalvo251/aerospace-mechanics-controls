@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="chap-conventional-aerospace-controls" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Conventional Aerospace Controls</title>
+
+  <introduction>
+    <p>
+      This chapter introduces advanced control strategies used in aerospace applications. Building beyond basic proportional-integral-derivative (PID) feedback control, we explore specialized attitude control schemes for spacecraft—including B-dot controllers, reaction wheels, and thrusters—alongside inner and outer loop flight control systems for conventional aircraft.
+    </p>
+    <p>
+    As explained in the previous chapter, PID control is a common method of controlling mutliple systems. For aerospace systems, PID control is often used as a starting point for feedback but more complex methods are often needed to achieve the desired performance. This chapter will discuss some of the more advanced control strategies used in aerospace applications.
+  </p>
+  </introduction>
+
+  <section xml:id="sec-spacecraft-attitude-control">
+    <title>Spacecraft Attitude Control Schemes</title>
+    <introduction>
+    <p>
+      Many control schemes are needed to orient a satellite and all depend on the application. In LEO magnetorquers can be used to detumble a satellite while thrusters must be used in deep space. In addition reaction wheels can be used to detumble a satellite anywhere in space provided the angular momentum in the satellite does not saturate the reaction wheels. Sections that follow detail the control schemes typically utilized on small sats. A section on PID control for aircraft is also in this section.
+    </p>
+</introduction>
+
+    <subsection xml:id="subsec-bdot-controller">
+      <title>B-dot Controller</title>
+
+      <p>
+        In LEO, the standard B-dot controller reported in many sources (<xref ref="Leomanni2012"/>, <xref ref="Lovera2015"/>, <xref ref="WInstitute"/>, <xref ref="Sanyal"/>) can be used to de-tumble a satellite. The standard B-dot controller requires the magnetorquers to follow the control law shown below
+      </p>
+
+      <md number="yes">
+        <mrow xml:id="e-bdotcompact">\vec{\mu}_B = k{\bf S}(\vec{\omega}_{B/I}){\bf T}_{BI}(\vec{q})\vec{\beta}_I</mrow>
+      </md>
+
+      <p>
+        where <m>k</m> is the control gain. Using equation (<xref ref="e-magmoment"/>) it is possible to write the current in component form again using the identity that <m>\vec{a}\times\vec{b}=-\vec{b}\times\vec{a}</m>
+      </p>
+
+      <md number="yes">
+        <mrow xml:id="e-bdot">
+          \begin{Bmatrix} i_{x} \\ i_{y} \\ i_{z} \end{Bmatrix} = \frac{k}{nA}\begin{bmatrix} 0 &amp; \beta_z &amp; -\beta_y \\ -\beta_z &amp; 0 &amp; \beta_x \\ \beta_y &amp; -\beta_x &amp; 0 \end{bmatrix}\begin{Bmatrix} p \\ q \\ r \end{Bmatrix}
+        </mrow>
+      </md>
+
+      <p>
+        This equation can then be substituted into equation (<xref ref="e-magtorquecomponent"/>) to produce the total torque on the satellite assuming that the magnetorquers can provide the necessary current commanded by equation (<xref ref="e-bdot"/>).
+      </p>
+
+      <md number="yes">
+        <mrow xml:id="e-bdotfinal">
+          \begin{Bmatrix} L \\ M \\ N \end{Bmatrix} = -k \begin{bmatrix} \beta_y^2 + \beta_z^2 &amp; -\beta_x\beta_y &amp; -\beta_x\beta_z \\ -\beta_x\beta_y &amp; \beta_x^2 + \beta_z^2 &amp; -\beta_y\beta_z \\ -\beta_x\beta_z &amp; -\beta_y\beta_z &amp; \beta_x^2 + \beta_y^2 \end{bmatrix} \begin{Bmatrix} p \\ q \\ r \end{Bmatrix}
+        </mrow>
+      </md>
+
+      <p>
+        The goal of the controller here is to drive <m>\vec{\omega}_{B/I}\rightarrow 0</m>. The literature will show that this is not completely achieved <xref ref="Celani"/>. There are multiple explanations for this. For starters, equation (<xref ref="e-magtorque"/>) assumes that the magnetic moment is not co-linear with the magnetic field of the Earth. If it is, the result is zero torque applied to the satellite. Furthermore, equation (<xref ref="e-bdot"/>) results in zero current if the angular velocity vector of the satellite is co-linear with the magnetic field. Thus, if the magnetic field vector, angular velocity vector or the magnetic moment vector are co-linear, the torque applied to the satellite will be zero. If a new operator is defined such that
+      </p>
+
+      <md number="yes">
+        <mrow>
+          {\bf W}({\bf T}_{BI}(\vec{q})\vec{\beta}_I) = \begin{bmatrix} \beta_y^2 + \beta_z^2 &amp; -\beta_x\beta_y &amp; -\beta_x\beta_z \\ -\beta_x\beta_y &amp; \beta_x^2 + \beta_z^2 &amp; -\beta_y\beta_z \\ -\beta_x\beta_z &amp; -\beta_y\beta_z &amp; \beta_x^2 + \beta_y^2 \end{bmatrix}
+        </mrow>
+      </md>
+
+      <p>
+        it is easy to see that the torque applied to a satellite is then simply the angular velocity vector multiplied by this transition matrix. If this transition matrix is put into row-reduced-echelon form it is easy to see that the determinant of this matrix is equal to zero (<xref ref="carlen2006linear"/>).
+      </p>
+
+      <md number="yes">
+        <mrow>
+          rref({\bf W}({\bf T}_{BI}(\vec{q})\vec{\beta}_I) = \begin{bmatrix} 1 &amp; 0 &amp; -\beta_x/ \beta_z \\ 0 &amp; 1 &amp; -\beta_y/ \beta_z \\ 0 &amp; 0 &amp; 0 \end{bmatrix}
+        </mrow>
+      </md>
+
+      <p>
+        A zero determinant means that there exists a vector <m>\vec{\omega}_{B/I}</m> that will result in zero torque for a given value of the magnetic field. This is typically avoided since the magnetic field of the Earth is time and spatially varying which results in a transition matrix that changes over time due to orientation changes in the satellite as well as changes in the satellite's orbit. However, for low inclination orbits, it's possible for the magnetic field to stay relatively constant with <m>\beta_x \approx \beta_y \approx 0</m>. If the satellite is tumbling about the yaw axis such that <m>p=q=0</m>, the yaw torque on the satellite (<m>N</m>) will be zero. Using this simple controller, there is no way to remove the remaining angular velocity from the satellite unless reaction wheels are used.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-reaction-wheel-control">
+      <title>Reaction Wheel Control</title>
+
+      <p>
+        Assuming each reaction is aligned with a principal axis of inertia the control scheme is extremely simple. When the wheels are not aligned the derivation will proceed similar to the reaction control thruster section. The derivation here will just be for the aligned case. In this analysis it is assumed that a torque can be applied to the reaction wheel and thus the angular velocity of the reaction wheel <m>\alpha_{Ri}</m> can be directly controlled. Assuming this a simple PD control law can be used to orient the satellite at any desired orientation using Euler angles for this control law since the satellites are aligned with the principal axes of rotation <xref ref="etkins"/>.
+      </p>
+
+      <md number="yes">
+        <mrow>\alpha_{Ri} = -k_p(\epsilon_i-\epsilon_{desired})-k_d(\omega_i-\omega_{desired})</mrow>
+      </md>
+
+      <p>
+        In the equation above <m>\epsilon</m> denotes either roll <m>\phi</m>, pitch <m>\theta</m> or yaw <m>\psi</m> depending on which reaction wheel is being used. The Euler angles in this case would be obtained by converting the quaternions to Euler angles as defined in <xref ref="s_quat"/>.
+      </p>
+
+      <p>
+        Often times however your reaction wheels are not pointed on the principal axis of inertia. In this case a Least Squares Regression model is needed. In this case the equation above is used to compute the desired torque to be placed on the satellite such that
+      </p>
+
+      <md number="yes">
+        <mrow>\vec{M}_{desired} = -k_p(\epsilon_i-\epsilon_{desired})-k_d(\omega_i-\omega_{desired})</mrow>
+      </md>
+
+      <p>
+        This equation is then equated to the equation for torque placed on the satellite where the angular accelerations are placed into a vector.
+      </p>
+
+      <md number="yes">
+        <mrow>
+          \vec{M}_{desired} = \vec{M}_R = \sum\limits_{i=1}^{NR} I^{B}_{Ri}\alpha_{Ri}\hat{n}_{Ri} = \begin{bmatrix} I^{B}_{R1}\hat{n}_{R1} &amp; \dots &amp; I^{B}_{RNR}\hat{n}_{RNR} \end{bmatrix} \begin{Bmatrix} \alpha_1 \\ \vdots \\ \alpha_{NR} \end{Bmatrix} = {\bf J} \vec{\alpha}
+        </mrow>
+      </md>
+
+      <p>
+        Since <m>{\bf J}</m> is a <m>3\times{N_{RW}}</m> matrix its impossible to simply invert the matrix and solve for the vector of angular accelerations <m>\vec{\alpha}</m>. In this case there are an infinite number of solutions. As such a minimization routine is required where the solution found also happens to be the lowest amount of angular acceleration. In this case, Lagrange's method was used to find the vector of angular accelerations <xref ref="lagrange"/>.
+      </p>
+
+      <md number="yes">
+        <mrow>\vec{\alpha} = {\bf J}^T\left({\bf J}{\bf J}^T\right)^{-1}\vec{M}_{desired}</mrow>
+      </md>
+    </subsection>
+
+    <subsection xml:id="subsec-reaction-control-thrusters">
+      <title>Reaction Control Thrusters</title>
+
+      <p>
+        The control law for the thrusters is a bit complex if the location of thrusters is not know apriori. If the location <em>is</em> known then simple PID control laws can be generated by applying pure couples to the correct thrusters that activate the correct axes. If the location <em>is not</em> known then the following derivation will suffice. There are <m>N_P</m> thrusters and only 3 degrees of freedom that need to be controlled; thus, the system is an overactuated system. Using equation <xref ref="e-propulsion"/>, the equation can be written in matrix form as given by the equation below where <m>\vec{M}_p</m> is replaced by <m>\vec{M}_{desired}</m>. The equation for <m>\vec{M}_{desired}</m> is generated using a similar PD control law as the reaction wheels.
+      </p>
+
+      <md number="yes">
+        <mrow>
+          \vec{M}_{desired} = p[{\bf S}(\vec{r}_{P1})\hat{n}_{P1}~{\bf S}(\vec{r}_{P2})\hat{n}_{P2}~\dots~{\bf S}(\vec{r}_{P{N_p}})\hat{n}_{P{N_p}}]\vec{\sigma} = {\bf M}\vec{\sigma}
+        </mrow>
+      </md>
+
+      <p>
+        Since <m>{\bf M}</m> is a <m>3\times{N_P}</m> matrix its impossible to simply invert the matrix and solve for the vector of pulses <m>\vec{\sigma}</m>. In this case there are an infinite number of solutions. As such a minimization routine is required where the solution found also happens to be the least amount of pulses. In this case, Lagrange's method was used to find the vector of pulses <xref ref="lagrange"/>.
+      </p>
+
+      <md number="yes">
+        <mrow>\vec{\sigma} = {\bf M}^T\left({\bf M}{\bf M}^T\right)^{-1}\vec{M}_{desired}</mrow>
+      </md>
+
+      <p>
+        Note that a similar equation can be derived for <m>\vec{F}_{desired}</m>. The solution to the equation above results in values of <m>\sigma</m> that are bigger than 1 and sometimes negative. If a value in this vector is bigger than 0 the value is set to 1 and if the value is negative the value is set to 0. Thus, the solution does not yield an exact solution but it does allow for flexibility in the number of thrusters and their respective orientations. Sizing of the thrusters depends on many independent variables including the thrust <m>T</m> and the <m>I_{sp}</m>. Using the <m>I_{sp}</m> the exit velocity of the thruster can be obtained by using the equation below
+      </p>
+
+      <md number="yes">
+        <mrow>v_e = I_{sp}g_0</mrow>
+      </md>
+
+      <p>
+        where <m>g_0</m> is the gravitational acceleration of the Earth at sea-level. Then the mass flow rate of the thruster can be obtained using the equation below.
+      </p>
+
+      <md number="yes">
+        <mrow>\dot{m}_P = T/v_e</mrow>
+      </md>
+
+      <p>
+        Using this mass flow rate total propellant mass required can be computed assuming a certain duty cycle.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-cross-products-inertia-control">
+      <title>Cross Products of Inertia Control</title>
+
+      <p>
+        An interesting form of control is to take advantage of momentum dumping. Looking at the equation for angular acceleration again (<xref ref="e_pqrdot_ac"/>) this equation can be simplified for certain cases. For example, if the roll rate of the satellite is set to be non-zero while the pitch rate and yaw rates are set to zero it is easy to see that if the inertia is diagonal the derivative of angular velocity is zero. However, if the cross products of inertia are given by the matrix below
+      </p>
+
+      <md number="yes">
+        <mrow>
+          {\bf I}_s = \begin{bmatrix} I_{xx} &amp; I_{xy} &amp; I_{xz} \\ I_{xy} &amp; I_{yy} &amp; I_{yz} \\ I_{xz} &amp; I_{yz} &amp; I_{zz} \end{bmatrix}
+        </mrow>
+      </md>
+
+      <p>
+        the derivative of angular velocity becomes
+      </p>
+
+      <md number="yes">
+        <mrow>
+          \dot{\vec{\omega}}_{B/I} = I_S^{-1} \left (\begin{Bmatrix} 0 \\ -I_{xz}p^2 \\ I_{xy}p^2 \end{Bmatrix} \right )
+        </mrow>
+      </md>
+
+      <p>
+        again assuming the roll rate is non zero and the pitch rate is zero. This result shows that momentum can be transferred to different axes provided the cross products of inertia are non-zero.
+      </p>
+    </subsection>
+  </section>
+
+  <section xml:id="sec-inner-outer-loop-control">
+    <title>Inner and Outer Loop Control of an Aircraft</title>
+
+    <introduction>
+        <p>
+            Controlling an aircraft typically requires an inner loop-outer loop control scheme. The inner loop is typically used to control the attitude of the aircraft while the outer loop is used to control the position of the aircraft. The inner loop is typically a PID controller that controls the roll, pitch and yaw of the aircraft while the outer loop is also typically a PID controller that controls the position of the aircraft in 3D space. The inner loop is generally faster than the outer loop and thus can be used to stabilize the aircraft while the outer loop can be used to control the position of the aircraft.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsec-pitch-control">
+      <title>Inner Loop Control</title>
+
+      <p>
+        For a conventional PID controller of an aircraft, the rudder, elevator and aileron commands are set to
+      </p>
+
+      <md number="yes">
+        <mrow>
+          \begin{matrix} \delta_{r} =-K_v v \\ \delta_{e} = K_p(\theta-\theta_{c})+K_d{\dot \theta} \\ \delta_a = K_p(\phi-\phi_{c})+K_d{\dot \phi} \end{matrix}
+        </mrow>
+      </md>
+
+      <p>
+        The Euler angle commands <m>\phi_{c}</m> and <m>\theta_{c}</m> are set using the following relationships:
+      </p>
+
+      <md number="yes">
+        <mrow>
+          \begin{matrix} \phi_{c} = K_p(\psi-\psi_c)+K_d\dot{\psi} \\ \theta_{c} = K_p(z-z_c) + K_d\dot{z} + K_{I}\int{z-z_c}dt \end{matrix}
+        </mrow>
+      </md>
+
+      <p>
+        The control scheme defined above is a conventional inner loop-outer loop control of a fixed wing aircraft using a PID tracking controller.
+      </p>
+    </subsection>
+
+    <subsection xml:id="subsec-velocity-control">
+      <title>Velocity Control</title>
+    </subsection>
+
+    <subsection xml:id="subsec-altitude-control">
+      <title>Altitude Control</title>
+    </subsection>
+
+    <subsection xml:id="subsec-heading-car">
+      <title>Heading Angle Control of a Car</title>
+    </subsection>
+
+    <subsection xml:id="subsec-heading-airplane">
+      <title>Heading Angle Control of an Airplane</title>
+    </subsection>
+
+    <subsection xml:id="subsec-waypoint-car">
+      <title>Waypoint Control of a Car</title>
+    </subsection>
+
+    <subsection xml:id="subsec-waypoint-airplane">
+      <title>Waypoint Control of an Airplane</title>
+    </subsection>
+  </section>
+</chapter>

@@ -73,6 +73,12 @@
     <biblio xml:id="qp40"><p>S. Caldwell. Ground data systems and mission operations. nasa. http://www.nasa.gov/smallsat-institute/sst-soa/ground-data-systems-and-mission-operations. Accessed Nov. 4, 2021.</p></biblio>
     <biblio xml:id="qp41"><p>H. Monaghan. Networks. nasa. http://www.nasa.gov/directorates/heo/scan/services/networks/index.html.Accessed Nov. 4, 2021.</p></biblio>
     <biblio xml:id="qp42"><p>AmericaSpace. Happy birthday, dsn: Nasa’s iconic deep space communications network turns 50. https://www.americaspace.com/2013/12/26/happy-birthday-dsn-nasas-iconic-deep-space-communications-network-turns-50/. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="Leomanni2012"><p>Mirko Leomanni. Comparison of control laws for magnetic detumbling. Research Gate, 10 2012. accessed: 2/9/2018.</p></biblio>
+    <biblio xml:id="Lovera2015"><p>M. Lovera. Magnetic satellite detumbling: The b-dot algorithm revisited. In 2015 American Control Conference (ACC), pages 1867–1872, July 2015. doi:10.1109/ACC.2015.7171005.</p></biblio>
+    <biblio xml:id="WInstitute"><p>Farhat Assaad. Attitude Determination and Control System for a CubeSat. PhD thesis, Worcester Polytechnic Institute, March 1st 2013.</p></biblio>
+    <biblio xml:id="Sanyal"><p>Amit Sanyal and Zachary Lee-Ho. Attitude tracking control of a small satellite in low earth orbit. Aug 2009. doi:10.2514/6.2009-5902.</p></biblio>
+    <biblio xml:id="Celani"><p>Fabio Celani. Robust three-axis attitude stabilization for inertial pointing spacecraft using magnetorquers. ScienceDirect: Acta Astronautica, 107:87–96, February–March 2015. doi:10.1016/j.actaastro.2014.11.027.</p></biblio>
+    <biblio xml:id="carlen2006linear"><p>E. Carlen and M.C. Carvalho. Linear Algebra: From the Beginning. W. H. Freeman, 2006.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

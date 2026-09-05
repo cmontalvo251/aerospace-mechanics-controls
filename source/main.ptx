@@ -30,7 +30,9 @@
     <xi:include href="./stability.ptx"/>
     <xi:include href="./state_estimation.ptx"/>
     <xi:include href="./lti_controls.ptx"/>
+    <xi:include href="./aerospace_controls.ptx"/>
     <xi:include href="./nonlinear.ptx"/>
+    <xi:include href="./aircraft_design.ptx"/>
 
     <!--Include Results and Discussion chapters-->
     <xi:include href="./conclusions.ptx"/>
