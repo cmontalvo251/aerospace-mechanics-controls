@@ -83,6 +83,13 @@
     <biblio xml:id="newhorizons"><p> Spacecraft overview. new horizons. https://spaceflight101.com/newhorizons/spacecraft-overview/. Retrieved September 26, 2021.</p></biblio>
     <biblio xml:id="sysML"><p>Sysml activity diagram — enterprise architect user guide. https://sparxsystems.com/enterprise_architect_user_guide/15.2/model_domains/sysml_activity_diagram.html. Accessed Nov. 28, 2021.</p></biblio>
     <biblio xml:id="uml"><p>Uml - activity diagrams. https://www.tutorialspoint.com/uml/uml_activity_diagram.htm. Accessed Nov. 28, 2021.</p></biblio>
+    <biblio xml:id="RCYoutube"><p>Carlos Montalvo. Radio controlled aircraft design. accessed:12/30/2020 https://www.youtube.com/watch?v=RjC3Rou0wkA&amp;list=PL_D7_GvGz-v3d8gRDXWjQaVYfvNOPVx97. </p></biblio>
+    <biblio xml:id="caughey"><p>Caughey D.A. Introduction to Aircraft Stability and Control Course Notes for M&amp;AE 5070. , edition, 2011.</p></biblio>
+    <biblio xml:id="XFLR5_tutorial"><p>Montalvo C. Getting lift curve slopes and drag polars using xflr5. accessed 12/30/2020 https://www.youtube.com/watch?v=Yz7rmuhGYW0&amp;list=PL_D7_GvGz-v3d8gRDXWjQaVYfvNOPVx97&amp;index=4.</p></biblio>
+    <biblio xml:id="XFLR5_Guidelines"><p>Andre Deperrois. About stability analysis using xflr5 presentation document. June 2008. http://www.xflr5.tech/docs/XFLR5_and_Stability_analysis.pdf.</p></biblio>
+    <biblio xml:id="XFLR5"><p>Xflr5. accessed 12/30/2020 http://www.xflr5.tech/xflr5.htm.</p></biblio>
+    <biblio xml:id="WCL"><p>Ken Meyers. Wing cube loading (wcl). Accessed: 12/31/2020 https://www.sefsd.org/general-interest/wing-cube-loading-wcl/.</p></biblio>
+    <biblio xml:id="CRRCSim"><p>Crrcsim. accessed: 12/30/2020 https://sourceforge.net/projects/crrcsim/.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->
