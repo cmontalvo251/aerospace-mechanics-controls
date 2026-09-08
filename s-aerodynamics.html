@@ -19,22 +19,64 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
-<script type="module">import { startMathJax } from './_static/pretext/js/mathjax_startup.js';
-startMathJax({
-hasWebworkReps: false,
-hasSage: false,
-isReact: false,
-htmlPresentation: false,
-});
-</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math"
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta name="twitter:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
-<meta property="og:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
-<meta property="book:title" content="Aerospace Mechanics and Controls: Planes, Rockets, Quadcopters, Satellites and everything in between">
-<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
-<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
-<meta name="twitter:card" content="summary">
+<meta property="book:title" content="Aerospace Mechanics and Controls">
+<meta property="book:author" content="Carlos Montalvo">
 <script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
@@ -100,7 +142,7 @@ eBookConfig.enable_chatcodes =  false;
 <ul class="structural toc-item-list">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="current-edition.html" class="internal"><span class="codenumber">1</span> <span class="title">Current Edition</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="manuscript-changes.html" class="internal"><span class="codenumber">2</span> <span class="title">Manuscript Changes</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="future-changes.html" class="internal"><span class="codenumber">3</span> <span class="title">Changes Needed and Future Project Ideas</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="future-changes.html" class="internal"><span class="codenumber">3</span> <span class="title">Changes Needed</span></a></div></li>
 <li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
@@ -299,28 +341,127 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 <li class="toc-item toc-chapter">
-<div class="toc-title-box"><a href="s_nonlinear_controls.html" class="internal"><span class="codenumber">17</span> <span class="title">Nonlinear Control Techniques</span></a></div>
+<div class="toc-title-box"><a href="chap-conventional-aerospace-controls.html" class="internal"><span class="codenumber">17</span> <span class="title">Conventional Aerospace Controls</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_phase_portraits.html" class="internal"><span class="codenumber">17.1</span> <span class="title">Phase Portraits</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_lyapunov_control.html" class="internal"><span class="codenumber">17.2</span> <span class="title">Lyapunov Control</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_sliding_mode_control.html" class="internal"><span class="codenumber">17.3</span> <span class="title">Sliding Mode Control</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_adaptive_control.html" class="internal"><span class="codenumber">17.4</span> <span class="title">Adaptive Control</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-spacecraft-attitude-control-schemes.html" class="internal"><span class="codenumber">17.1</span> <span class="title">Spacecraft Attitude Control Schemes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control-schemes.html#subsec-bdot-controller" class="internal"><span class="codenumber">17.1.1</span> <span class="title">B-dot Controller</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control-schemes.html#subsec-reaction-wheel-control" class="internal"><span class="codenumber">17.1.2</span> <span class="title">Reaction Wheel Control</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control-schemes.html#subsec-reaction-control-thrusters" class="internal"><span class="codenumber">17.1.3</span> <span class="title">Reaction Control Thrusters</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control-schemes.html#subsec-cross-products-inertia-control" class="internal"><span class="codenumber">17.1.4</span> <span class="title">Cross Products of Inertia Control</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="conclusions.html" class="internal"><span class="codenumber">18</span> <span class="title">Conclusions</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="acknowledgements.html" class="internal"><span class="codenumber">19</span> <span class="title">Acknowledgements</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-inner-outer-loop-control.html" class="internal"><span class="codenumber">17.2</span> <span class="title">Inner and Outer Loop Control of an Aircraft</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-pitch-control" class="internal"><span class="codenumber">17.2.1</span> <span class="title">Inner Loop Control</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-velocity-control" class="internal"><span class="codenumber">17.2.2</span> <span class="title">Velocity Control</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-altitude-control" class="internal"><span class="codenumber">17.2.3</span> <span class="title">Altitude Control</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-heading-car" class="internal"><span class="codenumber">17.2.4</span> <span class="title">Heading Angle Control of a Car</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-heading-airplane" class="internal"><span class="codenumber">17.2.5</span> <span class="title">Heading Angle Control of an Airplane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-waypoint-car" class="internal"><span class="codenumber">17.2.6</span> <span class="title">Waypoint Control of a Car</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-inner-outer-loop-control.html#subsec-waypoint-airplane" class="internal"><span class="codenumber">17.2.7</span> <span class="title">Waypoint Control of an Airplane</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="s_nonlinear_controls.html" class="internal"><span class="codenumber">18</span> <span class="title">Nonlinear Control Techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_phase_portraits.html" class="internal"><span class="codenumber">18.1</span> <span class="title">Phase Portraits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_lyapunov_control.html" class="internal"><span class="codenumber">18.2</span> <span class="title">Lyapunov Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_sliding_mode_control.html" class="internal"><span class="codenumber">18.3</span> <span class="title">Sliding Mode Control</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="s_adaptive_control.html" class="internal"><span class="codenumber">18.4</span> <span class="title">Adaptive Control</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-project-based-engineering.html" class="internal"><span class="codenumber">19</span> <span class="title">Project Based Engineering and Systems Engineering</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="life-cycle.html" class="internal"><span class="codenumber">19.1</span> <span class="title">Systems Engineering Life Cycle</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bdds.html" class="internal"><span class="codenumber">19.2</span> <span class="title">Block Definition Diagrams (BDDs)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ibds.html" class="internal"><span class="codenumber">19.3</span> <span class="title">Internal Block Diagrams (IBDs)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-interface-diagrams.html" class="internal"><span class="codenumber">19.4</span> <span class="title">Interface Diagrams</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-activity-diagrams.html" class="internal"><span class="codenumber">19.5</span> <span class="title">Activity Diagrams</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-gnc-cubesats.html" class="internal"><span class="codenumber">20</span> <span class="title">Guidance Navigation and Control Design for CubeSATs</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-trajectory-analysis.html" class="internal"><span class="codenumber">20.1</span> <span class="title">Trajectory Analysis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-spacecraft-environment.html" class="internal"><span class="codenumber">20.2</span> <span class="title">Spacecraft Environment</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html" class="internal"><span class="codenumber">20.3</span> <span class="title">Spacecraft Attitude Control</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html#subsec-magnetorquers" class="internal"><span class="codenumber">20.3.1</span> <span class="title">Magnetorquers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html#subsec-reaction-wheels" class="internal"><span class="codenumber">20.3.2</span> <span class="title">Reaction Wheels</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html#subsec-tvc" class="internal"><span class="codenumber">20.3.3</span> <span class="title">Thrust Vector Control (TVC)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html#subsec-rcs" class="internal"><span class="codenumber">20.3.4</span> <span class="title">Reaction Control System (RCS)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-control.html#subsec-cmg" class="internal"><span class="codenumber">20.3.5</span> <span class="title">Control Moment Gyro</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html" class="internal"><span class="codenumber">20.4</span> <span class="title">Spacecraft Attitude Determination</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-sensor-overview" class="internal"><span class="codenumber">20.4.1</span> <span class="title">Sensor Overview</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-imu" class="internal"><span class="codenumber">20.4.2</span> <span class="title">Inertial Measurement Unit</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-startracker" class="internal"><span class="codenumber">20.4.3</span> <span class="title">StarTracker</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-sun-sensors" class="internal"><span class="codenumber">20.4.4</span> <span class="title">Sun Sensors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-horizon-sensor" class="internal"><span class="codenumber">20.4.5</span> <span class="title">Horizon Sensor</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spacecraft-attitude-determination.html#subsec-deep-space-sensors" class="internal"><span class="codenumber">20.4.6</span> <span class="title">Deep Space</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-position-estimation.html" class="internal"><span class="codenumber">20.5</span> <span class="title">Position Estimation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-trade-studies.html" class="internal"><span class="codenumber">20.6</span> <span class="title">Trade Studies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-risks.html" class="internal"><span class="codenumber">20.7</span> <span class="title">Risks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-conclusions.html" class="internal"><span class="codenumber">20.8</span> <span class="title">Conclusions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="radio-controlled-aircraft-design.html" class="internal"><span class="codenumber">21</span> <span class="title">Radio-Controlled Aircraft Design</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-vehicle-selection.html" class="internal"><span class="codenumber">21.1</span> <span class="title">Vehicle Type Selection and Requirements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-initial-design.html" class="internal"><span class="codenumber">21.2</span> <span class="title">Initial Design - Hand Sketch and Aspect Ratio</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-weight-estimate.html" class="internal"><span class="codenumber">21.3</span> <span class="title">Weight Estimate - Tabular Approach</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-airfoil-selection.html" class="internal"><span class="codenumber">21.4</span> <span class="title">Airfoil Selection and 2D and 3D Lift</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-wing-loading.html" class="internal"><span class="codenumber">21.5</span> <span class="title">Wing Loading and Thrust to Weight Ratio</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-battery-sizing.html" class="internal"><span class="codenumber">21.6</span> <span class="title">Battery Sizing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-stability-control.html" class="internal"><span class="codenumber">21.7</span> <span class="title">Stability and Control, Center of Mass, Aerodynamic Center and Static Margin</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-iteration-sketch.html" class="internal"><span class="codenumber">21.8</span> <span class="title">Iteration, Detailed Sketch and Final Checks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-cad.html" class="internal"><span class="codenumber">21.9</span> <span class="title">Computer Aided Design (CAD)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-purchase-components.html" class="internal"><span class="codenumber">21.10</span> <span class="title">Purchase Components</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-building.html" class="internal"><span class="codenumber">21.11</span> <span class="title">Building</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-flying.html" class="internal"><span class="codenumber">21.12</span> <span class="title">Flying</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html" class="internal"><span class="codenumber">21.13</span> <span class="title">Helpful Aircraft Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-mach-and-reynolds-number" class="internal"><span class="codenumber">21.13.1</span> <span class="title">Mach Number and Reynolds Number</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-total-velocity" class="internal"><span class="codenumber">21.13.2</span> <span class="title">Total Velocity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-angle-of-attack-and-sideslip" class="internal"><span class="codenumber">21.13.3</span> <span class="title">Angle of Attack and Sideslip</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-lift-drag-and-moment" class="internal"><span class="codenumber">21.13.4</span> <span class="title">Lift Drag and Moment</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-lift-and-drag-coefficients" class="internal"><span class="codenumber">21.13.5</span> <span class="title">Lift and Drag Coefficients</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-non-dimensional-angular-velocities" class="internal"><span class="codenumber">21.13.6</span> <span class="title">Non-dimensional Angular Velocities</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-pitch-moment-equation" class="internal"><span class="codenumber">21.13.7</span> <span class="title">Pitch Moment Equation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-max-lift-to-drag-ratio" class="internal"><span class="codenumber">21.13.8</span> <span class="title">Max Lift to Drag Ratio (Only valid if <span class="process-math">\(C_{L0}=0\)</span>)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-lift-to-drag-zero-thrust" class="internal"><span class="codenumber">21.13.9</span> <span class="title">Lift to Drag when <span class="process-math">\(T=0\)</span> (Sum of Forces still zero)</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-airfoil-and-wing-aerodynamics" class="internal"><span class="codenumber">21.13.10</span> <span class="title">Airfoil and Wing Aerodynamics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-standard-atmosphere" class="internal"><span class="codenumber">21.13.11</span> <span class="title">Standard Atmosphere</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-helpful-aircraft-equations.html#subsec-general-notes" class="internal"><span class="codenumber">21.13.12</span> <span class="title">General Notes</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="conclusions.html" class="internal"><span class="codenumber">22</span> <span class="title">Conclusions</span></a></div></li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="acknowledgements.html" class="internal"><span class="codenumber">23</span> <span class="title">Acknowledgements</span></a></div></li>
 <li class="toc-item toc-backmatter">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
 <ul class="structural toc-item-list"><li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">References</span></a></div></li></ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="section" id="s-aerodynamics">
-<h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-aerodynamics"><h2 class="heading hide-type">
 <span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Aerodynamics</span>
 </h2>
-<section class="introduction" id="s-aerodynamics-2">
-<div class="para" id="s-aerodynamics-2-1">Aerodynamics are typically written using a taylor series expansion about a trim point[<a href="backmatter-1.html#phil" class="xref" data-knowl="./knowl/xref/phil.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 26">[26]</a>][<a href="backmatter-1.html#AndersonD" class="xref" data-knowl="./knowl/xref/AndersonD.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 38">[38]</a>]. That is, the aerodynamic forces are given by<div class="autopermalink" data-description="Paragraph"><a href="#s-aerodynamics-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<section class="introduction" id="s-aerodynamics-2"><div class="para" id="s-aerodynamics-2-1">Aerodynamics are typically written using a taylor series expansion about a trim point[<a href="backmatter-1.html#phil" class="xref" data-knowl="./knowl/xref/phil.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 26">[26]</a>][<a href="backmatter-1.html#AndersonD" class="xref" data-knowl="./knowl/xref/AndersonD.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 38">[38]</a>]. That is, the aerodynamic forces are given by<div class="autopermalink" data-description="Paragraph"><a href="#s-aerodynamics-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/phil.html ./knowl/xref/AndersonD.html" id="s-aerodynamics-2-2">
 \begin{equation*}
@@ -391,9 +532,7 @@ M = \frac{1}2\rho {V_{\infty}}^2 S \bar{c} C_M
 \end{equation*}
 </div>
 <div class="para" id="s-aerodynamics-2-21">The coefficients listed above are standard coefficients that all aircraft have. A similar matrix can be formulated for the moments on an aircraft. When system identifying an aircraft all of these coefficients may be determined. However, many of these terms are zero. For example, all coefficients with respect to x y and z are zero. That is, <span class="process-math">\(C_{Xx} = C_{Yx} = ... C_{Nx} = C_{Xy} = ... C_{Nz} = 0\text{.}\)</span> Other coefficients can be set to zero as well but are not explicitly included in this text.<div class="autopermalink" data-description="Paragraph"><a href="#s-aerodynamics-2-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></section>
-<section class="subsection" id="subsec-aircraft-aero">
-<h3 class="heading hide-type">
+</div></section><section class="subsection" id="subsec-aircraft-aero"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Aircraft Aerodynamics</span>
 </h3>
 <div class="para" id="subsec-aircraft-aero-2">For aircraft, some further simplifications are made. Some of the coefficients defined above are combined to be written as functions of the angle of attack(<span class="process-math">\(\alpha\)</span>) and sideslip(<span class="process-math">\(\beta\)</span>).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-aero-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -431,10 +570,7 @@ M = \frac{1}2\rho {V_{\infty}}^2 S \bar{c} C_M
 </div>
 <div class="para" id="subsec-aircraft-aero-11">The aerodynamic coefficients in equations (<a href="s-aerodynamics.html#e-aforce" class="xref" data-knowl="./knowl/xref/e-aforce.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.5">(8.4.5)</a>), (<a href="s-aerodynamics.html#e-liftdrag" class="xref" data-knowl="./knowl/xref/e-liftdrag.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.6">(8.4.6)</a>) and (<a href="s-aerodynamics.html#e-LMN" class="xref" data-knowl="./knowl/xref/e-LMN.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.7">(8.4.7)</a>) can be obtained from flight data, aerodynamic modeling and windtunnel tests. Notice that the only coefficients remaining are coefficients from angle of attack, sideslip and angular velocities. Furthermore, the coefficients for angular velocities are also non-dimensionalized by terms such as <span class="process-math">\(b/(2V_{\infty})\)</span> where <span class="process-math">\(b\)</span> is the wingspan of the aircraft and <span class="process-math">\(\bar{c}\)</span> is the mean chord of the aircraft. These terms are introduced to fully non-dimensionalize the coefficients. Notice, as well that four extra terms were also introduced. These will be discussed in more detail in the control section however the four terms are the aileron control surface <span class="process-math">\(\delta_a\text{,}\)</span> the elevator control surface <span class="process-math">\(\delta_e\text{,}\)</span> the rudder control surface <span class="process-math">\(\delta_r\)</span> and the thrust control value <span class="process-math">\(\delta_t\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-aircraft-aero-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Subsection 8.4.1: Aircraft Aerodynamics"><a href="#subsec-aircraft-aero" title="Copy heading and permalink for Subsection 8.4.1: Aircraft Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.1: Aircraft Aerodynamics">🔗</a></div>
-</section>
-<section class="subsection" id="subsec-projectile-aero">
-<h3 class="heading hide-type">
+<div class="autopermalink" data-description="Subsection 8.4.1: Aircraft Aerodynamics"><a href="#subsec-aircraft-aero" title="Copy heading and permalink for Subsection 8.4.1: Aircraft Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.1: Aircraft Aerodynamics">🔗</a></div></section><section class="subsection" id="subsec-projectile-aero"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projectile Aerodynamics</span>
 </h3>
 <div class="para" id="subsec-projectile-aero-2">To fully define the projectile aerodynamics some more assumptions are made about the projectile.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-projectile-aero-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -514,18 +650,13 @@ C_{N_{p\alpha}} = \frac{(SL_{MAG}-SL_{CG})C_{Y_{p\alpha}}}{d}
 \end{matrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Subsection 8.4.2: Projectile Aerodynamics"><a href="#subsec-projectile-aero" title="Copy heading and permalink for Subsection 8.4.2: Projectile Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.2: Projectile Aerodynamics">🔗</a></div>
-</section>
-<section class="subsection" id="subsec-quadcopter-aero">
-<h3 class="heading hide-type">
+<div class="autopermalink" data-description="Subsection 8.4.2: Projectile Aerodynamics"><a href="#subsec-projectile-aero" title="Copy heading and permalink for Subsection 8.4.2: Projectile Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.2: Projectile Aerodynamics">🔗</a></div></section><section class="subsection" id="subsec-quadcopter-aero"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Quadcopter Aerodynamics</span>
 </h3>
 <div class="para" id="subsec-quadcopter-aero-2">The aerodynamic model is based on a standard X-frame quadcopter as shown in the Figure below.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="iris-plus"><div class="image-box" style="width: 73%; margin-left: 13.5%; margin-right: 13.5%;"><img src="external/Iris+QuadcopterDrawing.png" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>3DR Iris+ quadrotor model.<div class="autopermalink" data-description="Figure 8.4.1"><a href="#iris-plus" title="Copy heading and permalink for Figure 8.4.1" aria-label="Copy heading and permalink for Figure 8.4.1">🔗</a></div></figcaption>
-</figure>
-<div class="para" id="subsec-quadcopter-aero-4">The forces exerted on the quadrotor are the total thrust and aerodynamic drag.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>3DR Iris+ quadrotor model.<div class="autopermalink" data-description="Figure 8.4.1"><a href="#iris-plus" title="Copy heading and permalink for Figure 8.4.1" aria-label="Copy heading and permalink for Figure 8.4.1">🔗</a></div></figcaption></figure><div class="para" id="subsec-quadcopter-aero-4">The forces exerted on the quadrotor are the total thrust and aerodynamic drag.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/XYZD.html ./knowl/xref/quadfdnc.html ./knowl/xref/rotorflap.html ./knowl/xref/advanceratio.html ./knowl/xref/LMNDT.html ./knowl/xref/ptpplus.html ./knowl/xref/tauptp.html ./knowl/xref/swingload.html ./knowl/xref/kt.html ./knowl/xref/b.html" id="XYZD">
 \begin{equation}
@@ -546,7 +677,7 @@ T = \sum\limits_{i=1}^4 f_{i} = f_{1}+f_{2}+f_{3}+f_{4}\tag{8.4.12}
 f_{i} = k_{t}{\Omega_{i}}^{2}\tag{8.4.13}
 \end{equation}
 </div>
-<div class="para" id="subsec-quadcopter-aero-10">The total drag caused by the thrusting of the motors is a combination of the induced drag and rotor flapping [<a href="backmatter-1.html#quadfdnc" class="xref" data-knowl="./knowl/xref/quadfdnc.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 49">[49]</a>]. The induced drag acting on the platform is caused by an imbalance in the thrust produced by advancing and retreating blades. This behavior can be modeled as a linear function of multirotor translational velocity in the quadcopter frame. Additionally, drag due to rotor flapping is caused by rotor flexibility, which is function of advance ratio and dependent on the rotor blades and hub design[<a href="backmatter-1.html#rotorflap" class="xref" data-knowl="./knowl/xref/rotorflap.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 50">[50]</a>]. Thus, the total drag vector on the quadcopter is expressed as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-quadcopter-aero-10">The total drag caused by the thrusting of the motors is a combination of the induced drag and rotor flapping [<a href="backmatter-1.html#quadfdnc" class="xref" data-knowl="./knowl/xref/quadfdnc.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 74">[74]</a>]. The induced drag acting on the platform is caused by an imbalance in the thrust produced by advancing and retreating blades. This behavior can be modeled as a linear function of multirotor translational velocity in the quadcopter frame. Additionally, drag due to rotor flapping is caused by rotor flexibility, which is function of advance ratio and dependent on the rotor blades and hub design[<a href="backmatter-1.html#rotorflap" class="xref" data-knowl="./knowl/xref/rotorflap.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 75">[75]</a>]. Thus, the total drag vector on the quadcopter is expressed as<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/XYZD.html ./knowl/xref/quadfdnc.html ./knowl/xref/rotorflap.html ./knowl/xref/advanceratio.html ./knowl/xref/LMNDT.html ./knowl/xref/ptpplus.html ./knowl/xref/tauptp.html ./knowl/xref/swingload.html ./knowl/xref/kt.html ./knowl/xref/b.html" id="DAxyz">
 \begin{equation}
@@ -611,7 +742,7 @@ f_{i} = k_{t}{\Omega_{i}}^{2}\tag{8.4.13}
 \tau_{i} = b{\Omega_{i}}^{2}\tag{8.4.21}
 \end{equation}
 </div>
-<div class="para" id="subsec-quadcopter-aero-25">The constant <span class="process-math">\(b\)</span> in the above equation denote the blade drag factor. The constants are modeled using blade element momentum theory[<a href="backmatter-1.html#swingload" class="xref" data-knowl="./knowl/xref/swingload.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 51">[51]</a>].<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-25" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-quadcopter-aero-25">The constant <span class="process-math">\(b\)</span> in the above equation denote the blade drag factor. The constants are modeled using blade element momentum theory[<a href="backmatter-1.html#swingload" class="xref" data-knowl="./knowl/xref/swingload.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 76">[76]</a>].<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-25" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/XYZD.html ./knowl/xref/quadfdnc.html ./knowl/xref/rotorflap.html ./knowl/xref/advanceratio.html ./knowl/xref/LMNDT.html ./knowl/xref/ptpplus.html ./knowl/xref/tauptp.html ./knowl/xref/swingload.html ./knowl/xref/kt.html ./knowl/xref/b.html" id="kt">
 \begin{equation}
@@ -625,10 +756,7 @@ b = C_{\tau}\frac{4\rho {R}^{5}}{{\pi}^{3}}\tag{8.4.23}
 </div>
 <div class="para" id="subsec-quadcopter-aero-28">In Eqs. <a href="s-aerodynamics.html#kt" class="xref" data-knowl="./knowl/xref/kt.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.22">(8.4.22)</a> and <a href="s-aerodynamics.html#b" class="xref" data-knowl="./knowl/xref/b.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 8.4.23">(8.4.23)</a>, <span class="process-math">\(\rho\)</span> is the air density, <span class="process-math">\(C_{T}\)</span> is the thrust coefficient, and <span class="process-math">\(C_{Q}\)</span> is the torque coefficient.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-quadcopter-aero-28" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Subsection 8.4.3: Quadcopter Aerodynamics"><a href="#subsec-quadcopter-aero" title="Copy heading and permalink for Subsection 8.4.3: Quadcopter Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.3: Quadcopter Aerodynamics">🔗</a></div>
-</section>
-<section class="subsection" id="subsec-spacecraft-aero">
-<h3 class="heading hide-type">
+<div class="autopermalink" data-description="Subsection 8.4.3: Quadcopter Aerodynamics"><a href="#subsec-quadcopter-aero" title="Copy heading and permalink for Subsection 8.4.3: Quadcopter Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.3: Quadcopter Aerodynamics">🔗</a></div></section><section class="subsection" id="subsec-spacecraft-aero"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Spacecraft Aerodynamics</span>
 </h3>
 <div class="para" id="subsec-spacecraft-aero-2">The aerodynamic force is computed using aerodynamic coefficients and dynamic pressure where <span class="process-math">\(\vec{V}\)</span> is the velocity of the satellite and <span class="process-math">\(V\)</span> is the magnitude of the velocity vector. Furthermore, <span class="process-math">\(S\)</span> is the surface area of the satellite and <span class="process-math">\(C_D\)</span> is the drag coefficient. The torque on the satellite is then given by the cross product between the aerodynamic force and a distance vector representing the distance between the center of mass and the center of pressure <span class="process-math">\(\vec{r}_{CP-CG}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-spacecraft-aero-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -643,10 +771,7 @@ b = C_{\tau}\frac{4\rho {R}^{5}}{{\pi}^{3}}\tag{8.4.23}
 \vec{M}_A = -{\bf S}\left(\vec{F}_A\right)\vec{r}_{CP-CG}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Subsection 8.4.4: Spacecraft Aerodynamics"><a href="#subsec-spacecraft-aero" title="Copy heading and permalink for Subsection 8.4.4: Spacecraft Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.4: Spacecraft Aerodynamics">🔗</a></div>
-</section><div class="autopermalink" data-description="Section 8.4: Aerodynamics"><a href="#s-aerodynamics" title="Copy heading and permalink for Section 8.4: Aerodynamics" aria-label="Copy heading and permalink for Section 8.4: Aerodynamics">🔗</a></div>
-</section>
-</div>
+<div class="autopermalink" data-description="Subsection 8.4.4: Spacecraft Aerodynamics"><a href="#subsec-spacecraft-aero" title="Copy heading and permalink for Subsection 8.4.4: Spacecraft Aerodynamics" aria-label="Copy heading and permalink for Subsection 8.4.4: Spacecraft Aerodynamics">🔗</a></div></section><div class="autopermalink" data-description="Section 8.4: Aerodynamics"><a href="#s-aerodynamics" title="Copy heading and permalink for Section 8.4: Aerodynamics" aria-label="Copy heading and permalink for Section 8.4: Aerodynamics">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
 <a class="previous-button button" href="sec-magnetorquer-model.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="planetary-positions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
