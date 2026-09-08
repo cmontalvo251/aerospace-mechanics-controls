@@ -89,13 +89,14 @@
   <li>October 24th, 2025 - Added the pendulum response and stability section</li>
   <li>December 5th, 2025 - Fixed the aircraft dynamics equations as there was a sign error. Updated changes needed onto Github.</li>
   <li>August 18th, 2026 - Started the conversion from LaTeX to PreTeXt.</li>
+  <li>September 8th, 2026 - Conversion to PreTeXt completed with few changes made to ease the transition. </li>
 </ol>
     </p>
   </section>
 
   <section xml:id="future-changes">
-    <title> Changes Needed and Future Project Ideas</title>
-    <p>Needed changes and Future Project Ideas are now tracked on <url href="https://github.com/cmontalvo251/aerospace-mechanics-controls/issues">Github</url></p>
+    <title> Changes Needed</title>
+    <p>Needed changes are now tracked on <url href="https://github.com/cmontalvo251/aerospace-mechanics-controls/issues">Github</url></p>
   </section>
 
   <!-- Colophon for the web -->
