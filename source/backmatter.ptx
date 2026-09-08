@@ -79,6 +79,10 @@
     <biblio xml:id="Sanyal"><p>Amit Sanyal and Zachary Lee-Ho. Attitude tracking control of a small satellite in low earth orbit. Aug 2009. doi:10.2514/6.2009-5902.</p></biblio>
     <biblio xml:id="Celani"><p>Fabio Celani. Robust three-axis attitude stabilization for inertial pointing spacecraft using magnetorquers. ScienceDirect: Acta Astronautica, 107:87–96, February–March 2015. doi:10.1016/j.actaastro.2014.11.027.</p></biblio>
     <biblio xml:id="carlen2006linear"><p>E. Carlen and M.C. Carvalho. Linear Algebra: From the Beginning. W. H. Freeman, 2006.</p></biblio>
+    <biblio xml:id="geminiSC"><p>Gemini spacecraft. navigation system. http://geminiguide.com/Systems/navigation.html/Attitude_Control_and_Maneuver_Electronics. Retrieved September 26, 2021.</p></biblio>
+    <biblio xml:id="newhorizons"><p> Spacecraft overview. new horizons. https://spaceflight101.com/newhorizons/spacecraft-overview/. Retrieved September 26, 2021.</p></biblio>
+    <biblio xml:id="sysML"><p>Sysml activity diagram — enterprise architect user guide. https://sparxsystems.com/enterprise_architect_user_guide/15.2/model_domains/sysml_activity_diagram.html. Accessed Nov. 28, 2021.</p></biblio>
+    <biblio xml:id="uml"><p>Uml - activity diagrams. https://www.tutorialspoint.com/uml/uml_activity_diagram.htm. Accessed Nov. 28, 2021.</p></biblio>
   </references>
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->

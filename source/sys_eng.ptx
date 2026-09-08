@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="chap-project-based-engineering" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Project Based Engineering and Systems Engineering</title>
+
+  <introduction>
+    <p>
+      This chapter explores the principles of project-based systems engineering, detailing the design, build, and test (DBT) framework across a standard academic curriculum. It provides a comprehensive schedule for executing complex engineering projects alongside formal structural diagrams used to define component interfaces and activity flows.  Systems engineering is a branch of engineering used to help in the design of complex systems. The general V&amp;V diagram for a systems life cycle can be seen below.
+  </p>
+
+  <figure xml:id="fig-vandv">
+    <caption>Verification and Validation Diagram for a Systems Engineering Life Cycle<xref ref="vandv"/></caption>
+    <image source="VandV.png"/>
+  </figure>
+
+  <p>
+    The left side of the V&amp;V diagram highlights all of the required design while the right side details the build. For undergraduate engineering courses the Design, Build, Test (DBT) framework is often used and has been used at the University of South Alabama for many years with much success. 
+</p>
+</introduction>
+
+<section xml:id="life-cycle">
+    <title>Systems Engineering Life Cycle </title>
+    <p>
+    The systems engineering life cycle is a more detailed version of the DBT framework. The systems engineering life cycle is used in many industries including aerospace, automotive, and software development. At the undergraduate level the following steps are used for a standard 16 week curriculum.
+  </p>
+
+  <ol>
+    <li>
+      <p>
+        <alert>Week 1:</alert> <em>Title Page and Group Development</em> - Students are given an explanation of the project scope, rubric are asked to split into teams to create a title page and team name. In aircraft design the project is to design, build and test a radio controlled aircraft. In spacecraft design the project is to design, build and test a model rocket. In Instrumentation and Experimental Methods the project is to design, build and test a data acquisition system with at least 3 electrical components not counting the CPU, flash memory, or power supply. This also includes mechanical subsystems so that students practice both hardware and software integration. The teams are typically 1-3 students each depending on class size.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Week 2:</alert> <em>Concept of Operations (ConOps)</em> - Students are given an explanation of the ConOps and asked to create a ConOps for their project as well as include a list of requirements which is based on the project scope given by the instructor as well as any additional requirements the students feel are necessary.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Week 3:</alert> <em>Conceptual Design</em> - Students are asked to create a hand sketch of their project as well as a brief list of materials they will need to complete the project. This also includes a list of subsystems and components that will be needed to complete the project which requires the students to create a Block Definition Diagram (BDD) as well as an Internal Block Diagram (IBD).
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Week 4:</alert> <em>Preliminary Design</em> - For the preliminary design phase the task is different depending on the course. In Aircraft Design the students are asked to perform a feasibility analysis and look at overall wingspan, chord and an initial weight estimate. In spacecraft design the students need to look at creating rockets in OpenRockt and perform a preliminary analysis of the rocket's stability. In Instrumentation and Experimental Methods the students need to create more detailed BDDs and IBDs for the mechanical, electrical and software subsystems as well as create an initial interface diagram (ID) for the project.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Weeks 5-7:</alert> <em>Detailed Design</em> - The detailed design phase is broken into 3 separate weeks. For aircraft design the students are asked to design the aerodynamic surfaces (wing and tail), the airframe and finally the propulsion system. For spacecraft design the students need to design the structure, propulsion system and perform a detailed trajectory analyis of their rocket. For Instrumentation and Experimental Methods the students need to design the mechanical, electrical and software subsystems creating schematics, wiring diagrams and a list of all software needed to run their system. For every course the students also need to create a detailed bill of materials with prices, weights and links. At this point the system is ready to be built.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Week 8:</alert> <em>Build Plan, Purchase materials + Break</em> - In the Fall semester, Fall break typically lands on Week 8 and in the spring Week 8 is typically spring break. As such Students are asked to create a build plan which is not something to be turned in but just something helpful to keep students on track as well as purchase all parts necessary while they are on holiday. If parts are purchased the Friday before break that typically gives the retail stores over 5 business days or 9 calendar days to ship the parts to the students before they return to class. This way students can immediately start building and testing during Week 9 when they return.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Weeks 9-11:</alert> <em>Build and Subsystem Testing</em> - The build process includes building everything component by component and testing each subsystem as it is built. This is important to ensure that each subsystem works properly independently before integrating everything together. For aircraft design the students will first build the airframe, then the propulsion system and finally the payload which is typically just a datalogger that measures acceleration and GPS location. For spacecraft design the students will first build the structure, then the propulsion system and finally the payload which for spacecraft design is a datalogger that measures acceleration and pressure. For Instrumentation and Experimental Methods the students will test each electrical component one by one and test the software for that specific component. The mechanical system is something to be built and integrated in Week 12.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Weeks 12-13:</alert> <em>System Integration and Testing</em> - The integration process includes integrating all subsystems together and testing the entire system as a whole. For aircraft design the students will integrate the airframe, propulsion system and payload and perform a ground test to ensure everything works properly. For spacecraft design the students will integrate the structure and payload and perform a series of tests to ensure everything works properly. This includes a shock cord test, a drop test, a datalogger test, a motor integration test and a nose cone test. For Instrumentation and Experimental Methods the students will integrate all electrical and software subsystems and perform a test without the mechanical subsystem in the way.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Weeks 14-16:</alert> <em>Final Testing and Validation</em> - The final testing and validation phase includes performing the final test of the entire system. For aircraft design the students will perform a flight test of their aircraft and recover the data from the datalogger. For spacecraft design the students will perform a launch of their rocket and recover the data from the datalogger. For Instrumentation and Experimental Methods the students will integrate the mechanical subsystem and perform a final test of the entire system. Note that 3 weeks are alloted for this phase to account for weather delays, part delays and any other unforeseen issues that may arise. Many times especially in aircraft design the system fails sometimes catastrophically as in a crash and the students need time to rebuild and retest before the final presentation.
+      </p>
+    </li>
+    <li>
+      <p>
+        <alert>Week 17:</alert> <em>Final Report and Presentation</em> - Although a semester is exactly 16 weeks, the final report and presentation is typically due the first week of finals which ends up being Week 17. The final report includes a summary of the entire project including all diagrams, analyses, test results and conclusions. The final presentation is a 10-15 minute presentation to the class and any invited guests which summarizes the entire project. Note that the final report and presentation is typically worth 30-40% of the overall grade so it is important that students take this seriously and put in their best effort. Furthermore, there are no exams or quizzes in these project based courses so the final report and presentation is the only way to demonstrate what the students have learned throughout the semester. This gives the students ownership of the project and motivates them to do their best work.
+      </p>
+    </li>
+  </ol>
+</section>
+
+  <section xml:id="sec-bdds">
+    <title>Block Definition Diagrams (BDDs)</title>
+
+    <p>
+      <!-- Content for Block Definition Diagrams -->
+    </p>
+  </section>
+
+  <section xml:id="sec-ibds">
+    <title>Internal Block Diagrams (IBDs)</title>
+
+    <p>
+      <!-- Content for Internal Block Diagrams -->
+    </p>
+  </section>
+
+  <section xml:id="sec-interface-diagrams">
+    <title>Interface Diagrams</title>
+
+    <p>
+      Interface Diagrams (IDs) are important for many reasons. The biggest reason that these diagrams are created and maintained is to create visibility within each subsystem team in a systems engineering project. It is crucial that each member working on a project has a general or even an expert understanding of each subsystem. During the design process, it is important that each function of each subsystem’s component is documented so that the current design selection is recorded and so each of the member’s is familiar with each subsystem and all of its functionalities. The following image is the ID for the attitude control and maneuver electronics subsystem on the Gemini Spacecraft.
+    </p>
+
+    <figure xml:id="fig-acme-id">
+      <caption>ACME Interface Diagram from the Gemini Spacecraft<xref ref="geminiSC"/></caption>
+      <image source="ACME_ID.png"/>
+    </figure>
+
+    <p>
+      This is an example of an interface diagram for a small subsystem of a large systems engineering project. The spacecraft requires several subsystems to work together in the design and fabrication process. Each of these subsystems has their own ID as well. This is a good example to introduce you to what these diagrams are. The left side of the image is the digital computer which has an accumulator which flows to the ladder logic block. From the ladder logic flows several functions into both the attitude control and maneuver electronics and attitude display blocks. This ID is simple since there are only four components with many functions, however, many complicated systems can have extremely complex diagrams. The Figure below is an example of an ID for an entire spacecraft with all of the subsystems included in the diagram.
+    </p>
+
+    <figure xml:id="fig-newhorizons-id">
+      <caption>New Horizons Interface Diagram<xref ref="newhorizons"/></caption>
+      <image source="NewHorizons_ID.png"/>
+    </figure>
+  </section>
+
+  <section xml:id="sec-activity-diagrams">
+    <title>Activity Diagrams</title>
+
+    <p>
+      Activity diagrams are similar to a flowchart. It is a tool for representing the sequence of Actions that describe the behavior of a Block or other structural element. The sequence of execution is defined using Control Flows. The Actions in an activity diagram can contain Input and Output Pins which act as buffers for items that flow from one action to another. Anything that can be produced, consumed, or conveyed by the system is considered to be an item. Physical materials, energy, power, data, and information are examples of items <xref ref="sysML"/>
+    </p>
+
+    <p>
+      Activity diagrams are useful for engineering modeling. It conveys high-level functions and operations to the user. The main purpose of an activity diagram is to draw the activity or action flow of a system. Next, it is used to describe the sequence from one activity to another. Finally, an activity diagram describes the parallel, branched, and concurrent flow of the system <xref ref="uml"/>.
+    </p>
+
+    <p>
+      Activity diagrams are important to the design process because they maintain coherence throughout the project. If a system is composed of multiple, intertwining subsystems, a person can simply follow the activity diagrams to understand how each component and subsystem interacts with one another. Activity diagrams also describe the data flow of a system and when or where that data is created, converted or used. Overall, activity diagrams are the roadmap of a system and describe the intricacies of how it operates.
+    </p>
+
+    <p>
+      As stated previously, activity diagrams denote how components and subsystems interact with each other. This is accomplished through the use of swimlanes which keep separate the individual activities and object flows of a component or subsystem. Swimlanes are the boxes which contain activities, however control and object flows can traverse swimlanes. Activities which have inputs and outputs will also have a pin attached to them. This small rectangular box denotes when matter, energy or data flow is created or destroyed.
+    </p>
+
+    <p>
+      The main purpose of activity diagrams is to show the control flow of the system. This control flow refers to the execution path of an activity. Control flow is indicated by control nodes for which there are seven different kinds. Each control node is described in the table below.
+    </p>
+
+    <table xml:id="table-control-nodes">
+      <title>Control Node Descriptions</title>
+      <tabular halign="center">
+        <row header="yes" bottom="medium">
+          <cell>Control Node</cell>
+          <cell>Description</cell>
+          <cell>Appearance</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Initial Node</cell>
+          <cell>The beginning of an activity sequence</cell>
+          <cell>Black circle</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Activity Final Node</cell>
+          <cell>The end of an activity sequence</cell>
+          <cell>Black circle within a circle</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Flow Final Node</cell>
+          <cell>The end of one branch of an activity sequence, but not the entire activity diagram.</cell>
+          <cell>Circle with an 'X' in it</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Decision Node</cell>
+          <cell>The splitting point of an activity flow based on the outcome of a boolean operator such as 'isCommandValid ==True'. One flow in comes in, while two flows come out as branching paths.</cell>
+          <cell>Diamond</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Merge Node</cell>
+          <cell>The merging point of two activity paths. Two flows come in, while one flow comes out.</cell>
+          <cell>Diamond</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Fork Node</cell>
+          <cell>The distribution of an activity flow into multiple pathways. When one object or control token comes in, it is duplicated into multiple paths.</cell>
+          <cell>Black bar</cell>
+        </row>
+        <row bottom="minor">
+          <cell>Join Node</cell>
+          <cell>The joining point of multiple synchronized concurrent flows. Two concurrent flows come in, while one flow comes out.</cell>
+          <cell>Black bar</cell>
+        </row>
+      </tabular>
+    </table>
+  </section>
+</chapter>
