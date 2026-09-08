@@ -33,6 +33,7 @@
     <xi:include href="./aerospace_controls.ptx"/>
     <xi:include href="./nonlinear.ptx"/>
     <xi:include href="./sys_eng.ptx"/>
+    <xi:include href="./cubesat_design.ptx"/>
     <xi:include href="./aircraft_design.ptx"/>
 
     <!--Include Results and Discussion chapters-->

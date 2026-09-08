@@ -56,8 +56,33 @@
     <biblio xml:id="EMM2015"><p>Enhanced magnetic field model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 11, 2017.</p></biblio>
     <biblio xml:id="ECI"><p>Neil Ashby. The sagnac effect in the global positioning system. <pubtitle>Relativity in rotating frames: relativistic physics in rotating reference frames</pubtitle>, page 11, 2004. doi:1-4020-1805-3.</p></biblio>
     <biblio xml:id="EGM2008"><p>Earth gravity model. https://www.ngdc.noaa.gov/geomag/EMM/. cited Jul 31, 2017.</p></biblio>
+    <biblio xml:id="qp1"><p>SatCatalog. Satcatalog. cubeir - earth/horizon sensor. https://www.satcatalog.com/component/cubeir/. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp2"><p>W. Emery and A. Camps. Introduction to satellite remote sensing: Atmosphere, ocean, land and cryosphere applications. Elsevier Science Publishing, 2017.</p></biblio>
     <biblio xml:id="qp8"><p>Chemical propulsion systems. glenn research center — nasa. https://www1.grc.nasa.gov/research-and-engineering/chemical-propulsion-systems/l-propulsion-systems/. Retrieved September 29, 2021.</p></biblio>
     <biblio xml:id="qp9"><p>Solid rocket propulsion. https://engineering.purdue.edu/ propulsi/propulsion/rockets/solids.html. Retrieved September 29, 2021.</p></biblio>
+    <biblio xml:id="qp14"><p>H. Curtis. Magnetorquers: An overview of magnetic torquer products available on the global marketplace for space. https://blog.satsearch.co/2019-08-21-magnetorquers-an-overview-of-magnetic-torquer-products-available-on-the-global-marketplace-for-space. (2021, July 22)</p></biblio>
+    <biblio xml:id="qp15"><p>CubeSTAR. Cubestar. attitude determination &amp; control. http://cubestar.no/index.php?p=1_22_Attitude-Determination-Control:~:text=The%20detumbling%20is%20the%20process,derivative%20of%20the%20angular%20rate. Retrieved November 3, 2021.</p></biblio>
+    <biblio xml:id="qp16"><p>Nctr-m002 cubesatshop.com. magnetorquer-rod/. (2020, November 6). https://www.cubesatshop.com/product/nctr-m002-magnetorquer-rod. </p></biblio>
+    <biblio xml:id="qp18"><p>Reaction wheels: An overview of attitude control systems available on the global marketplace for space. https://blog.satsearch.co/2019-07-25-reaction-wheels-an-overview-of-attitude-control-systems-available-on-the-global-marketplace-for-space. Accessed Nov. 3, 2021.</p></biblio>
+    <biblio xml:id="qp19"><p>NanoAvionics. Cubesat reaction wheels control system satbus 4rw.</p></biblio>
+    <biblio xml:id="qp20"><p>Blue canyon technologies. https://www.bluecanyontech.com/components. Retrieved November 29, 2021.</p></biblio>
+    <biblio xml:id="qp21"><p>Thrust vector control - an overview — sciencedirect topics. https://www.sciencedirect.com/topics/physics-and-astronomy/thrust-vector-control. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp22"><p>Gimbaled thrust. https://www.grc.nasa.gov/www/k-12/rocket/gimbaled.html. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp23"><p>Control devices. https://mars.nasa.gov/mro/mission/spacecraft/parts/gnc/controldevices/. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp24"><p>Low thrust, low impulse bit reaction control thruster. https://artes.esa.int/projects/low-thrust-low-impulse-bit-reaction-control-thruster. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp26"><p>Sinclair D. Votel, R. and S. Interplanetary. Comparison of control moment gyros and reaction wheels for small earth-observing satellites.</p></biblio>
+    <biblio xml:id="qp27"><p>B. L. Gyroscope.com. Control moment gyroscope platform-mk2. https://www.gyroscope.com/d.asp?product=CMGMK2. Accessed Nov. 4, 2021. </p></biblio>
+    <biblio xml:id="qp28"><p>Satellite star trackers - the cutting edge celestial navigation products available on the global space marketplace. satsearch blog. https://blog.satsearch.co/2019-11-26-satellite-star-trackers-the-cutting-edge-celestial-navigation-products-available-on-the-global-space-marketplace. Accessed Nov. 3, 2021.</p></biblio>
+    <biblio xml:id="qp29"><p>Spice toolkit. https://naif.jpl.nasa.gov/naif/toolkit.html. Accessed Nov. 3, 2021.</p></biblio>
+    <biblio xml:id="qp30"><p>Advanced star tracker. https://www.esa.int/Applications/Telecommunications_Integrated_Applications/Alphasat/Advanced_Star_Tracker. Accessed Nov. 3, 2021.</p></biblio>
+    <biblio xml:id="qp31"><p>What is a sun sensor? https://www.azosensors.com/article.aspx?ArticleID=223. Accessed Nov. 3, 2021.</p></biblio>
+    <biblio xml:id="qp32"><p>Nss cubesat sun sensor. CubeSatShop.com.</p></biblio>
+    <biblio xml:id="qp33"><p>What is a magnetometer? sciencing. https://sciencing.com/about-5397128-magnetometer.html. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp34"><p>Satcatalog. hi-rel magnetometer fgm-a-75-magnetometer—satcatalog. https://www.satcatalog.com/component/hi-rel-magnetometer-fgm-a-75/. Accessed Nov. 4, 2021.</p></biblio>
+    <biblio xml:id="qp35"><p>Sensonor, “sensonor - stim300 sensonor.no.”.  Accessed: 25-May-2021. https://www.sensonor.com/products/inertial-measurement-units/stim300/.</p></biblio>
+    <biblio xml:id="qp36"><p>Industries, a. adxl345 - triple-axis accelerometer (+-2g/4g/8g/16g) w/ i2c/spi. adafruit industries blog rss. https://www.adafruit.com/product/1231. Retrieved November 5, 2021.</p></biblio>
+    <biblio xml:id="qp37"><p>Vincent L. Pisacane. Fundamentals of space systems. New York, Oxford University Press, 2005.</p></biblio>
+    <biblio xml:id="qp38"><p>GPS.Gov: Space Segment. https://www.gps.gov/systems/gps/space/. Accessed Nov. 3, 2021.</p></biblio>
     <biblio xml:id="quadfdnc"><p>Waslander S.L. Hoffman G.M., Huang H. and Tomlin C.J. Quadrotor helicopter flight dynamics and control: Theory and experiment. AIAA Guidance, Navigation, and Control Conference and Exhibit, pages 6–15, 2007.</p></biblio>
     <biblio xml:id="rotorflap"><p>H. Huang, G. Hoffman, C. Talor, S. Waslander, and C. Tomlin. Aerodynamics and control of autonomous quadrotor helicopters in aggressive maneuvering. Proc. IEEE Int. Conference of Robotics and Automation (ICRA), pages 3277–3282, May 2009. doi:10.1109/ROBOT.2009.5152561.</p></biblio>
     <biblio xml:id="swingload"><p>Moosavian S.A.A. Sadr S. and Zarafshan P. Dynamics modeling and control of a quadrotor with swing load. Journal of Robotics, 2014.</p></biblio>
